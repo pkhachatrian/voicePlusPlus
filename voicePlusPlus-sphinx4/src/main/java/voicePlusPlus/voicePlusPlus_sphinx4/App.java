@@ -18,15 +18,18 @@ public class App
 {
     public static void main( String[] args )
     {
+    	// Set up Configuration object.
     	Configuration config = new Configuration();
     	config.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
     	config.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
     	config.setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.dmp");
     	
         try {
+        	// Create Recognizer and stream to be an audio file.
     		StreamSpeechRecognizer recognizer = new StreamSpeechRecognizer(config);
     	    InputStream stream = new FileInputStream("../sphinx4-core/target/test-classes/edu/cmu/sphinx/tools/bandwidth/10001-90210-01803.wav");
 
+    	    // Start recognizing. While there is something to recognize, print out what has been recognized as words.
     	    recognizer.startRecognition(stream);
             SpeechResult result;
             while ((result = recognizer.getResult()) != null) {
