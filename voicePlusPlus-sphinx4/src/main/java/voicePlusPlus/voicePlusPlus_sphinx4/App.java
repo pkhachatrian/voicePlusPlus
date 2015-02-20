@@ -25,10 +25,9 @@ public class App
 //    	config.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
 //    	config.setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.dmp");
     	
-    	
     	//You will need to change the paths to match your computer
-    	config.setDictionaryPath("file:C:/Users/Julio Garcia/Desktop/voicePlusPlus/voicePlusPlus-sphinx4/src/main/resources/1905.dic");
-    	config.setLanguageModelPath("file:C:/Users/Julio Garcia/Desktop/voicePlusPlus/voicePlusPlus-sphinx4/src/main/resources/1905.lm");
+    	config.setDictionaryPath("./src/main/resources/1905.dic");
+    	config.setLanguageModelPath("./src/main/resources/1905.lm");
     	
         try {
 
