@@ -4,9 +4,8 @@
 package voicePlusPlus.voicePlusPlus_sphinx4;
 
 import junit.framework.TestCase;
-import java.util.Hashtable;
 
-public class KeywordTest  {
+public class KeywordTest extends TestCase {
 
 	protected void setUp() {
 		
@@ -23,10 +22,8 @@ public class KeywordTest  {
 		String nonKeywords;
 		String keywordsOnly;
 		
-		nonKeywords= "Hello what's up dog invocabot schedule a meeting tomorrow at nine p m";
+		nonKeywords = "Hello what's up dog invocabot schedule a meeting tomorrow at nine p m";
 		keywordsOnly = "schedule meeting tomorrow nine pm";
-		
-		System.out.println(keywordsOnly);
 		
 		assertEquals(Keyword.removeNonKeywords(nonKeywords), keywordsOnly);
 	}
