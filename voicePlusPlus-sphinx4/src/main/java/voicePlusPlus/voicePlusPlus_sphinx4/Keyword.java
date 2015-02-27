@@ -8,14 +8,22 @@ import java.io.IOException;
 
 public class Keyword {
 	private static Hashtable<String, String> keywords;
-	
+	/**
+	 * Instantiates the Hashtable of keywords from the filename.
+	 * The keys are all of the possible words used in voice commands.
+	 * The values are the categories of these keywords.
+	 * <p>
+	 * Note: Filename should be formatted as newline, category, keyword(s), newline, category, keyword(s)... 
+	 * </p>
+	 * 
+	 * @param fileName the name of the file to read from
+	 */
 	public static void instantiateHashTable(String fileName) {
 		keywords = new Hashtable<String, String>();
 		BufferedReader br = null;
 		String line;
 		String keywordCategory;
 		Boolean isKeyword;
-		
 		
 		try {			
 			br = new BufferedReader(new FileReader(fileName));
@@ -36,7 +44,6 @@ public class Keyword {
 					isKeyword = true;
 				}
 			}
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
