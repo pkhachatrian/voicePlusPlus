@@ -5,6 +5,7 @@ import java.util.Set;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.StringBuilder;
 
 public class Keyword {
 	private static Hashtable<String, String> keywords;
@@ -49,6 +50,36 @@ public class Keyword {
 		}
 	}
 	
+	public static String removeNonKeywords(String command) {
+		String[] words;
+		StringBuilder sbKeywordsOnly;
+		String word;
+		
+		sbKeywordsOnly = new StringBuilder();
+		words = command.split("\\s");
+		
+		for (int i=0; i<words.length; i++) {
+			word = words[i];
+			
+			if (word.equals("p") || word.equals("a")) {
+				if (i < words.length - 1) {
+					if (words[i+1].equals("m")) {
+						sbKeywordsOnly.append(word + "m ");
+						i = i++;
+						continue;
+					}
+				}
+			}
+			
+			if (keywords.get(word) != null) {
+				sbKeywordsOnly.append(word + " ");
+			}
+		}
+		sbKeywordsOnly.deleteCharAt(sbKeywordsOnly.length() - 1);
+		
+		return sbKeywordsOnly.toString();
+	}
+	
 	public static void main(String[] args) {
 		String fileName;
 		
@@ -58,5 +89,7 @@ public class Keyword {
 		Set<String> keys = keywords.keySet();
 		for (String key : keys)
 			System.out.println("Value of " + key + " is " + keywords.get(key));
+		
+		System.out.println(removeNonKeywords("Hello what's up dog invocabot schedule a meeting tomorrow at nine p m"));
 	}
 }
