@@ -50,6 +50,12 @@ public class Keyword {
 		}
 	}
 	
+	/**
+	 * Takes in a string and removes the words that aren't in the hashtable from it (the non keywords).
+	 * 
+	 * @param command the command that will have the non keywords removed
+	 * @return the command with only the keywords
+	 */
 	public static String removeNonKeywords(String command) {
 		String[] words;
 		StringBuilder sbKeywordsOnly;
@@ -82,7 +88,7 @@ public class Keyword {
 	
 	public static void main(String[] args) {
 		String fileName;
-		
+		 
 		fileName = "./src/main/resources/keywords.txt";
 		instantiateHashTable(fileName);
 		
