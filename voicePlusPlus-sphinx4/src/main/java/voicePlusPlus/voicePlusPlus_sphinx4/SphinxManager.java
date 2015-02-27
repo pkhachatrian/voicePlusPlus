@@ -15,7 +15,7 @@ import java.io.InputStream;
  * Hello world!
  *
  */
-public class App 
+public class SphinxManager 
 {
     public static void main( String[] args )
     {
@@ -62,5 +62,19 @@ public class App
     		System.err.println(e.getMessage());
     		e.printStackTrace();
     	}
+    }
+    
+    /**
+     * Searches for the word "invocabot" in the string and returns the words that follow the word invocabot
+     * @param string
+     * @return The truncated version of the string. 
+     * Input: "What time is it? Invocabot schedule an appointment with Chandra at 12 pm tomorrow" 
+     * Output: "schedule an appointment with Chandra at 12 pm tomorrow"
+     */
+    public static String GetCommand(String string){
+    	int index = string.indexOf("invocabot");
+    	int truncationIndex = index + "invocabot".length() + 1;
+    	System.out.println(string.substring(truncationIndex));
+    	return string.substring(truncationIndex);
     }
 }

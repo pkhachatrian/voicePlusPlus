@@ -23,7 +23,17 @@ public class TaskManager {
 	}
 	
 	public static String InvokeAPICommand(APICommand apiCommand){
-		return null;
+		String feedback = null;
+		switch(apiCommand.API){
+			case "GoogleCalendar":
+				
+				break;
+			case "GoogleSearch":
+				
+				break;
+			
+		}
+		return feedback;
 	}
 	
 	
