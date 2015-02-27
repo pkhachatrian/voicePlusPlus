@@ -73,8 +73,22 @@ public class SphinxManager
      */
     public static String GetCommand(String string){
     	int index = string.indexOf("invocabot");
+    	//if invocabot is not in string
+    	if (index == -1) return null;
+    	
+    	String output;
+    	//Check if invocabot exists twice
+    	int endIndex = string.indexOf("invocabot", index + 1);
     	int truncationIndex = index + "invocabot".length() + 1;
-    	System.out.println(string.substring(truncationIndex));
-    	return string.substring(truncationIndex);
+    	
+    	//If invocabot exists once, truncate until end of string
+    	if (endIndex == -1) {
+    		output = string.substring(truncationIndex);
+    	} 
+    	//if invocabot exists more than once, truncate at the last word before the next invocabot
+    	else {
+    		output = string.substring(truncationIndex, endIndex - 1);
+    	}
+    	return output;
     }
 }
