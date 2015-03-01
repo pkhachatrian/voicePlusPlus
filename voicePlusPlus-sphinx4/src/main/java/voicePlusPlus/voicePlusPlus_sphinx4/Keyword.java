@@ -86,16 +86,63 @@ public class Keyword {
 		return sbKeywordsOnly.toString();
 	}
 	
+	/**
+	 * Determines which API the program will use given the command string.
+	 * The order of the APIs (in APIs.java) will determine how the array and ordering works.
+	 * 
+	 * @param command the command with only keywords
+	 * @return the API as a string
+	 */
+	public static String determineAPI(String command) {
+		double max;
+		double val;
+		String[] words;
+		String value;
+		String API;
+		Hashtable<String, Double> likelihoodOfAPIs;
+		
+		likelihoodOfAPIs = new Hashtable<String, Double>();
+		words = command.split("\\s");
+		
+		likelihoodOfAPIs.put(APIs.GOOGLE_CALENDAR, 0.0);
+		likelihoodOfAPIs.put(APIs.GOOGLE_SEARCH, 0.0);
+		
+		for (String word : words) {
+			value = keywords.get(word);
+			if (value.equals(APIs.GOOGLE_CALENDAR)) {
+				likelihoodOfAPIs.put(APIs.GOOGLE_CALENDAR, likelihoodOfAPIs.get(APIs.GOOGLE_CALENDAR) + 1.0);
+			}
+			else if (value.equals(APIs.GOOGLE_SEARCH)) {
+				likelihoodOfAPIs.put(APIs.GOOGLE_SEARCH, likelihoodOfAPIs.get(APIs.GOOGLE_SEARCH) + 1.0);
+			}
+			else if (value.equals("DATE") || value.equals("TIME")) {
+				likelihoodOfAPIs.put(APIs.GOOGLE_CALENDAR, likelihoodOfAPIs.get(APIs.GOOGLE_CALENDAR) + 0.75);
+			}
+		}
+		
+		max = -1;
+		API = "";
+		for (String key : likelihoodOfAPIs.keySet()) {
+			val = likelihoodOfAPIs.get(key);
+			if (val > max) {
+				max = val;
+				API = key;
+			}
+		}
+		
+		return API;
+	}
+	
 	public static void main(String[] args) {
 		String fileName;
 		 
 		fileName = "./src/main/resources/keywords.txt";
 		instantiateHashTable(fileName);
 		
-		Set<String> keys = keywords.keySet();
-		for (String key : keys)
-			System.out.println("Value of " + key + " is " + keywords.get(key));
+//		Set<String> keys = keywords.keySet();
+//		for (String key : keys)
+//			System.out.println("Value of " + key + " is " + keywords.get(key));
 		
-		System.out.println(removeNonKeywords("Hello what's up dog invocabot schedule a meeting tomorrow at nine p m"));
+		System.out.println(determineAPI("schedule meeting tomorrow nine"));
 	}
 }
