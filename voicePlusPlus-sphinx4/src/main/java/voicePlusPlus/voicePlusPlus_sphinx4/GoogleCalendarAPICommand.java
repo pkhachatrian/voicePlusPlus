@@ -8,6 +8,8 @@ public class GoogleCalendarAPICommand extends APICommand {
 	public Date StartDate;
 	public Date EndDate;
 	
+	
+	
 	public GoogleCalendarAPICommand(){
 		super();
 		this.EventDescription = "";
