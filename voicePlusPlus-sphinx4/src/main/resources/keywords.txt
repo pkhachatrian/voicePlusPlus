@@ -49,3 +49,16 @@ thirty
 forty
 fifty
 sixty
+
+GOOGLE CALENDAR
+schedule
+meeting
+
+GOOGLE SEARCH
+find
+what
+where
+when
+who
+how
+why
