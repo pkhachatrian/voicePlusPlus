@@ -2,6 +2,12 @@ package voicePlusPlus.voicePlusPlus_sphinx4;
 
 import java.util.Date;
 
+import com.google.api.client.http.*;
+import com.google.api.services.calendar.*;
+import com.google.api.services.calendar.model.*;
+
+
+
 public class GoogleCalendarAPICommand extends APICommand {
 
 	public String EventDescription;
