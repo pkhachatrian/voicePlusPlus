@@ -9,3 +9,9 @@
 
 ## Type of Audio File to Recognize
 16khz 16bit mono little endian file according to http://stackoverflow.com/questions/7411563/speech-recognition-response-is-poor-in-sphinx4
+
+## Google Calendar API Credentials
+Client ID: 961199178603-hjng14f7mmlagofj23rnq9q6ql3ab4r5.apps.googleusercontent.com
+Client Secret:vbZABAK8TVTv_SnzJtsptHKz
+Redirect URIs: urn:ietf:wg:oauth:2.0:oob
+http://localhost
