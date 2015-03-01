@@ -15,17 +15,18 @@ import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 
+
+
 public class GoogleCalendarInstantiator {
+
 	
-	public void setUp() throws IOException, GeneralSecurityException{
+	public void setUp(String clientId, String clientSecret) throws IOException, GeneralSecurityException{
 		
 		
 		HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
 	    JacksonFactory jsonFactory = JacksonFactory.getDefaultInstance();
 
 	    // The clientId and clientSecret can be found in Google Developers Console
-	    String clientId = "961199178603-hjng14f7mmlagofj23rnq9q6ql3ab4r5.apps.googleusercontent.com";
-	    String clientSecret = "vbZABAK8TVTv_SnzJtsptHKz";
 
 	    // Or your redirect URL for web based applications.
 	    String redirectUrl = "urn:ietf:wg:oauth:2.0:oob";
@@ -59,13 +60,8 @@ public class GoogleCalendarInstantiator {
 
 	    Calendar service = new Calendar.Builder(httpTransport, jsonFactory, credential)
 	        .setApplicationName("voicePlusPlus").build();
-		
-		
+			
 	}
-	
-	
-	
-	
 	
 	
 }

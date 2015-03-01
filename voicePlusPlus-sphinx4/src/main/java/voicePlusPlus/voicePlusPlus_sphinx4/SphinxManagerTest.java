@@ -10,6 +10,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.api.client.auth.oauth2.Credential;
+
+
 public class SphinxManagerTest {
 
 	@Before
