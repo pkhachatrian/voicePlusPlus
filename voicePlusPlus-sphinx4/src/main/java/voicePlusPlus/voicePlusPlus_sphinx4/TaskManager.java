@@ -34,7 +34,7 @@ public class TaskManager {
 	public static String InvokeAPICommand(APICommand apiCommand){
 		String feedback = null;
 		switch(apiCommand.API){
-			case "GoogleCalendar":
+			case "GOOGLE CALENDAR":
 				GoogleCalendarInstantiator google = new GoogleCalendarInstantiator();
 			try {
 				google.setUp(clientId, clientSecret);
@@ -47,7 +47,7 @@ public class TaskManager {
 			}
 			
 				break;
-			case "GoogleSearch":
+			case "GOOGLE SEARCH":
 				
 				break;
 			
