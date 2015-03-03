@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.lang.StringBuilder;
 
 public class Keyword {
-	private static Hashtable<String, String> keywords;
+	public static Hashtable<String, String> keywords;
 	/**
 	 * Instantiates the Hashtable of keywords from the filename.
 	 * The keys are all of the possible words used in voice commands.
@@ -133,6 +133,10 @@ public class Keyword {
 		return API;
 	}
 	
+	public static String Get(Object key){
+		return keywords.get(key);
+	}
+	
 	public static void main(String[] args) {
 		String fileName;
 		 
@@ -143,6 +147,6 @@ public class Keyword {
 //		for (String key : keys)
 //			System.out.println("Value of " + key + " is " + keywords.get(key));
 		
-		System.out.println(determineAPI("schedule meeting tomorrow nine"));
+		System.out.println(determineAPI("w"));
 	}
 }
