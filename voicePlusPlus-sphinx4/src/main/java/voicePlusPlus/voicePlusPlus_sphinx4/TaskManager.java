@@ -35,7 +35,11 @@ public class TaskManager {
 		String feedback = null;
 		switch(apiCommand.API){
 			case "GOOGLE CALENDAR":
-				GoogleCalendarInstantiator google = new GoogleCalendarInstantiator();
+				GoogleCalendarInstantiator googleCal = new GoogleCalendarInstantiator();
+				
+				//if command make new event
+				//googleCal.newEvent(/*event details*/);
+				
 			try {
 				google.setUp(clientId, clientSecret);
 			} catch (IOException e) {

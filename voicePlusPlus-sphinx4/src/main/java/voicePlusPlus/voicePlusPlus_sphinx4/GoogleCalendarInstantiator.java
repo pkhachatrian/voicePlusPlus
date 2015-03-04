@@ -17,6 +17,13 @@ import java.util.Collections;
 
 
 
+//Event libraries
+import com.google.api.services.calendar.model.Event;
+import com.google.api.services.calendar.model.EventAttendee;
+import com.google.api.services.calendar.model.EventDateTime;
+import com.google.api.client.util.DateTime;
+import java.util.Date;
+
 public class GoogleCalendarInstantiator {
 
 	
@@ -63,5 +70,34 @@ public class GoogleCalendarInstantiator {
 			
 	}
 	
+	public void newEvent(/*event details who/what/when*/){
+		/*DOES NOTHING YET*/
+		
+		// Initialize Calendar service with valid OAuth credentials
+		Calendar service = new Calendar.Builder(httpTransport, jsonFactory, credentials)
+		    .setApplicationName("applicationName").build();
+
+		// Create and initialize a new event
+		Event event = new Event();
+		event.setSummary("Appointment");
+		event.setLocation("Somewhere");
+
+		ArrayList<EventAttendee> attendees = new ArrayList<EventAttendee>();
+		attendees.add(new EventAttendee().setEmail("attendeeEmail"));
+		// ...
+		event.setAttendees(attendees);
+
+		Date startDate = new Date();
+		Date endDate = new Date(startDate.getTime() + 3600000);
+		DateTime start = new DateTime(startDate, TimeZone.getTimeZone("UTC"));
+		event.setStart(new EventDateTime().setDateTime(start));
+		DateTime end = new DateTime(endDate, TimeZone.getTimeZone("UTC"));
+		event.setEnd(new EventDateTime().setDateTime(end));
+
+		// Insert the new event
+		Event createdEvent = service.events().insert('primary', event).execute();
+
+		System.out.println(createdEvent.getId());
 	
+	}
 }

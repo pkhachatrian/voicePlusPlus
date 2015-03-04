@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.StringBuilder;
 
+
 public class Keyword {
 	public static Hashtable<String, String> keywords;
 	/**
@@ -148,6 +149,17 @@ public class Keyword {
 //			System.out.println("Value of " + key + " is " + keywords.get(key));
 		
 		//System.out.println(determineAPI("w"));
+		
+		//added this
+		String chosenApi = determineAPI("schedule meeting tomorrow nine");
+		APICommand command = new APICommand(chosenApi);
+		System.out.print(command.API);
+		TaskManager.InvokeAPICommand(command);
+		
+		
+		
+		
+	
 		
 	}
 }
