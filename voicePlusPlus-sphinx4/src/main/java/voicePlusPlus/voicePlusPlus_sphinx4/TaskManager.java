@@ -41,7 +41,7 @@ public class TaskManager {
 				//googleCal.newEvent(/*event details*/);
 				
 			try {
-				google.setUp(clientId, clientSecret);
+				googleCal.setUp(clientId, clientSecret);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
