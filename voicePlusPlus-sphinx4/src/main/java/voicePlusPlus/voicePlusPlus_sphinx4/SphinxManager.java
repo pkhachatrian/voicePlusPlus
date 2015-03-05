@@ -17,8 +17,8 @@ import java.io.InputStream;
  */
 public class SphinxManager 
 {
-	Configuration config;
-	LiveSpeechRecognizer recognizer;
+	private Configuration config;
+	private LiveSpeechRecognizer recognizer;
 	
 	public SphinxManager(){
 		config = new Configuration();

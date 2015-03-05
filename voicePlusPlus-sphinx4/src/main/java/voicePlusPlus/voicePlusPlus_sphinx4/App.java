@@ -15,6 +15,7 @@ public class App {
 			String utterance = sphinxManager.GetUtterance(result);
 			System.out.println(utterance);
 		}
+		sphinxManager.StopRecognizingAudio();
 	}
 
 }
