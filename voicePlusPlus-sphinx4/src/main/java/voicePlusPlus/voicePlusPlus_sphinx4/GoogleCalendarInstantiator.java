@@ -13,25 +13,30 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.Collections;
-
-
+import java.util.TimeZone;
+import java.util.Date;
 
 //Event libraries
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventAttendee;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.client.util.DateTime;
-import java.util.Date;
+
 
 public class GoogleCalendarInstantiator {
-
 	
+		HttpTransport httpTransport;
+		JacksonFactory jsonFactory;
+		Credential credential;
+		Calendar service;
+		
 	public void setUp(String clientId, String clientSecret) throws IOException, GeneralSecurityException{
 		
 		
-		HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
-	    JacksonFactory jsonFactory = JacksonFactory.getDefaultInstance();
+		httpTransport = GoogleNetHttpTransport.newTrustedTransport();
+	    jsonFactory = JacksonFactory.getDefaultInstance();
 
 	    // The clientId and clientSecret can be found in Google Developers Console
 
@@ -59,13 +64,13 @@ public class GoogleCalendarInstantiator {
 	        .execute();
 	    // End of Step 2
 
-	    Credential credential = new GoogleCredential.Builder()
+	    credential = new GoogleCredential.Builder()
 	        .setTransport(httpTransport)
 	        .setJsonFactory(jsonFactory)
 	        .setClientSecrets(clientId, clientSecret)
 	        .build().setFromTokenResponse(response);
 
-	    Calendar service = new Calendar.Builder(httpTransport, jsonFactory, credential)
+	    service = new Calendar.Builder(httpTransport, jsonFactory, credential)
 	        .setApplicationName("voicePlusPlus").build();
 			
 	}
@@ -73,18 +78,18 @@ public class GoogleCalendarInstantiator {
 	public void newEvent(/*event details who/what/when*/){
 		/*DOES NOTHING YET*/
 		
-		// Initialize Calendar service with valid OAuth credentials
-		Calendar service = new Calendar.Builder(httpTransport, jsonFactory, credentials)
-		    .setApplicationName("voicePlusPlus").build();
+//		// Initialize Calendar service with valid OAuth credentials
+//		service = new Calendar.Builder(httpTransport, jsonFactory, credential)
+//		    .setApplicationName("voicePlusPlus").build();
 
 		// Create and initialize a new event
 		Event event = new Event();
 		event.setSummary("Appointment");
-		event.setLocation("Somewhere");
+		event.setLocation("UCSB");
 
 		ArrayList<EventAttendee> attendees = new ArrayList<EventAttendee>();
-		attendees.add(new EventAttendee().setEmail("attendeeEmail"));
-		// ...
+		attendees.add(new EventAttendee().setEmail("belsinb@gmail.com"));
+		
 		event.setAttendees(attendees);
 
 		Date startDate = new Date();
@@ -95,7 +100,13 @@ public class GoogleCalendarInstantiator {
 		event.setEnd(new EventDateTime().setDateTime(end));
 
 		// Insert the new event
-		Event createdEvent = service.events().insert('primary', event).execute();
+		Event createdEvent = null;
+		try {
+			createdEvent = service.events().insert("primary", event).execute();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		System.out.println(createdEvent.getId());
 	

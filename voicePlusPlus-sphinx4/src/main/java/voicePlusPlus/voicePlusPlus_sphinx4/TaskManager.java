@@ -38,7 +38,7 @@ public class TaskManager {
 				GoogleCalendarInstantiator googleCal = new GoogleCalendarInstantiator();
 				
 				//if command make new event
-				//googleCal.newEvent(/*event details*/);
+				googleCal.newEvent(/*event details*/);
 				
 			try {
 				googleCal.setUp(clientId, clientSecret);

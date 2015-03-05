@@ -38,20 +38,20 @@ public class GoogleCalendarAPICommand extends APICommand {
 		this.EndDate = endDate;	
 	}
 	
-	public static Date FindStartDate(String[] keywords){
-		for (String keyword : keywords)
-		{
-			String category = Keyword.Get(keyword);
-			if (category == "DATE" || category == "TIME")
-			{
-				System.out.println(keyword);
-			}
-		}
-	}
+//	public static Date FindStartDate(String[] keywords){
+//		for (String keyword : keywords)
+//		{
+//			String category = Keyword.Get(keyword);
+//			if (category == "DATE" || category == "TIME")
+//			{
+//				System.out.println(keyword);
+//			}
+//		}
+//	}
 	
-	public static Date FindEndDate(String[] keywords){
-	
-	}
-	}
+//	public static Date FindEndDate(String[] keywords){
+//	
+//	
+//	}
 
 }
