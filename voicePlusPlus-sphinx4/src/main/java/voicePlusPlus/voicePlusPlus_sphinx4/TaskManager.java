@@ -132,26 +132,19 @@ public class TaskManager {
 	public static String InvokeAPICommand(APICommand apiCommand){
 		String feedback = null;
 		switch(apiCommand.API){
-			case APIs.GOOGLE_CALENDAR:
-				GoogleCalendarInstantiator googleCal = new GoogleCalendarInstantiator();
+			case "GOOGLE CALENDAR":
+				GoogleCalendarAPICommand command = (GoogleCalendarAPICommand) apiCommand;
+			/*CREATE A GOOGLE CALENDAR INSTANCE*/
 			try {
-				googleCal.setUp(clientId, clientSecret);
+				GoogleCalendarInstantiator.setUp(clientId, clientSecret);
 			} catch (IOException | GeneralSecurityException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 				//if command make new event
-				googleCal.newEvent(/*event details*/);
+				GoogleCalendarInstantiator.newEvent();
 				
-			try {
-				googleCal.setUp(clientId, clientSecret);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (GeneralSecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				
 			
 				break;
 			case APIs.GOOGLE_SEARCH:
