@@ -3,9 +3,10 @@ package voicePlusPlus.voicePlusPlus_sphinx4;
 import java.util.Date;
 
 import com.google.api.client.http.*;
-import com.google.api.services.calendar.*;
+//import com.google.api.services.calendar.*;
 import com.google.api.services.calendar.model.*;
-
+import com.google.api.services.calendar.Calendar;
+import com.google.api.client.util.DateTime;
 
 
 public class GoogleCalendarAPICommand extends APICommand {
@@ -28,6 +29,7 @@ public class GoogleCalendarAPICommand extends APICommand {
 		this.EndDate = null;
 	}
 	
+	
 	public GoogleCalendarAPICommand(String api, String eventDescription, Date startDate, Date endDate)
 	{
 		super(api);
@@ -48,7 +50,7 @@ public class GoogleCalendarAPICommand extends APICommand {
 	}
 	
 	public static Date FindEndDate(String[] keywords){
-		
+	
 	}
 	}
 

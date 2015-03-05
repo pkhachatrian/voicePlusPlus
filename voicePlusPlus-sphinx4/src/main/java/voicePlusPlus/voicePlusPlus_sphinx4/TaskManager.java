@@ -34,10 +34,14 @@ public class TaskManager {
 	public static String InvokeAPICommand(APICommand apiCommand){
 		String feedback = null;
 		switch(apiCommand.API){
-			case "GoogleCalendar":
-				GoogleCalendarInstantiator google = new GoogleCalendarInstantiator();
+			case "GOOGLE CALENDAR":
+				GoogleCalendarInstantiator googleCal = new GoogleCalendarInstantiator();
+				
+				//if command make new event
+				//googleCal.newEvent(/*event details*/);
+				
 			try {
-				google.setUp(clientId, clientSecret);
+				googleCal.setUp(clientId, clientSecret);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -47,7 +51,7 @@ public class TaskManager {
 			}
 			
 				break;
-			case "GoogleSearch":
+			case "GOOGLE SEARCH":
 				
 				break;
 			
