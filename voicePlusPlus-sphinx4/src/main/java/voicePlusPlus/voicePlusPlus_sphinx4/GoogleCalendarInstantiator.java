@@ -27,12 +27,12 @@ import com.google.api.client.util.DateTime;
 
 public class GoogleCalendarInstantiator {
 	
-		HttpTransport httpTransport;
-		JacksonFactory jsonFactory;
-		Credential credential;
-		Calendar service;
+		private static HttpTransport httpTransport;
+		private static JacksonFactory jsonFactory;
+		private static Credential credential;
+		private static Calendar service;
 		
-	public void setUp(String clientId, String clientSecret) throws IOException, GeneralSecurityException{
+	public static void setUp(String clientId, String clientSecret) throws IOException, GeneralSecurityException{
 		
 		
 		httpTransport = GoogleNetHttpTransport.newTrustedTransport();
@@ -75,12 +75,10 @@ public class GoogleCalendarInstantiator {
 			
 	}
 	
-	public void newEvent(/*event details who/what/when*/){
-		/*DOES NOTHING YET*/
+	public static void newEvent(/*event details who/what/when*/){
+		/*Currently makes an event with hard-coded settings*/
 		
-//		// Initialize Calendar service with valid OAuth credentials
-//		service = new Calendar.Builder(httpTransport, jsonFactory, credential)
-//		    .setApplicationName("voicePlusPlus").build();
+
 
 		// Create and initialize a new event
 		Event event = new Event();
@@ -110,5 +108,9 @@ public class GoogleCalendarInstantiator {
 
 		System.out.println(createdEvent.getId());
 	
+	}
+	
+	public void quickAdd(){
+		
 	}
 }
