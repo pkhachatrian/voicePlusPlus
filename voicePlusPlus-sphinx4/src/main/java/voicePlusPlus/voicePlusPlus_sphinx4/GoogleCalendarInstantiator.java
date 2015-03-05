@@ -125,4 +125,32 @@ public class GoogleCalendarInstantiator {
 		
 		System.out.println(createdEvent.getId());
 	}
+	
+	public static void update(){
+		// Retrieve the event from the API
+		
+		Event event = null;
+		try {
+			event = service.events().get("primary", "eventId").execute();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// Make a change
+		event.setSummary("Invocabot Created Event");
+		
+		// Update the event
+		Event updatedEvent = null;
+		try {
+			updatedEvent = service.events().update("primary", event.getId(), event).execute();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println(updatedEvent.getUpdated());
+	}
+	
+	
 }
