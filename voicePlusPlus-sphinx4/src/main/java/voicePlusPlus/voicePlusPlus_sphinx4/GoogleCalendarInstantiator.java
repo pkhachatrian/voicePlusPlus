@@ -70,7 +70,7 @@ public class GoogleCalendarInstantiator {
 	        .setClientSecrets(clientId, clientSecret)
 	        .build().setFromTokenResponse(response);
 
-	    service = new Calendar.Builder(httpTransport, jsonFactory, credential)
+	     service = new Calendar.Builder(httpTransport, jsonFactory, credential)
 	        .setApplicationName("voicePlusPlus").build();
 			
 	}
