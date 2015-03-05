@@ -47,11 +47,11 @@ public class GoogleCalendarAPICommand extends APICommand {
 				System.out.println(keyword);
 			}
 		}
+		return null;
 	}
 	
 	public static Date FindEndDate(String[] keywords){
-	
-	}
+		return null;
 	}
 
 }
