@@ -75,10 +75,11 @@ public class GoogleCalendarInstantiator {
 			
 	}
 	
-	public static void newEvent(/*event details who/what/when*/){
+	public static void newEvent(String command){
 		/*Currently makes an event with hard-coded settings*/
 		
-
+		/*doesn't do anything with command yet. maybe we won't need to.*/
+		
 
 		// Create and initialize a new event
 		Event event = new Event();
@@ -110,7 +111,18 @@ public class GoogleCalendarInstantiator {
 	
 	}
 	
-	public void quickAdd(){
+	public static void quickAdd(String eventText){
+		// Quick-add an event
+		//eventText = "Appointment at Somewhere on June 3rd 10am-10:25am";
+		Event createdEvent = null;
 		
+		try {
+			createdEvent = service.events().quickAdd("primary", eventText).setText(eventText).execute();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(createdEvent.getId());
 	}
 }

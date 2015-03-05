@@ -142,7 +142,7 @@ public class TaskManager {
 				e1.printStackTrace();
 			}
 				//if command make new event
-				GoogleCalendarInstantiator.newEvent();
+				GoogleCalendarInstantiator.quickAdd(command.EventDescription);
 				
 				
 			
