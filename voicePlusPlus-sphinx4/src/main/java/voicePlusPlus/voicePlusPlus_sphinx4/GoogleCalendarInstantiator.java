@@ -75,7 +75,7 @@ public class GoogleCalendarInstantiator {
 		
 		// Initialize Calendar service with valid OAuth credentials
 		Calendar service = new Calendar.Builder(httpTransport, jsonFactory, credentials)
-		    .setApplicationName("applicationName").build();
+		    .setApplicationName("voicePlusPlus").build();
 
 		// Create and initialize a new event
 		Event event = new Event();
