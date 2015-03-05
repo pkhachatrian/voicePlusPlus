@@ -36,9 +36,14 @@ public class TaskManager {
 		switch(apiCommand.API){
 			case "GOOGLE CALENDAR":
 				GoogleCalendarInstantiator googleCal = new GoogleCalendarInstantiator();
-				
+			try {
+				googleCal.setUp(clientId, clientSecret);
+			} catch (IOException | GeneralSecurityException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 				//if command make new event
-				//googleCal.newEvent(/*event details*/);
+				googleCal.newEvent(/*event details*/);
 				
 			try {
 				googleCal.setUp(clientId, clientSecret);
