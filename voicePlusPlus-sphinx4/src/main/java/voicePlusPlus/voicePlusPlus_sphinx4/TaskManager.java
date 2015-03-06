@@ -133,8 +133,9 @@ public class TaskManager {
 	public static String InvokeAPICommand(APICommand apiCommand){
 		String feedback = null;
 		switch(apiCommand.API){
-			case "GOOGLE CALENDAR":
+			case APIs.GOOGLE_CALENDAR:
 				GoogleCalendarAPICommand command = (GoogleCalendarAPICommand) apiCommand;
+				System.out.println(command);
 			/*CREATE A GOOGLE CALENDAR INSTANCE*/
 			try {
 				GoogleCalendarInstantiator.setUp(clientId, clientSecret);
@@ -144,7 +145,7 @@ public class TaskManager {
 			}
 				//if command make new event
 				GoogleCalendarInstantiator.quickAdd(command.EventDescription);
-				
+				GoogleCalendarInstantiator.update();
 				
 			
 				break;

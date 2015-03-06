@@ -31,6 +31,7 @@ public class GoogleCalendarInstantiator {
 		private static JacksonFactory jsonFactory;
 		private static Credential credential;
 		private static Calendar service;
+		static Event createdEvent = null;
 		
 	public static void setUp(String clientId, String clientSecret) throws IOException, GeneralSecurityException{
 		
@@ -99,7 +100,7 @@ public class GoogleCalendarInstantiator {
 		event.setEnd(new EventDateTime().setDateTime(end));
 
 		// Insert the new event
-		Event createdEvent = null;
+		//Event createdEvent = null;
 		try {
 			createdEvent = service.events().insert("primary", event).execute();
 		} catch (IOException e) {
@@ -114,7 +115,7 @@ public class GoogleCalendarInstantiator {
 	public static void quickAdd(String eventText){
 		// Quick-add an event
 		//eventText = "Appointment at Somewhere on June 3rd 10am-10:25am";
-		Event createdEvent = null;
+		
 		
 		try {
 			createdEvent = service.events().quickAdd("primary", eventText).setText(eventText).execute();
@@ -128,10 +129,10 @@ public class GoogleCalendarInstantiator {
 	
 	public static void update(){
 		// Retrieve the event from the API
-		
+		System.out.println("Made it to update");
 		Event event = null;
 		try {
-			event = service.events().get("primary", "eventId").execute();
+			event = service.events().get("primary", createdEvent.getId()).execute();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
