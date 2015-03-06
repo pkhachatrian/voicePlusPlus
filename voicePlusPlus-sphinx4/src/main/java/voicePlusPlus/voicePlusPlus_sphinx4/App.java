@@ -5,7 +5,6 @@ import edu.cmu.sphinx.api.SpeechResult;
 public class App {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		//SphinxManager sphinxManager = new SphinxManager();
 		//TaskManager taskManager = new TaskManager();
 //		sphinxManager.StartRecognizingAudio();
@@ -24,7 +23,7 @@ public class App {
 		
 		
 		GoogleCalendarAPICommand command = new GoogleCalendarAPICommand();
-		command.EventDescription = "schedule meeting today nine";
+		command.EventDescription = "schedule meeting today at nine";
 		command.API = TaskManager.determineAPI(command.EventDescription);
 		
 		TaskManager.InvokeAPICommand(command);

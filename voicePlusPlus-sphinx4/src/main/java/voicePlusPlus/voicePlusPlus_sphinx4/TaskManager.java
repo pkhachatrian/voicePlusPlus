@@ -81,6 +81,8 @@ public class TaskManager {
 		for (String word : words) {
 			System.out.println("word is:" + word);
 			value = keywords.get(word);
+			if (value == null)
+				continue;
 			switch (value) {
 				case APIs.GOOGLE_CALENDAR:
 					likelihoodOfAPIs.put(APIs.GOOGLE_CALENDAR, likelihoodOfAPIs.get(APIs.GOOGLE_CALENDAR) + 1.0);
