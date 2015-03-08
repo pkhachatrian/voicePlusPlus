@@ -93,6 +93,8 @@ public class TaskManager {
 				case "TIME":
 					likelihoodOfAPIs.put(APIs.GOOGLE_CALENDAR, likelihoodOfAPIs.get(APIs.GOOGLE_CALENDAR) + 0.75);
 					break;
+				default:	
+					break;
 			}
 		}
 		

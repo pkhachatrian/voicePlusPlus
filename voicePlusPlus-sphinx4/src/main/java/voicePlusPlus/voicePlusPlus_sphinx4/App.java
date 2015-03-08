@@ -5,29 +5,32 @@ import edu.cmu.sphinx.api.SpeechResult;
 public class App {
 
 	public static void main(String[] args) {
-		//SphinxManager sphinxManager = new SphinxManager();
-		//TaskManager taskManager = new TaskManager();
-//		sphinxManager.StartRecognizingAudio();
-//		SpeechResult result;
-//		
-//		//RECOGNIZING SPEECH
-//		while ((result = sphinxManager.GetSpeechResult()) != null)
-//		{
-//			String utterance = sphinxManager.GetUtterance(result);
-//			System.out.println(utterance);
-//		}
+		SphinxManager sphinxManager = new SphinxManager();
+		sphinxManager.StartRecognizingAudio();
+		SpeechResult result;
+		APICommand command = null;
 		
 		String fileName;
 		fileName = "./src/main/resources/keywords.txt";
 		TaskManager.instantiateHashTable(fileName);
 		
-		
-		GoogleCalendarAPICommand command = new GoogleCalendarAPICommand();
-		command.EventDescription = "schedule meeting today at nine";
-		command.API = TaskManager.determineAPI(command.EventDescription);
-		
-		TaskManager.InvokeAPICommand(command);
-		//sphinxManager.StopRecognizingAudio();
+		//RECOGNIZING SPEECH
+		while ((result = sphinxManager.GetSpeechResult()) != null)
+		{
+			String utterance = sphinxManager.GetUtterance(result);
+			System.out.println(utterance);
+			
+			command.API = TaskManager.determineAPI(utterance);
+			
+			if (command.API.equals(APIs.GOOGLE_CALENDAR)) {
+				command = new GoogleCalendarAPICommand();
+				GoogleCalendarAPICommand commandCalendar = (GoogleCalendarAPICommand) command;
+				commandCalendar.EventDescription = utterance;
+				
+				TaskManager.InvokeAPICommand(command);
+			}
+		}
+		sphinxManager.StopRecognizingAudio();
 	}
 
 }
