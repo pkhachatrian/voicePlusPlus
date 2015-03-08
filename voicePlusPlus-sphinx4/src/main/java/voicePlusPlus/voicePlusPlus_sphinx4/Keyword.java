@@ -137,29 +137,4 @@ public class Keyword {
 	public static String Get(Object key){
 		return keywords.get(key);
 	}
-	
-	public static void main(String[] args) {
-		String fileName;
-		 
-		fileName = "./src/main/resources/keywords.txt";
-		instantiateHashTable(fileName);
-		
-//		Set<String> keys = keywords.keySet();
-//		for (String key : keys)
-//			System.out.println("Value of " + key + " is " + keywords.get(key));
-		
-		//System.out.println(determineAPI("w"));
-		
-		//added this
-		String chosenApi = determineAPI("schedule meeting tomorrow nine");
-		APICommand command = new APICommand(chosenApi);
-		System.out.print(command.API);
-		TaskManager.InvokeAPICommand(command);
-		
-		
-		
-		
-	
-		
-	}
 }

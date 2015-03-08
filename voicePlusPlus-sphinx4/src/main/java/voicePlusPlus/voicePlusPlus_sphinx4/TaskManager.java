@@ -79,7 +79,6 @@ public class TaskManager {
 		likelihoodOfAPIs.put(APIs.GOOGLE_SEARCH, 0.0);
 		
 		for (String word : words) {
-			System.out.println("word is:" + word);
 			value = keywords.get(word);
 			if (value == null)
 				continue;
