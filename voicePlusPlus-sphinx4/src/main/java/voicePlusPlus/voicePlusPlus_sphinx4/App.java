@@ -19,18 +19,12 @@ public class App {
 //		{
 			String utterance = "meeting";
 //			String utterance = sphinxManager.GetUtterance(result);
-			System.out.println(utterance);
+//			System.out.println(utterance);
  
 			command.API = TaskManager.determineAPI(utterance);
+			command.command = utterance;
 			
-			if (command.API.equals(APIs.GOOGLE_CALENDAR)) {
-				command = new GoogleCalendarAPICommand();
-				
-				GoogleCalendarAPICommand commandCalendar = (GoogleCalendarAPICommand) command;
-				commandCalendar.EventDescription = utterance;
-								
-				TaskManager.InvokeAPICommand(commandCalendar);
-			}
+			TaskManager.InvokeAPICommand(command);
 //		}
 //		sphinxManager.StopRecognizingAudio();
 	}

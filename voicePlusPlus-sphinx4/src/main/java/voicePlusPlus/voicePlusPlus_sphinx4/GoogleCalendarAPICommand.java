@@ -22,17 +22,17 @@ public class GoogleCalendarAPICommand extends APICommand {
 		this.EndDate = null;
 	}
 	
-	public GoogleCalendarAPICommand(String api) {
-		super(api);
+	public GoogleCalendarAPICommand(String api, String command) {
+		super(api, command);
 		this.EventDescription = "";
 		this.StartDate = null;
 		this.EndDate = null;
 	}
 	
 	
-	public GoogleCalendarAPICommand(String api, String eventDescription, Date startDate, Date endDate)
+	public GoogleCalendarAPICommand(String api, String command, String eventDescription, Date startDate, Date endDate)
 	{
-		super(api);
+		super(api, command);
 		this.EventDescription = eventDescription;
 		this.StartDate = startDate;
 		this.EndDate = endDate;	
