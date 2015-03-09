@@ -148,7 +148,7 @@ public class TaskManager {
 				//if command make new event
 				GoogleCalendarInstantiator.quickAdd(command.command);
 				GoogleCalendarInstantiator.update();
-				
+				GoogleCalendarInstantiator.listEvents();
 			
 				break;
 			case APIs.GOOGLE_SEARCH:

@@ -8,6 +8,7 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.calendar.Calendar;
+import com.google.api.services.calendar.Calendar.Events.List;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,8 +19,10 @@ import java.util.Collections;
 import java.util.TimeZone;
 import java.util.Date;
 
+
 //Event libraries
 import com.google.api.services.calendar.model.Event;
+import com.google.api.services.calendar.model.Events;
 import com.google.api.services.calendar.model.EventAttendee;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.client.util.DateTime;
@@ -152,6 +155,30 @@ public class GoogleCalendarInstantiator {
 
 		System.out.println(updatedEvent.getUpdated());
 	}
+	
+	public static void listEvents(){
+		
+		// Iterate over the events in the specified calendar
+		String pageToken = null;
+		do {
+		  Events events = null;
+		try {
+			events = service.events().list("primary").setPageToken(pageToken).execute();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		  java.util.List<Event> items = events.getItems();
+		  for (Event event : items) {
+			System.out.print(event.getStart() + ": ");
+		    System.out.println(event.getSummary());
+		  }
+		  pageToken = events.getNextPageToken();
+		} while (pageToken != null);
+		
+
+	}
+	
 	
 	
 }
