@@ -16,13 +16,14 @@ public class App {
 		
 		//RECOGNIZING SPEECH
 		while ((result = sphinxManager.GetSpeechResult()) != null)
-		{
-//			String utterance = "meeting";
+		{			
 			String utterance = sphinxManager.GetUtterance(result);
-			if (utterance.equals("") && utterance.equals(" ")) {
+			System.out.println("You said : " + utterance);
+			
+			String commandString = SphinxManager.GetCommand(utterance);
+			if (commandString == null || commandString.equals("")) {
 				continue;
 			}
-			System.out.println(utterance);
  
 			command.API = TaskManager.determineAPI(utterance);
 			command.command = utterance;

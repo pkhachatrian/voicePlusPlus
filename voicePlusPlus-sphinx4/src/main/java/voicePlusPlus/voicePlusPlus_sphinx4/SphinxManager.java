@@ -79,6 +79,9 @@ public class SphinxManager
     	//if invocabot is not in string
     	if (index == -1) return null;
     	
+    	//if string is just invocabot
+    	if (string.equalsIgnoreCase("invocabot")) return "";
+    	
     	String output;
     	//Check if invocabot exists twice
     	int endIndex = string.indexOf("invocabot", index + 1);
