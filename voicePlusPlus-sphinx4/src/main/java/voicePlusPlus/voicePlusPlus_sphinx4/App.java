@@ -19,6 +19,9 @@ public class App {
 		{
 //			String utterance = "meeting";
 			String utterance = sphinxManager.GetUtterance(result);
+			if (utterance.equals("") && utterance.equals(" ")) {
+				continue;
+			}
 			System.out.println(utterance);
  
 			command.API = TaskManager.determineAPI(utterance);
