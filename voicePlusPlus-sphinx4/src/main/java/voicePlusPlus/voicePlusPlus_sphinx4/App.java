@@ -27,7 +27,7 @@ public class App {
  
 			command.API = TaskManager.determineAPI(utterance);
 			command.command = utterance;
-			
+
 			TaskManager.InvokeAPICommand(command);
 		}
 		sphinxManager.StopRecognizingAudio();
