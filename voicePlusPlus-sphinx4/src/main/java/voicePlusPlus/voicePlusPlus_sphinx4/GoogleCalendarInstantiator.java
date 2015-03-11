@@ -8,7 +8,6 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.calendar.Calendar;
-import com.google.api.services.calendar.Calendar.Events.List;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -130,7 +129,7 @@ public class GoogleCalendarInstantiator {
 		System.out.println(createdEvent.getId());
 	}
 	
-	public static void update(){
+	public static void update(String eventText){
 		// Retrieve the event from the API
 		System.out.println("Made it to update");
 		Event event = null;
@@ -142,7 +141,10 @@ public class GoogleCalendarInstantiator {
 		}
 
 		// Make a change
-		event.setSummary("Invocabot Created Event");
+		
+		
+		eventText = eventText.substring(5, eventText.length()-1);
+		event.setSummary(eventText);
 		
 		// Update the event
 		Event updatedEvent = null;
@@ -170,9 +172,19 @@ public class GoogleCalendarInstantiator {
 		}
 		  java.util.List<Event> items = events.getItems();
 		  for (Event event : items) {
-			System.out.print(event.getStart() + ": ");
-		    System.out.println(event.getSummary());
+			String month = event.getStart().toString().substring(19, 20);
+			String day = event.getStart().toString().substring(21, 22);
+			
+			System.out.print("Month: " + month + " Day: " + day + " --- ");
+			System.out.print(event.getSummary());
+		
+			
 		  }
+		  for (Event event : items) {
+				System.out.println("The full way: ");
+				System.out.println(event.getStart() + ": ");
+			    System.out.print(event.getSummary());
+			  }
 		  pageToken = events.getNextPageToken();
 		} while (pageToken != null);
 		
