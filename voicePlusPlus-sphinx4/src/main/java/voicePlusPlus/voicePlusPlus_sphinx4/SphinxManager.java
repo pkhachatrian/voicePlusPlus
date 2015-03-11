@@ -79,6 +79,11 @@ public class SphinxManager
     	//if invocabot is not in string
     	if (index == -1) return null;
     	
+    	// if invocabot is last word in string
+    	String words[] = string.split(" ");
+    	if (words[words.length - 1].equals("invocabot"))
+    		return "";
+    	
     	//if string is just invocabot
     	if (string.equalsIgnoreCase("invocabot")) return "";
     	
