@@ -17,7 +17,7 @@ public class App {
 		//RECOGNIZING SPEECH
 		while ((result = sphinxManager.GetSpeechResult()) != null)
 		{			
-			String utterance = "invocabot schedule a meeting with chris at 5 o clock";//sphinxManager.GetUtterance(result);
+			String utterance = sphinxManager.GetUtterance(result);//"invocabot schedule a meeting with chris at 5 o clock";
 			System.out.println("You said : " + utterance);
 			
 			String commandString = SphinxManager.GetCommand(utterance);
