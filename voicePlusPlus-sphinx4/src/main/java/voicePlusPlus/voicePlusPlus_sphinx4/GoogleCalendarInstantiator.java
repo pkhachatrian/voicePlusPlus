@@ -59,7 +59,7 @@ public class GoogleCalendarInstantiator {
 	    // Read the authorization code from the standard input stream.
 	    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	    System.out.println("What is the authorization code?");
-	    String code = in.readLine();
+	    String code = "4/t8XHMQCJ-rvrUP2Ja3354ayiMBK_SCaoUwUV_derJFk.UkInBbNE9UcePm8kb2vw2M1DlC0PmAI";//= in.readLine();
 	    // End of Step 1
 
 	    // Step 2: Exchange
@@ -131,7 +131,6 @@ public class GoogleCalendarInstantiator {
 	
 	public static void update(String eventText){
 		// Retrieve the event from the API
-		System.out.println("Made it to update");
 		Event event = null;
 		try {
 			event = service.events().get("primary", createdEvent.getId()).execute();
@@ -140,11 +139,23 @@ public class GoogleCalendarInstantiator {
 			e.printStackTrace();
 		}
 
+		
+		StringBuilder sb = new StringBuilder();
+		
 		// Make a change
 		
+		int j;
+		String[] newTitle = eventText.split(" ");
 		
-		eventText = eventText.substring(21, eventText.length());
-		event.setSummary(eventText);
+		for(j=0 ; j < newTitle.length ; j++){
+			if(!(newTitle[j].equalsIgnoreCase("today") || newTitle[j].equalsIgnoreCase("tomorrow") || newTitle[j].equalsIgnoreCase("invocabot") || newTitle[j].equalsIgnoreCase("schedule") || newTitle[j].equalsIgnoreCase("setup") || newTitle[j].equalsIgnoreCase("a") || newTitle[j].equalsIgnoreCase("one") || newTitle[j].equalsIgnoreCase("two") || newTitle[j].equalsIgnoreCase("three") || newTitle[j].equalsIgnoreCase("four") || newTitle[j].equalsIgnoreCase("five") || newTitle[j].equalsIgnoreCase("six") || newTitle[j].equalsIgnoreCase("seven") || newTitle[j].equalsIgnoreCase("eight") || newTitle[j].equalsIgnoreCase("nine") || newTitle[j].equalsIgnoreCase("ten") || newTitle[j].equalsIgnoreCase("eleven") || newTitle[j].equalsIgnoreCase("twelve") || newTitle[j].equalsIgnoreCase("o") || newTitle[j].equalsIgnoreCase("clock"))){
+				sb.append(newTitle[j] + " ");
+			}
+		}
+		System.out.println("\n\nIncovabot Created: " + sb.toString() + "\n\n");
+		
+		//eventText = eventText.substring(21, eventText.length());
+		event.setSummary("Incovabot Created: " + sb.toString());
 		
 		// Update the event
 		Event updatedEvent = null;
