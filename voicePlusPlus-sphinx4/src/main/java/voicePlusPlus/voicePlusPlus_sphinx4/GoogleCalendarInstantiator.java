@@ -143,7 +143,7 @@ public class GoogleCalendarInstantiator {
 		// Make a change
 		
 		
-		eventText = eventText.substring(5, eventText.length()-1);
+		eventText = eventText.substring(21, eventText.length());
 		event.setSummary(eventText);
 		
 		// Update the event
