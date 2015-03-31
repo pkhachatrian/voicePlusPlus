@@ -39,7 +39,7 @@ public class App {
 	}
 	
 	public static String formatString(String eventText) {
-		Set set = new HashSet();
+		HashSet<String> set = new HashSet<String>();
 		
 		set.add("one");
 		set.add("two");
