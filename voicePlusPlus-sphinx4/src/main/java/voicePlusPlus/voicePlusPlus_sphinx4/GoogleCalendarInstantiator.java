@@ -15,8 +15,12 @@ import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.TimeZone;
 import java.util.Date;
+
+
 
 
 //Event libraries
@@ -33,6 +37,7 @@ public class GoogleCalendarInstantiator {
 		private static JacksonFactory jsonFactory;
 		private static Credential credential;
 		private static Calendar service;
+		private static GoogleTokenResponse response = null;
 		static Event createdEvent = null;
 		
 	public static void setUp(String clientId, String clientSecret) throws IOException, GeneralSecurityException{
@@ -49,23 +54,25 @@ public class GoogleCalendarInstantiator {
 
 	    GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow(
 	        httpTransport, jsonFactory, clientId, clientSecret, Collections.singleton(scope));
-	    // Step 1: Authorize
-	    String authorizationUrl = flow.newAuthorizationUrl().setRedirectUri(redirectUrl).build();
-
-	    // Point or redirect your user to the authorizationUrl.
-	    System.out.println("Go to the following link in your browser:");
-	    System.out.println(authorizationUrl);
-
-	    // Read the authorization code from the standard input stream.
-	    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-	    System.out.println("What is the authorization code?");
-	    String code = "4/ziNzgLcue8C1cJ6OkeS-7LKZOlxyIhF4NXJVz7Eixsw.4u-FTeQpZiUc3nHq-8bbp1u03jYPmAI";//= in.readLine();
-	    // End of Step 1
-
-	    // Step 2: Exchange
-	    GoogleTokenResponse response = flow.newTokenRequest(code).setRedirectUri(redirectUrl)
-	        .execute();
-	    // End of Step 2
+//	    // Step 1: Authorize
+//	    String authorizationUrl = flow.newAuthorizationUrl().setRedirectUri(redirectUrl).build();
+//
+//	    // Point or redirect your user to the authorizationUrl.
+//	    System.out.println("Go to the following link in your browser:");
+//	    System.out.println(authorizationUrl);
+//
+//	    // Read the authorization code from the standard input stream.
+//	    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+//	    System.out.println("What is the authorization code?");
+	    String code = "4/zb0_D-lY_2tgftcUnLPxvUAaWlWqFfUJGjd10uk3nbg.gpkjiTFK_O4ZPm8kb2vw2M2jkdsRmAI";//= in.readLine();
+//	    // End of Step 1
+//
+//	    // Step 2: Exchange
+	    if (response == null){
+	    	response = flow.newTokenRequest(code).setRedirectUri(redirectUrl).execute();
+	    }
+	    
+//	    // End of Step 2
 
 	    credential = new GoogleCredential.Builder()
 	        .setTransport(httpTransport)
@@ -110,15 +117,12 @@ public class GoogleCalendarInstantiator {
 			e.printStackTrace();
 		}
 
-		System.out.println(createdEvent.getId());
 	
 	}
 	
 	public static void quickAdd(String eventText){
 		// Quick-add an event
 		//eventText = "Appointment at Somewhere on June 3rd 10am-10:25am";
-		
-		
 		try {
 			createdEvent = service.events().quickAdd("primary", eventText).setText(eventText).execute();
 		} catch (IOException e) {
@@ -126,7 +130,7 @@ public class GoogleCalendarInstantiator {
 			e.printStackTrace();
 		}
 		
-		System.out.println(createdEvent.getId());
+		System.out.println("Successfully created:" + eventText);
 	}
 	
 	public static void update(String eventText){
@@ -139,23 +143,11 @@ public class GoogleCalendarInstantiator {
 			e.printStackTrace();
 		}
 
-		
-		StringBuilder sb = new StringBuilder();
-		
 		// Make a change
 		
-		int j;
-		String[] newTitle = eventText.split(" ");
 		
-		for(j=0 ; j < newTitle.length ; j++){
-			if(!(newTitle[j].equalsIgnoreCase("today") || newTitle[j].equalsIgnoreCase("tomorrow") || newTitle[j].equalsIgnoreCase("invocabot") || newTitle[j].equalsIgnoreCase("schedule") || newTitle[j].equalsIgnoreCase("setup") || newTitle[j].equalsIgnoreCase("a") || newTitle[j].equalsIgnoreCase("one") || newTitle[j].equalsIgnoreCase("two") || newTitle[j].equalsIgnoreCase("three") || newTitle[j].equalsIgnoreCase("four") || newTitle[j].equalsIgnoreCase("five") || newTitle[j].equalsIgnoreCase("six") || newTitle[j].equalsIgnoreCase("seven") || newTitle[j].equalsIgnoreCase("eight") || newTitle[j].equalsIgnoreCase("nine") || newTitle[j].equalsIgnoreCase("ten") || newTitle[j].equalsIgnoreCase("eleven") || newTitle[j].equalsIgnoreCase("twelve") || newTitle[j].equalsIgnoreCase("o") || newTitle[j].equalsIgnoreCase("clock"))){
-				sb.append(newTitle[j] + " ");
-			}
-		}
-		System.out.println("\n\nIncovabot Created: " + sb.toString() + "\n\n");
-		
-		//eventText = eventText.substring(21, eventText.length());
-		event.setSummary("Incovabot Created: " + sb.toString());
+//		eventText = eventText.substring(21, eventText.length());
+		event.setSummary(eventText);
 		
 		// Update the event
 		Event updatedEvent = null;
@@ -165,8 +157,6 @@ public class GoogleCalendarInstantiator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		System.out.println(updatedEvent.getUpdated());
 	}
 	
 	public static void listEvents(){
