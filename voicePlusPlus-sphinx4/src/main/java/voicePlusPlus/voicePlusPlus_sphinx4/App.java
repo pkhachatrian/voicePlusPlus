@@ -1,23 +1,16 @@
 package voicePlusPlus.voicePlusPlus_sphinx4;
 
+
 import java.util.HashSet;
 import edu.cmu.sphinx.api.SpeechResult;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 
 public class App {
 
 	public static void main(String[] args) {
-		
-		String s1 = "twenty";
-		String s2 = "forty one";
-		String s3 = "one forty";
-		String s4 = "schedule a meeting at one forty pm";
-		
-		System.out.println(convertNumbersAsTextToDigits(s1));
-		System.out.println(convertNumbersAsTextToDigits(s2));
-		System.out.println(convertNumbersAsTextToDigits(s3));
-		System.out.println(convertNumbersAsTextToDigits(s4));
-		
-		
+//		testConvertNumbersAsTextToDigits();
 		//SphinxManager sphinxManager = new SphinxManager();
 		//sphinxManager.StartRecognizingAudio();
 		SpeechResult result;
@@ -259,5 +252,18 @@ public class App {
 		}
 		
 		return sb.toString();
+	}
+	
+	@Test
+	public static void testConvertNumbersAsTextToDigits() {
+		String s1 = "twenty";
+		String s2 = "forty one";
+		String s3 = "one forty";
+		String s4 = "schedule a meeting at one forty pm";
+		
+		assertEquals(convertNumbersAsTextToDigits(s1), "20");
+		assertEquals(convertNumbersAsTextToDigits(s2), "41");
+		assertEquals(convertNumbersAsTextToDigits(s3), "1:40");
+		assertEquals(convertNumbersAsTextToDigits(s4), "schedule a meeting at 1:40 pm");		
 	}
 }
