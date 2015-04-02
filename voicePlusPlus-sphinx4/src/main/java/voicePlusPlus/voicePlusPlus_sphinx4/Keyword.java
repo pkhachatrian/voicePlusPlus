@@ -1,7 +1,6 @@
 package voicePlusPlus.voicePlusPlus_sphinx4;
 
 import java.util.Hashtable;
-import java.util.Set;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,18 +19,14 @@ public class Keyword {
 	 * 
 	 * @param fileName the name of the file to read from
 	 */
-	public static void instantiateHashTable(String fileName) {
-		keywords = new Hashtable<String, String>();
-		BufferedReader br = null;
-		String line;
-		String keywordCategory;
-		Boolean isKeyword;
-		
+	public static void instantiateHashTable(String fileName) {		
 		try {			
-			br = new BufferedReader(new FileReader(fileName));
-			isKeyword = false;
-			keywordCategory = "";
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			keywords = new Hashtable<String, String>();
+			boolean isKeyword = false;
+			String keywordCategory = "";
 			
+			String line;
 			while ((line = br.readLine()) != null) {
 				if (line.equals("")) {
 					isKeyword = false;
@@ -46,6 +41,7 @@ public class Keyword {
 					isKeyword = true;
 				}
 			}
+			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -58,15 +54,11 @@ public class Keyword {
 	 * @return the command with only the keywords
 	 */
 	public static String removeNonKeywords(String command) {
-		String[] words;
-		StringBuilder sbKeywordsOnly;
-		String word;
-		
-		sbKeywordsOnly = new StringBuilder();
-		words = command.split("\\s");
+		StringBuilder sbKeywordsOnly = new StringBuilder();
+		String[] words = command.split("\\s");
 		
 		for (int i=0; i<words.length; i++) {
-			word = words[i];
+			String word = words[i];
 			
 			if (word.equals("p") || word.equals("a")) {
 				if (i < words.length - 1) {

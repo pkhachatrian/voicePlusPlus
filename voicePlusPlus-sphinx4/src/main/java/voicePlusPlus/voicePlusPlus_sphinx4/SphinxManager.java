@@ -2,21 +2,11 @@ package voicePlusPlus.voicePlusPlus_sphinx4;
 
 import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.LiveSpeechRecognizer;
-import edu.cmu.sphinx.api.StreamSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
-import edu.cmu.sphinx.result.WordResult;
 
 import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.InputStream;
 
-
-/**
- * Hello world!
- *
- */
-public class SphinxManager 
-{
+public class SphinxManager  {
 	private Configuration config;
 	private LiveSpeechRecognizer recognizer;
 	
@@ -26,13 +16,12 @@ public class SphinxManager
 //    	config.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
 //    	config.setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.dmp");
     	
-    	//You will need to change the paths to match your computer
     	config.setDictionaryPath("./src/main/resources/1905.dic");
     	config.setLanguageModelPath("./src/main/resources/1905.lm");
+    	
     	try {
 			recognizer = new LiveSpeechRecognizer(config);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -42,7 +31,6 @@ public class SphinxManager
     	try {
 			recognizer = new LiveSpeechRecognizer(config);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -55,8 +43,7 @@ public class SphinxManager
 		recognizer.stopRecognition();
 	}
 	
-    public SpeechResult GetSpeechResult(){
-    	String utterance = null;
+    public SpeechResult GetSpeechResult() {
         SpeechResult result;
 		result = recognizer.getResult();
 		return result;
@@ -76,30 +63,32 @@ public class SphinxManager
      */
     public static String GetCommand(String string){
     	int index = string.indexOf("invocabot");
-    	//if invocabot is not in string
+    	
+    	// If "invocabot" is not in string.
     	if (index == -1) return null;
     	
-    	// if invocabot is last word in string
+    	// If "invocabot" is last word in string.
     	String words[] = string.split(" ");
     	if (words[words.length - 1].equals("invocabot"))
     		return "";
     	
-    	//if string is just invocabot
+    	// If string is just "invocabot".
     	if (string.equalsIgnoreCase("invocabot")) return "";
     	
     	String output;
-    	//Check if invocabot exists twice
+    	// Check if "invocabot" exists twice.
     	int endIndex = string.indexOf("invocabot", index + 1);
     	int truncationIndex = index + "invocabot".length() + 1;
     	
-    	//If invocabot exists once, truncate until end of string
+    	// If "invocabot" exists once, truncate until end of string.
     	if (endIndex == -1) {
     		output = string.substring(truncationIndex);
     	} 
-    	//if invocabot exists more than once, truncate at the last word before the next invocabot
+    	// If "invocabot" exists more than once, truncate at the last word before the next "invocabot".
     	else {
     		output = string.substring(truncationIndex, endIndex - 1);
     	}
+    	
     	return output;
     }
 }

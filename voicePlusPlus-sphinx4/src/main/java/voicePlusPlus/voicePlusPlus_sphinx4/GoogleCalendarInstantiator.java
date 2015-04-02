@@ -15,13 +15,8 @@ import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.TimeZone;
 import java.util.Date;
-
-
-
 
 //Event libraries
 import com.google.api.services.calendar.model.Event;
@@ -30,15 +25,13 @@ import com.google.api.services.calendar.model.EventAttendee;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.client.util.DateTime;
 
-
-public class GoogleCalendarInstantiator {
-	
-		private static HttpTransport httpTransport;
-		private static JacksonFactory jsonFactory;
-		private static Credential credential;
-		private static Calendar service;
-		private static GoogleTokenResponse response = null;
-		static Event createdEvent = null;
+public class GoogleCalendarInstantiator {	
+	private static HttpTransport httpTransport;
+	private static JacksonFactory jsonFactory;
+	private static Credential credential;
+	private static Calendar service;
+	private static GoogleTokenResponse response = null;
+	static Event createdEvent = null;
 		
 	public static void setUp(String clientId, String clientSecret) throws IOException, GeneralSecurityException{
 		
