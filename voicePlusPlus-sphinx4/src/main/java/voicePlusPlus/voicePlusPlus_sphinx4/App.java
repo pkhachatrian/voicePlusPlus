@@ -1,6 +1,5 @@
 package voicePlusPlus.voicePlusPlus_sphinx4;
 
-
 import java.util.HashSet;
 import edu.cmu.sphinx.api.SpeechResult;
 import org.junit.Test;
@@ -8,9 +7,7 @@ import static org.junit.Assert.*;
 
 
 public class App {
-
 	public static void main(String[] args) {
-//		testConvertNumbersAsTextToDigits();
 		//SphinxManager sphinxManager = new SphinxManager();
 		//sphinxManager.StartRecognizingAudio();
 		SpeechResult result;
@@ -76,9 +73,13 @@ public class App {
 		
 		String words[] = eventText.split(" ");
 		StringBuilder sb = new StringBuilder();
+		
 		boolean notLastWord = true;
+		boolean colon = false;
 		
 		for (int i=0; i<words.length; i++) {
+			colon = false;
+			
 			if (i == words.length - 1) {
 				notLastWord = false;
 			}
@@ -90,42 +91,39 @@ public class App {
 						if (notLastWord && (setOnes.contains(words[i+1]) || setTeens.contains(words[i+1]) || setDecades.contains(words[i+1]))) {
 							sb.append(":");
 						}
-						sb.append(" ");
 						break;
 					case "eleven":
 						sb.append("11");
 						if (notLastWord && (setOnes.contains(words[i+1]) || setTeens.contains(words[i+1]) || setDecades.contains(words[i+1]))) { 
 							sb.append(":");
 						}
-						sb.append(" ");
 						break;
 					case "twelve":
 						sb.append("12");
 						if (notLastWord && (setOnes.contains(words[i+1]) || setTeens.contains(words[i+1]) || setDecades.contains(words[i+1]))) {
 							sb.append(":");
 						}
-						sb.append(" ");
 						break;
 					case "thirteen":
-						sb.append("13 ");
+						sb.append("13");
 						break;
 					case "fourteen":
-						sb.append("14 ");
+						sb.append("14");
 						break;
 					case "fifteen":
-						sb.append("15 ");
+						sb.append("15");
 						break;
 					case "sixteen":
-						sb.append("16 ");
+						sb.append("16");
 						break;
 					case "seventeen":
-						sb.append("17 ");
+						sb.append("17");
 						break;
 					case "eighteen":
-						sb.append("18 ");
+						sb.append("18");
 						break;
 					case "nineteen":
-						sb.append("19 ");
+						sb.append("19");
 						break;
 				}
 			}
@@ -176,8 +174,11 @@ public class App {
 							break;
 					}
 					i++;
+					if (i == words.length - 1) {
+						notLastWord = false;
+					}
 				}
-				sb.append(value + " ");
+				sb.append(value);
 			}
 			else if (setOnes.contains(words[i])) {
 				switch (words[i]) {
@@ -186,68 +187,64 @@ public class App {
 						if (notLastWord && (setOnes.contains(words[i+1]) || setTeens.contains(words[i+1]) || setDecades.contains(words[i+1]))) {
 							sb.append(":");
 						}
-						sb.append(" ");
 						break;
 					case "two":
 						sb.append("2");
 						if (notLastWord && (setOnes.contains(words[i+1]) || setTeens.contains(words[i+1]) || setDecades.contains(words[i+1]))) {
 							sb.append(":");
 						}
-						sb.append(" ");
 						break;
 					case "three":
 						sb.append("3");
 						if (notLastWord && (setOnes.contains(words[i+1]) || setTeens.contains(words[i+1]) || setDecades.contains(words[i+1]))) {
 							sb.append(":");
 						}
-						sb.append(" ");
 						break;
 					case "four":
 						sb.append("4");
 						if (notLastWord && (setOnes.contains(words[i+1]) || setTeens.contains(words[i+1]) || setDecades.contains(words[i+1]))) {
 							sb.append(":");
 						}
-						sb.append(" ");
 						break;
 					case "five":
 						sb.append("5");
 						if (notLastWord && (setOnes.contains(words[i+1]) || setTeens.contains(words[i+1]) || setDecades.contains(words[i+1]))) {
 							sb.append(":");
 						}
-						sb.append(" ");
 						break;
 					case "six":
 						sb.append("6");
 						if (notLastWord && (setOnes.contains(words[i+1]) || setTeens.contains(words[i+1]) || setDecades.contains(words[i+1]))) {
 							sb.append(":");
 						}
-						sb.append(" ");
 						break;
 					case "seven":
 						sb.append("7");
 						if (notLastWord && (setOnes.contains(words[i+1]) || setTeens.contains(words[i+1]) || setDecades.contains(words[i+1]))) {
 							sb.append(":");
 						}
-						sb.append(" ");
 						break;
 					case "eight":
 						sb.append("8");
 						if (notLastWord && (setOnes.contains(words[i+1]) || setTeens.contains(words[i+1]) || setDecades.contains(words[i+1]))) {
 							sb.append(":");
 						}
-						sb.append(" ");
 						break;
 					case "nine":
 						sb.append("9");
 						if (notLastWord && (setOnes.contains(words[i+1]) || setTeens.contains(words[i+1]) || setDecades.contains(words[i+1]))) {
 							sb.append(":");
 						}
-						sb.append(" ");
 						break;
 				}
+				colon = true;
 			}
 			else {
-				sb.append(words[i] + " ");
+				sb.append(words[i]);
+			}
+			
+			if (notLastWord && !colon) {
+				sb.append(" ");
 			}
 		}
 		
@@ -260,10 +257,16 @@ public class App {
 		String s2 = "forty one";
 		String s3 = "one forty";
 		String s4 = "schedule a meeting at one forty pm";
+		String s5 = "";
+		String s6 = "one forty five";
+		String s7 = "two twelve";
 		
-		assertEquals(convertNumbersAsTextToDigits(s1), "20");
-		assertEquals(convertNumbersAsTextToDigits(s2), "41");
-		assertEquals(convertNumbersAsTextToDigits(s3), "1:40");
-		assertEquals(convertNumbersAsTextToDigits(s4), "schedule a meeting at 1:40 pm");		
+		assertEquals("20", convertNumbersAsTextToDigits(s1));
+		assertEquals("41", convertNumbersAsTextToDigits(s2));
+		assertEquals("1:40", convertNumbersAsTextToDigits(s3));
+		assertEquals("schedule a meeting at 1:40 pm", convertNumbersAsTextToDigits(s4));
+		assertEquals("", convertNumbersAsTextToDigits(s5));
+		assertEquals("1:45", convertNumbersAsTextToDigits(s6));
+		assertEquals("2:12", convertNumbersAsTextToDigits(s7));
 	}
 }
