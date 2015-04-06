@@ -115,7 +115,7 @@ public class GoogleCalendarInstantiator {
 	
 	public static void quickAdd(String eventText){
 		// Quick-add an event
-		//eventText = "Appointment at Somewhere on June 3rd 10am-10:25am";
+		eventText = "meeting with chris tomorrow at 11am";
 		try {
 			createdEvent = service.events().quickAdd("primary", eventText).setText(eventText).execute();
 		} catch (IOException e) {
@@ -128,6 +128,12 @@ public class GoogleCalendarInstantiator {
 	
 	public static void update(String eventText){
 		// Retrieve the event from the API
+		
+		ArrayList<EventAttendee> attendees = new ArrayList<EventAttendee>();
+		attendees.add(new EventAttendee().setEmail("chris@gmail.com"));
+		
+		
+		
 		Event event = null;
 		try {
 			event = service.events().get("primary", createdEvent.getId()).execute();
@@ -141,7 +147,7 @@ public class GoogleCalendarInstantiator {
 		
 //		eventText = eventText.substring(21, eventText.length());
 		event.setSummary(eventText);
-		
+		event.setAttendees(attendees);
 		// Update the event
 		Event updatedEvent = null;
 		try {
