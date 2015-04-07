@@ -1,11 +1,3 @@
-
-ACTION
-schedule
-appointment
-meeting
-create
-make
-
 NAME
 chandra
 kyle
@@ -21,6 +13,18 @@ today
 tonight
 tomorrow
 night
+january
+february
+march
+april
+may
+june
+july
+august
+september
+october
+november
+december
 
 TIME
 am
@@ -53,8 +57,13 @@ sixty
 GOOGLE CALENDAR
 schedule
 meeting
+appointment
+dinner
+lunch
 
 GOOGLE SEARCH
+google
+search
 find
 what
 where
