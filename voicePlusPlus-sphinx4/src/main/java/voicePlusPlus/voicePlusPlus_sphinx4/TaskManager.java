@@ -156,6 +156,8 @@ public class TaskManager {
 				
 				break;
 			
+			case APIs.GOOGLE_CONTACTS:
+				break;
 		}
 		return feedback;
 	}
