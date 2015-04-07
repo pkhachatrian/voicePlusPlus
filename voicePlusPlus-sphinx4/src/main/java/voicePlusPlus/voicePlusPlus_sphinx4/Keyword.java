@@ -1,7 +1,6 @@
 package voicePlusPlus.voicePlusPlus_sphinx4;
 
 import java.util.Hashtable;
-import java.util.Set;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,18 +19,14 @@ public class Keyword {
 	 * 
 	 * @param fileName the name of the file to read from
 	 */
-	public static void instantiateHashTable(String fileName) {
-		keywords = new Hashtable<String, String>();
-		BufferedReader br = null;
-		String line;
-		String keywordCategory;
-		Boolean isKeyword;
-		
+	public static void instantiateHashTable(String fileName) {		
 		try {			
-			br = new BufferedReader(new FileReader(fileName));
-			isKeyword = false;
-			keywordCategory = "";
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			keywords = new Hashtable<String, String>();
+			boolean isKeyword = false;
+			String keywordCategory = "";
 			
+			String line;
 			while ((line = br.readLine()) != null) {
 				if (line.equals("")) {
 					isKeyword = false;
@@ -46,6 +41,7 @@ public class Keyword {
 					isKeyword = true;
 				}
 			}
+			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -58,15 +54,11 @@ public class Keyword {
 	 * @return the command with only the keywords
 	 */
 	public static String removeNonKeywords(String command) {
-		String[] words;
-		StringBuilder sbKeywordsOnly;
-		String word;
-		
-		sbKeywordsOnly = new StringBuilder();
-		words = command.split("\\s");
+		StringBuilder sbKeywordsOnly = new StringBuilder();
+		String[] words = command.split("\\s");
 		
 		for (int i=0; i<words.length; i++) {
-			word = words[i];
+			String word = words[i];
 			
 			if (word.equals("p") || word.equals("a")) {
 				if (i < words.length - 1) {
@@ -94,37 +86,30 @@ public class Keyword {
 	 * @param command the command with only keywords
 	 * @return the API as a string
 	 */
-	public static String determineAPI(String command) {
-		double max;
-		double val;
-		String[] words;
-		String value;
-		String API;
-		Hashtable<String, Double> likelihoodOfAPIs;
-		
-		likelihoodOfAPIs = new Hashtable<String, Double>();
-		words = command.split("\\s");
+	public static String determineAPI(String command) {		
+		Hashtable<String, Double> likelihoodOfAPIs = new Hashtable<String, Double>();
+		String[] words = command.split("\\s");
 		
 		likelihoodOfAPIs.put(APIs.GOOGLE_CALENDAR, 0.0);
 		likelihoodOfAPIs.put(APIs.GOOGLE_SEARCH, 0.0);
 		
 		for (String word : words) {
-			value = keywords.get(word);
-			if (value.equals(APIs.GOOGLE_CALENDAR)) {
+			String val = keywords.get(word);
+			if (val.equals(APIs.GOOGLE_CALENDAR)) {
 				likelihoodOfAPIs.put(APIs.GOOGLE_CALENDAR, likelihoodOfAPIs.get(APIs.GOOGLE_CALENDAR) + 1.0);
 			}
-			else if (value.equals(APIs.GOOGLE_SEARCH)) {
+			else if (val.equals(APIs.GOOGLE_SEARCH)) {
 				likelihoodOfAPIs.put(APIs.GOOGLE_SEARCH, likelihoodOfAPIs.get(APIs.GOOGLE_SEARCH) + 1.0);
 			}
-			else if (value.equals("DATE") || value.equals("TIME")) {
+			else if (val.equals("DATE") || val.equals("TIME")) {
 				likelihoodOfAPIs.put(APIs.GOOGLE_CALENDAR, likelihoodOfAPIs.get(APIs.GOOGLE_CALENDAR) + 0.75);
 			}
 		}
 		
-		max = -1;
-		API = "";
+		double max = -1;
+		String API = "";
 		for (String key : likelihoodOfAPIs.keySet()) {
-			val = likelihoodOfAPIs.get(key);
+			double val = likelihoodOfAPIs.get(key);
 			if (val > max) {
 				max = val;
 				API = key;

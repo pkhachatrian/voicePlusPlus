@@ -3,7 +3,9 @@
 <s> SET UP AN APPOINTMENT </s>
 <s> SET UP A MEETING </s>
 <s> CREATE AN APPOINTMENT </s>
+<s> CREATE A MEETING </s>
 <s> MAKE ME AN APPOINTMENT </s>
+<s> MAKE ME A MEETING </s>
 <s> CHANDRA </s>
 <s> KYLE </s>
 <s> BELSIN </s>
@@ -12,6 +14,57 @@
 <s> SHENG </s>
 <s> CHRIS </s>
 <s> JULIO </s>
+<s> COLIN </s>
+<s> ON </s>
+<s> MONDAY </s>
+<s> TUESDAY </s>
+<s> WEDNESDAY </s>
+<s> THURSDAY </s>
+<s> FRIDAY </s>
+<s> JANUARY </s>
+<s> FEBRUARY </s>
+<s> MARCH </s>
+<s> APRIL </s>
+<s> MAY </s>
+<s> JUNE </s>
+<s> JULY </s>
+<s> AUGUST </s>
+<s> SEPTEMBER </s>
+<s> OCTOBER </s>
+<s> NOVEMBER </s>
+<s> DECEMBER </s>
+<s> THE </s>
+<s> FIRST </s>
+<s> SECOND </s>
+<s> THIRD </s>
+<s> FOURTH </s>
+<s> FIFTH </s>
+<s> SIXTH </s>
+<s> SEVENTH </s>
+<s> EIGHTH </s>
+<s> NINTH </s>
+<s> TENTH </s>
+<s> ELEVENTH </s>
+<s> TWELFTH </s>
+<s> THIRTEENTH </s>
+<s> FOURTEENTH </s>
+<s> FIFTEENTH </s>
+<s> SIXTEENTH </s>
+<s> SEVENTEENTH </s>
+<s> EIGHTEENTH </s>
+<s> NINETEENTH </s>
+<s> TWENTIETH </s>
+<s> TWENTY-FIRST </s>
+<s> TWENTY-SECOND </s>
+<s> TWENTY-THIRD </s>
+<s> TWENTY-FOURTH </s>
+<s> TWENTY-FIFTH </s>
+<s> TWENTY-SIXTH </s>
+<s> TWENTY-SEVENTH </s>
+<s> TWENTY-EIGHTH </s>
+<s> TWENTY-NINTH </s>
+<s> THIRTIETH </s>
+<s> THIRTY-FIRST </s>
 <s> INVOCABOT SCHEDULE AN APPOINTMENT WITH CHANDRA AT TWELVE O CLOCK TOMORROW </s>
 <s> INVOCABOT SCHEDULE AN APPOINTMENT WITH KYLE AT EIGHT O CLOCK TONIGHT </s>
 <s> SET UP A MEETING WITH BELSIN </s>

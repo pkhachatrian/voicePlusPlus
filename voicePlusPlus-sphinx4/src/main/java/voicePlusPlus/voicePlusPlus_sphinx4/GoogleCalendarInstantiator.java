@@ -15,13 +15,8 @@ import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.TimeZone;
 import java.util.Date;
-
-
-
 
 //Event libraries
 import com.google.api.services.calendar.model.Event;
@@ -30,15 +25,13 @@ import com.google.api.services.calendar.model.EventAttendee;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.client.util.DateTime;
 
-
-public class GoogleCalendarInstantiator {
-	
-		private static HttpTransport httpTransport;
-		private static JacksonFactory jsonFactory;
-		private static Credential credential;
-		private static Calendar service;
-		private static GoogleTokenResponse response = null;
-		static Event createdEvent = null;
+public class GoogleCalendarInstantiator {	
+	private static HttpTransport httpTransport;
+	private static JacksonFactory jsonFactory;
+	private static Credential credential;
+	private static Calendar service;
+	private static GoogleTokenResponse response = null;
+	static Event createdEvent = null;
 		
 	public static void setUp(String clientId, String clientSecret) throws IOException, GeneralSecurityException{
 		
@@ -54,25 +47,25 @@ public class GoogleCalendarInstantiator {
 
 	    GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow(
 	        httpTransport, jsonFactory, clientId, clientSecret, Collections.singleton(scope));
-//	    // Step 1: Authorize
-//	    String authorizationUrl = flow.newAuthorizationUrl().setRedirectUri(redirectUrl).build();
-//
-//	    // Point or redirect your user to the authorizationUrl.
-//	    System.out.println("Go to the following link in your browser:");
-//	    System.out.println(authorizationUrl);
-//
-//	    // Read the authorization code from the standard input stream.
-//	    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-//	    System.out.println("What is the authorization code?");
-	    String code = "4/zb0_D-lY_2tgftcUnLPxvUAaWlWqFfUJGjd10uk3nbg.gpkjiTFK_O4ZPm8kb2vw2M2jkdsRmAI";//= in.readLine();
-//	    // End of Step 1
-//
-//	    // Step 2: Exchange
+	    // Step 1: Authorize
+	    String authorizationUrl = flow.newAuthorizationUrl().setRedirectUri(redirectUrl).build();
+
+	    // Point or redirect your user to the authorizationUrl.
+	    System.out.println("Go to the following link in your browser:");
+	    System.out.println(authorizationUrl);
+
+	    // Read the authorization code from the standard input stream.
+	    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+	    System.out.println("What is the authorization code?");
+	    String code = in.readLine();
+	    // End of Step 1
+
+	    // Step 2: Exchange
 	    if (response == null){
 	    	response = flow.newTokenRequest(code).setRedirectUri(redirectUrl).execute();
 	    }
 	    
-//	    // End of Step 2
+	    // End of Step 2
 
 	    credential = new GoogleCredential.Builder()
 	        .setTransport(httpTransport)
@@ -122,7 +115,7 @@ public class GoogleCalendarInstantiator {
 	
 	public static void quickAdd(String eventText){
 		// Quick-add an event
-		//eventText = "Appointment at Somewhere on June 3rd 10am-10:25am";
+		eventText = "meeting with chris tomorrow at 11am";
 		try {
 			createdEvent = service.events().quickAdd("primary", eventText).setText(eventText).execute();
 		} catch (IOException e) {
@@ -135,6 +128,12 @@ public class GoogleCalendarInstantiator {
 	
 	public static void update(String eventText){
 		// Retrieve the event from the API
+		
+		ArrayList<EventAttendee> attendees = new ArrayList<EventAttendee>();
+		attendees.add(new EventAttendee().setEmail("chris@gmail.com"));
+		
+		
+		
 		Event event = null;
 		try {
 			event = service.events().get("primary", createdEvent.getId()).execute();
@@ -148,7 +147,7 @@ public class GoogleCalendarInstantiator {
 		
 //		eventText = eventText.substring(21, eventText.length());
 		event.setSummary(eventText);
-		
+		event.setAttendees(attendees);
 		// Update the event
 		Event updatedEvent = null;
 		try {
