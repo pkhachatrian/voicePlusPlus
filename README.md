@@ -15,3 +15,11 @@ Client ID: 961199178603-hjng14f7mmlagofj23rnq9q6ql3ab4r5.apps.googleusercontent.
 Client Secret:vbZABAK8TVTv_SnzJtsptHKz
 Redirect URIs: urn:ietf:wg:oauth:2.0:oob
 http://localhost
+
+##FREESWITCH 
+SSH:
+ssh -L 5901:localhost:5901 -i InvocaSSH.pem ubuntu@IP_ADDRESS
+
+Remote Desktop:
+localhost:1
+password: ASK JULIO
