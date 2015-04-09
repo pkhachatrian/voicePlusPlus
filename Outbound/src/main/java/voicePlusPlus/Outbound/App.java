@@ -1,15 +1,16 @@
 package voicePlusPlus.Outbound;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
-
+import org.freeswitch.esl.client.outbound.AbstractOutboundPipelineFactory;
 
 public class App {
 	public static void main(String[] args) {
 		int port = 500;
+		AbstractOutboundPipelineFactory pf = new SimpleHangupPipelineFactory();
 		
-		ChannelPipelineFactory pf = AbstractOutboundPipelineFactory;
+		SocketClient sc = new SocketClient(port, pf);
 		
-		SocketClient sc = SocketClient(port, AbstractOutboundPipelineFactory.getPipeline());
+		sc.start();
+		System.out.println("in between start and stop");
+		sc.stop();
 	}
 }
