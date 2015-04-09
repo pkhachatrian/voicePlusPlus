@@ -1,14 +1,15 @@
 package voicePlusPlus.Outbound;
 
-import java.util.HashSet;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 
 public class App {
 	public static void main(String[] args) {
+		int port = 500;
 		
-		System.out.println("Hello world!");
+		ChannelPipelineFactory pf = AbstractOutboundPipelineFactory;
 		
+		SocketClient sc = SocketClient(port, AbstractOutboundPipelineFactory.getPipeline());
 	}
 }
