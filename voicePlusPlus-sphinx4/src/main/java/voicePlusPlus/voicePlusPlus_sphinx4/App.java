@@ -1,11 +1,14 @@
 package voicePlusPlus.voicePlusPlus_sphinx4;
 
 import java.util.HashSet;
+import java.util.Scanner;
 
 import edu.cmu.sphinx.api.SpeechResult;
 
-import org.freeswitch.esl.client.inbound.InboundConnectionFailure;
+import org.freeswitch.esl.client.inbound.*;
 import org.junit.Test;
+
+import java.io.Console;
 
 import static org.junit.Assert.*;
 
@@ -14,52 +17,59 @@ public class App {
 	public static void main(String[] args) {
 		Client c = new Client();
 		
-		String host = ""; // @TODO: change to host name
+		String host = "54.69.110.102"; // remember to keep changing this
 		int port = 10630;
-		String password = ""; // @TODO: change to password
 		int timeoutSeconds = 10;
-		System.out.println("before the try");
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter the FreeSwitch server password: ");
+        String password = sc.next();
+        sc.close();
+		
 		try {
+			System.out.println("Attempting to connect to FreeSwitch server");
 			c.connect(host, port, password, timeoutSeconds);
 			
 			while (true) {
-				// @TODO: receive using the connection here
+				String command = "";
+				String arg = "";
+				System.out.println(c.sendAsyncApiCommand(command, arg));
 				break;
 			}
-		} catch (InboundConnectionFailure e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		//SphinxManager sphinxManager = new SphinxManager();
 		//sphinxManager.StartRecognizingAudio();
-		SpeechResult result;
-		APICommand command = new APICommand();
-		
-		String fileName;
-		fileName = "./src/main/resources/keywords.txt";
-		TaskManager.instantiateHashTable(fileName);
-		
-//		//RECOGNIZING SPEECH
-//		while ((result = sphinxManager.GetSpeechResult()) != null)
-//		{
-			//String utterance = sphinxManager.GetUtterance(result);
-			String utterance = "invocabot schedule a meeting today";
-			System.out.println(utterance);
-			String commandString = SphinxManager.GetCommand(utterance);
-			System.out.println(commandString);
-//			if (commandString == null || commandString.equals("")) {
-//				continue;
+//		SpeechResult result;
+//		APICommand command = new APICommand();
+//		
+//		String fileName;
+//		fileName = "./src/main/resources/keywords.txt";
+//		TaskManager.instantiateHashTable(fileName);
+//		
+////		//RECOGNIZING SPEECH
+////		while ((result = sphinxManager.GetSpeechResult()) != null)
+////		{
+//			//String utterance = sphinxManager.GetUtterance(result);
+//			String utterance = "invocabot schedule a meeting today";
+//			System.out.println(utterance);
+//			String commandString = SphinxManager.GetCommand(utterance);
+//			System.out.println(commandString);
+////			if (commandString == null || commandString.equals("")) {
+////				continue;
+////			}
+// 
+//			command.API = TaskManager.determineAPI(commandString);
+//			
+//			if (command.API == APIs.GOOGLE_CALENDAR) {
+//				utterance = convertNumbersAsTextToDigits(utterance);	
 //			}
- 
-			command.API = TaskManager.determineAPI(commandString);
-			
-			if (command.API == APIs.GOOGLE_CALENDAR) {
-				utterance = convertNumbersAsTextToDigits(utterance);	
-			}
-			
-			command.command = commandString;
-
-			TaskManager.InvokeAPICommand(command);
-//		}
+//			
+//			command.command = commandString;
+//
+//			TaskManager.InvokeAPICommand(command);
+////		}
 //		sphinxManager.StopRecognizingAudio();
 	}
 	
