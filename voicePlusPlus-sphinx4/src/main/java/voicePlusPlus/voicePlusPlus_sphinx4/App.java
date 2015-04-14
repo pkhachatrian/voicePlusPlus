@@ -1,13 +1,34 @@
 package voicePlusPlus.voicePlusPlus_sphinx4;
 
 import java.util.HashSet;
+
 import edu.cmu.sphinx.api.SpeechResult;
+
+import org.freeswitch.esl.client.inbound.InboundConnectionFailure;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 
 public class App {
 	public static void main(String[] args) {
+		Client c = new Client();
+		
+		String host = ""; // @TODO: change to host name
+		int port = 10630;
+		String password = ""; // @TODO: change to password
+		int timeoutSeconds = 10;
+		System.out.println("before the try");
+		try {
+			c.connect(host, port, password, timeoutSeconds);
+			
+			while (true) {
+				// @TODO: receive using the connection here
+				break;
+			}
+		} catch (InboundConnectionFailure e) {
+			e.printStackTrace();
+		}
 		//SphinxManager sphinxManager = new SphinxManager();
 		//sphinxManager.StartRecognizingAudio();
 		SpeechResult result;
