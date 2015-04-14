@@ -19,7 +19,7 @@ public class App {
 		
 		String host = "54.69.110.102"; // remember to keep changing this
 		int port = 10630;
-		int timeoutSeconds = 10;
+		int timeoutSeconds = 60;
 		
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Enter the FreeSwitch server password: ");
