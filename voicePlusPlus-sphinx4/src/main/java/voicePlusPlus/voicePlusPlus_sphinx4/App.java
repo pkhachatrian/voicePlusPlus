@@ -39,40 +39,43 @@ public class App {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//SphinxManager sphinxManager = new SphinxManager();
-		//sphinxManager.StartRecognizingAudio();
-//		SpeechResult result;
-//		APICommand command = new APICommand();
-//		
-//		String fileName;
-//		fileName = "./src/main/resources/keywords.txt";
-//		TaskManager.instantiateHashTable(fileName);
-//		
-////		//RECOGNIZING SPEECH
-////		while ((result = sphinxManager.GetSpeechResult()) != null)
-////		{
-//			//String utterance = sphinxManager.GetUtterance(result);
-//			String utterance = "invocabot schedule a meeting today";
-//			System.out.println(utterance);
-//			String commandString = SphinxManager.GetCommand(utterance);
-//			System.out.println(commandString);
-////			if (commandString == null || commandString.equals("")) {
-////				continue;
-////			}
-// 
-//			command.API = TaskManager.determineAPI(commandString);
-//			
-//			if (command.API == APIs.GOOGLE_CALENDAR) {
-//				utterance = convertNumbersAsTextToDigits(utterance);	
-//			}
-//			
-//			command.command = commandString;
-//
-//			TaskManager.InvokeAPICommand(command);
-////		}
-//		sphinxManager.StopRecognizingAudio();
+		
+//		Sphinx();
 	}
 	
+	public static void Sphinx() {
+		SphinxManager sphinxManager = new SphinxManager();
+		sphinxManager.StartRecognizingAudio();
+		SpeechResult result;
+		APICommand command = new APICommand();
+		
+		TaskManager.instantiateHashTable("./src/main/resources/keywords.txt");
+		
+//		//RECOGNIZING SPEECH
+//		while ((result = sphinxManager.GetSpeechResult()) != null)
+//		{
+			//String utterance = sphinxManager.GetUtterance(result);
+			String utterance = "invocabot schedule a meeting today";
+			System.out.println(utterance);
+			String commandString = SphinxManager.GetCommand(utterance);
+			System.out.println(commandString);
+//			if (commandString == null || commandString.equals("")) {
+//				continue;
+//			}
+ 
+			command.API = TaskManager.determineAPI(commandString);
+			
+			if (command.API == APIs.GOOGLE_CALENDAR) {
+				utterance = convertNumbersAsTextToDigits(utterance);	
+			}
+			
+			command.command = commandString;
+
+			TaskManager.InvokeAPICommand(command);
+//		}
+		sphinxManager.StopRecognizingAudio();
+	}
+		
 	public static String convertNumbersAsTextToDigits(String eventText) {
 		HashSet<String> setOnes = new HashSet<String>();
 		HashSet<String> setTeens = new HashSet<String>();

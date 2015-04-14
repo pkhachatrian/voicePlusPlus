@@ -12,7 +12,7 @@ public class SphinxManager  {
 	
 	public SphinxManager(){
 		config = new Configuration();
-    	config.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
+    	config.setAcousticModelPath("../sphinx4-data/resources/edu/cmu/sphinx/models/en-us/en-us");
 //    	config.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
 //    	config.setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.dmp");
     	
