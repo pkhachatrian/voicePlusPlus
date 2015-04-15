@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 public class App {
 	public static void main(String[] args) {
-		Client c = new Client();
+	/*	Client c = new Client();
 		
 		String host = "54.69.110.102"; // remember to keep changing this
 		int port = 10630;
@@ -39,13 +39,13 @@ public class App {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-//		Sphinx();
+		*/
+		Sphinx();
 	}
 	
 	public static void Sphinx() {
 		SphinxManager sphinxManager = new SphinxManager();
-		sphinxManager.StartRecognizingAudio();
+	//	sphinxManager.StartRecognizingAudio();
 		SpeechResult result;
 		APICommand command = new APICommand();
 		

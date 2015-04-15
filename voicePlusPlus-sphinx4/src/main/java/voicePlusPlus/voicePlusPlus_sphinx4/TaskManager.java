@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.ArrayList;
 
 
 public class TaskManager {
@@ -134,10 +135,30 @@ public class TaskManager {
 	}
 	
 	public static String InvokeAPICommand(APICommand command){
+	//	command.API= "scratch that";
 		String feedback = null;
+		ArrayList<String> eventt = new ArrayList<>();
+		eventt.add("GOOGLE MAP");
+		eventt.add(command.API);
+	 	if(command.API.equals("scratch that"))
+ 			eventt.remove(eventt.size()-1);
+		
+		 for(int i=0; i<eventt.size();i++){
+			 	String oneEvent = eventt.get(i);
+		 	System.out.println("Event list #" + i + " " + oneEvent);
+		 }
+		 
 		switch(command.API){
 			case APIs.GOOGLE_CALENDAR:
 				System.out.println("Executing command: " + command.API);
+
+			 
+			
+				//string count = xxx.size();
+			 	
+	
+			 	
+			 	
 			/*CREATE A GOOGLE CALENDAR INSTANCE*/
 			try {
 				GoogleCalendarInstantiator.setUp(clientId, clientSecret);
@@ -151,6 +172,8 @@ public class TaskManager {
 				
 				//GoogleCalendarInstantiator.listEvents();
 			
+								
+				
 				break;
 			case APIs.GOOGLE_SEARCH:
 				
