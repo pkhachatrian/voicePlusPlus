@@ -1,16 +1,27 @@
 package voicePlusPlus.voicePlusPlus_sphinx4;
 
 public class APICommand {
-	public String API;
-	public String command;
+	private String API;
+	private String command;
 	
 	public APICommand() {
 		this.API = "";
 		this.command = "";
 	}
-	
-	public APICommand(String api, String command){
-		this.API = api;
+
+	public String getAPI() {
+		return API;
+	}
+
+	public void setAPI(String aPI) {
+		API = aPI;
+	}
+
+	public String getCommand() {
+		return command;
+	}
+
+	public void setCommand(String command) {
 		this.command = command;
 	}
 }

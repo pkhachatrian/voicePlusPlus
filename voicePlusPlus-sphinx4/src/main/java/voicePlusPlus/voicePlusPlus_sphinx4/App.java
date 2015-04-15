@@ -64,13 +64,11 @@ public class App {
 				continue;
 			}
  
-			command.API = TaskManager.DetermineAPI(commandString);
-			
-			if (command.API == APIs.GOOGLE_CALENDAR) {
+			command.setAPI(TaskManager.DetermineAPI(commandString));
+			if (command.getCommand() == APIs.GOOGLE_CALENDAR) {
 				utterance = convertNumbersAsTextToDigits(utterance);	
 			}
-			
-			command.command = commandString;
+			command.setCommand(commandString);
 
 			TaskManager.InvokeAPICommand(command);
 			
@@ -97,11 +95,11 @@ public class App {
 				continue;
 			}
  
-			command.API = TaskManager.DetermineAPI(commandString);
-			if (command.API == APIs.GOOGLE_CALENDAR) {
+			command.setAPI(TaskManager.DetermineAPI(commandString));
+			if (command.getCommand() == APIs.GOOGLE_CALENDAR) {
 				utterance = convertNumbersAsTextToDigits(utterance);	
 			}
-			command.command = commandString;
+			command.setCommand(commandString);
 
 			TaskManager.InvokeAPICommand(command);
 		}
