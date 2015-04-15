@@ -58,4 +58,22 @@
     </dependency>
  
   </dependencies>
+  
+  <profiles>
+    <profile>
+      <id>jboss-public-repository</id>
+      <!-- for netty dependency -->
+      <repositories>
+        <repository>
+          <id>jboss-public-repository-group</id>
+          <url>http://repository.jboss.org/nexus/content/groups/public-jboss</url>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+  
+  
 </project>
