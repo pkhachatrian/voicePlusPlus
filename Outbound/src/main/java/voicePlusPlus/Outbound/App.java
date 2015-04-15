@@ -10,7 +10,7 @@ public class App {
 		SocketClient sc = new SocketClient(port, pf);
 		
 		sc.start();
-		System.out.println("in between start and stop");
-		sc.stop();
+		System.out.println("Starting server.");
+//		sc.stop();
 	}
 }
