@@ -3,14 +3,11 @@ package voicePlusPlus.voicePlusPlus_sphinx4;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
-
 import edu.cmu.sphinx.api.SpeechResult;
-
 import org.freeswitch.esl.client.inbound.*;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-
 
 public class App {
 	public static ArrayList<String> commands = new ArrayList<>();
@@ -64,7 +61,27 @@ public class App {
 //				continue;
 //			}
  
-			command.API = TaskManager.determineAPI(commandString);
+			command.API = TaskManager.DetermineAPI(commandString);
+			
+			if (command.API == APIs.GOOGLE_CALENDAR) {
+				utterance = convertNumbersAsTextToDigits(utterance);	
+			}
+			
+			command.command = commandString;
+
+			TaskManager.InvokeAPICommand(command);
+			
+			PrintAllCommands();
+			
+			utterance = "invocabot scratch that";
+			System.out.println(utterance);
+			commandString = SphinxManager.GetCommand(utterance);
+			System.out.println(commandString);
+//			if (commandString == null || commandString.equals("")) {
+//				continue;
+//			}
+ 
+			command.API = TaskManager.DetermineAPI(commandString);
 			
 			if (command.API == APIs.GOOGLE_CALENDAR) {
 				utterance = convertNumbersAsTextToDigits(utterance);	
@@ -83,9 +100,8 @@ public class App {
 	 * Prints all the commands that the user has said throughout the call.
 	 */
 	public static void PrintAllCommands() {
-		for(int i=0; i<App.commands.size();i++) {
-			String command = App.commands.get(i);
-			System.out.println("Command #" + i + ": " + command);
+		for(int i=0; i<App.commands.size(); i++) {
+			System.out.println("Command #" + i + ": " + App.commands.get(i));
 		}
 	}
 	

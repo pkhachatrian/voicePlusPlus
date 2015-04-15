@@ -65,7 +65,10 @@ public class TaskManager {
 	 * @param command the command with only keywords
 	 * @return the API as a string
 	 */
-	public static String determineAPI(String command) {
+	public static String DetermineAPI(String command) {
+		if (command.equals("scratch that"))
+			return APIs.SCRATCH_THAT;
+		
 		Hashtable<String, Double> likelihoodOfAPIs = new Hashtable<String, Double>();
 		String[] words = command.split("\\s");
 		
