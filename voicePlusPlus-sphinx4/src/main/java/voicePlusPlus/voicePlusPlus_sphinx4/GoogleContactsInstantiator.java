@@ -9,6 +9,10 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.calendar.Calendar;
 
+import com.google.api.services.mirror.Mirror;
+import com.google.api.services.mirror.model.Contact;
+import com.google.api.services.mirror.model.ContactsListResponse;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -38,6 +42,7 @@ public class GoogleContactsInstantiator {
 	private static JacksonFactory jsonFactory;
 	private static Credential credential;
 	private static Calendar service;
+	//private static ContactsService myService;
 	private static GoogleTokenResponse response = null;
 	static Event createdEvent = null;
 		
@@ -84,6 +89,13 @@ public class GoogleContactsInstantiator {
 	     service = new Calendar.Builder(httpTransport, jsonFactory, credential)
 	        .setApplicationName("voicePlusPlus").build();
 			
+	}
+	
+	public static ContactsService myService = new ContactsService("service");
+	
+	public static ContactsService getService() {
+		
+		return myService;
 	}
 	
 	public static void printAllContacts(ContactsService myService)
@@ -200,7 +212,24 @@ public class GoogleContactsInstantiator {
 		    System.out.println("Contact's ETag: " + entry.getEtag());
 		  }
 		}
-	
+//	public void printAllContacts(Mirror service) {
+//	    try {
+//	      ContactsListResponse contacts = service.contacts().list().execute();
+//
+//	      for (Contact contact : contacts.getItems()) {
+//	        System.out.println("Contact ID: " + contact.getId());
+//	        System.out.println("  > displayName: " + contact.getDisplayName());
+//	        if (contact.getImageUrls() != null) {
+//	          for (String imageUrl : contact.getImageUrls()) {
+//	            System.out.println("  > imageUrl: " + imageUrl);
+//	          }
+//	        }
+//	      }
+//	    } catch (IOException e) {
+//	      System.err.println("An error occurred: " + e);
+//	    }
+//	  }
+//	
 	
 	
 }

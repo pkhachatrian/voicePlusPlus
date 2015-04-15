@@ -7,6 +7,8 @@ import java.security.GeneralSecurityException;
 import java.util.Hashtable;
 import java.util.List;
 
+import com.google.gdata.util.ServiceException;
+
 
 public class TaskManager {
 	
@@ -107,6 +109,9 @@ public class TaskManager {
 			}
 		}
 		
+		if(API == APIs.GOOGLE_CALENDAR){
+			API = APIs.GOOGLE_CONTACTS;
+		}
 		return API;
 	}
 	
@@ -157,6 +162,22 @@ public class TaskManager {
 				break;
 			
 			case APIs.GOOGLE_CONTACTS:
+				try{
+					GoogleContactsInstantiator.setUp(clientId, clientSecret);
+				} catch (IOException | GeneralSecurityException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} 
+					System.out.println("You've chosen GOogle Contacts!");
+			try {
+				GoogleContactsInstantiator.printAllContacts(GoogleContactsInstantiator.getService());
+			} catch (ServiceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 				break;
 		}
 		return feedback;

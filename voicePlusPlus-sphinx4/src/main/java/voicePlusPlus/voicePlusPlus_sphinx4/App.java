@@ -15,32 +15,32 @@ import static org.junit.Assert.*;
 
 public class App {
 	public static void main(String[] args) {
-		Client c = new Client();
+//		Client c = new Client();
+//		
+//		String host = "54.69.110.102"; // remember to keep changing this
+//		int port = 10630;
+//		int timeoutSeconds = 60;
+//		
+//		Scanner sc = new Scanner(System.in);
+//		System.out.print("Enter the FreeSwitch server password: ");
+//        String password = sc.next();
+//        sc.close();
+//		
+//		try {
+//			System.out.println("Attempting to connect to FreeSwitch server");
+//			c.connect(host, port, password, timeoutSeconds);
+//			
+//			while (true) {
+//				String command = "";
+//				String arg = "";
+//				System.out.println(c.sendAsyncApiCommand(command, arg));
+//				break;
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		
-		String host = "54.69.110.102"; // remember to keep changing this
-		int port = 10630;
-		int timeoutSeconds = 60;
-		
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Enter the FreeSwitch server password: ");
-        String password = sc.next();
-        sc.close();
-		
-		try {
-			System.out.println("Attempting to connect to FreeSwitch server");
-			c.connect(host, port, password, timeoutSeconds);
-			
-			while (true) {
-				String command = "";
-				String arg = "";
-				System.out.println(c.sendAsyncApiCommand(command, arg));
-				break;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-//		Sphinx();
+		Sphinx();
 	}
 	
 	public static void Sphinx() {
