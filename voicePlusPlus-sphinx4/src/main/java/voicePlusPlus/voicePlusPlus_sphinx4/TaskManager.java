@@ -66,8 +66,8 @@ public class TaskManager {
 	 * @return the API as a string
 	 */
 	public static String DetermineAPI(String command) {
-		if (command.equals("scratch that"))
-			return APIs.SCRATCH_THAT;
+		if (command.contains("scratch that") || command.contains("delete") || command.contains("remove"))
+			return APIs.DELETE;
 		
 		Hashtable<String, Double> likelihoodOfAPIs = new Hashtable<String, Double>();
 		String[] words = command.split("\\s");
@@ -129,7 +129,7 @@ public class TaskManager {
 				break;
 			case APIs.GOOGLE_CONTACTS:
 				break;
-			case APIs.SCRATCH_THAT:
+			case APIs.DELETE:
 				int size = App.commands.size();
 				if (size > 0) {
 					APICommand lastCommand = App.commands.get(size - 1);

@@ -3,7 +3,10 @@ package voicePlusPlus.voicePlusPlus_sphinx4;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+
 import edu.cmu.sphinx.api.SpeechResult;
+
 import org.freeswitch.esl.client.inbound.*;
 import org.junit.Test;
 
@@ -82,9 +85,9 @@ public class App {
 		TaskManager.instantiateHashTable("./src/main/resources/keywords.txt");
 		
 		ArrayList<String> utterances = new ArrayList<String>();
-		utterances.add("invocabot schedule a meeting today");
-		utterances.add("invocabot meeting tomorrow at 9pm");
-		utterances.add("invocabot scratch that");
+		utterances.add("invocabot i would like to delete that last command");
+		utterances.add("invocabot please remove that last command");
+		utterances.add("invocabot scratch that I hope");
 		
 		for (String utterance : utterances) {
 			System.out.println(utterance);
