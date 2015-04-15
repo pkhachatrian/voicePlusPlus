@@ -66,21 +66,14 @@ public class TaskManager {
 	 * @return the API as a string
 	 */
 	public static String determineAPI(String command) {
-		double max;
-		double val;
-		String[] words;
-		String value;
-		String API;
-		Hashtable<String, Double> likelihoodOfAPIs;
-		
-		likelihoodOfAPIs = new Hashtable<String, Double>();
-		words = command.split("\\s");
+		Hashtable<String, Double> likelihoodOfAPIs = new Hashtable<String, Double>();
+		String[] words = command.split("\\s");
 		
 		likelihoodOfAPIs.put(APIs.GOOGLE_CALENDAR, 0.0);
 		likelihoodOfAPIs.put(APIs.GOOGLE_SEARCH, 0.0);
 		
 		for (String word : words) {
-			value = keywords.get(word);
+			String value = keywords.get(word);
 			if (value == null)
 				continue;
 			switch (value) {
@@ -98,10 +91,10 @@ public class TaskManager {
 			}
 		}
 		
-		max = -1;
-		API = "";
+		double max = -1;
+		String API = "";
 		for (String key : likelihoodOfAPIs.keySet()) {
-			val = likelihoodOfAPIs.get(key);
+			double val = likelihoodOfAPIs.get(key);
 			if (val > max) {
 				max = val;
 				API = key;
@@ -111,17 +104,8 @@ public class TaskManager {
 		return API;
 	}
 	
-	public static String getValue(Object key){
-		return keywords.get(key);
-	}
-	
 	public static String InvokeAPICommand(APICommand command) { 
-		String feedback = null; 			
-		
-//		 for(int i=0; i<eventt.size();i++){
-//			 	String oneEvent = eventt.get(i);
-//		 	System.out.println("Event list #" + i + " " + oneEvent);
-//		 }
+		String feedback = null;
 		 
 		System.out.println("Executing command: " + command.API);
 		switch(command.API) {
@@ -136,14 +120,16 @@ public class TaskManager {
 				GoogleCalendarInstantiator.update(command.command);
 				
 				//GoogleCalendarInstantiator.listEvents();
+				
+				App.commands.add(command.command);
 				break;
 			case APIs.GOOGLE_SEARCH:
 				break;
 			case APIs.GOOGLE_CONTACTS:
 				break;
 			case APIs.SCRATCH_THAT:
-				if (App.events.size() > 0) {
-					App.events.remove(App.events.size() - 1);
+				if (App.commands.size() > 0) {
+					App.commands.remove(App.commands.size() - 1);
 				}
 				break;
 		}

@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 
 public class App {
-	public static ArrayList<String> events = new ArrayList<>();
+	public static ArrayList<String> commands = new ArrayList<>();
 	
 	public static void main(String[] args) {
 	/*	Client c = new Client();
@@ -73,10 +73,29 @@ public class App {
 			command.command = commandString;
 
 			TaskManager.InvokeAPICommand(command);
+			
+			PrintAllCommands();
 //		}
 //		sphinxManager.StopRecognizingAudio();
 	}
 	
+	/**
+	 * Prints all the commands that the user has said throughout the call.
+	 */
+	public static void PrintAllCommands() {
+		for(int i=0; i<App.commands.size();i++) {
+			String command = App.commands.get(i);
+			System.out.println("Command #" + i + ": " + command);
+		}
+	}
+	
+	/**
+	 * Converts a string with numbers as text to a string with numbers as digits.
+	 * For example, "one thirty two" would be "1:32".
+	 * 
+	 * @param eventText the string to convert
+	 * @return the string with numbers as digits
+	 */
 	public static String convertNumbersAsTextToDigits(String eventText) {
 		HashSet<String> setOnes = new HashSet<String>();
 		HashSet<String> setTeens = new HashSet<String>();
