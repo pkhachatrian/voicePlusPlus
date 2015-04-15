@@ -130,7 +130,13 @@ public class TaskManager {
 			case APIs.GOOGLE_CONTACTS:
 				break;
 			case APIs.SCRATCH_THAT:
-				if (App.commands.size() > 0) {
+				int size = App.commands.size();
+				if (size > 0) {
+					APICommand lastCommand = App.commands.get(size - 1);
+					if (lastCommand.getAPI() == APIs.GOOGLE_CALENDAR) {
+						eventId = ((APICommandGoogleCalendar) lastCommand).eventId;
+						GoogleCalendarInstantiator.DeleteEvent(eventId);
+					}
 					App.commands.remove(App.commands.size() - 1);
 				}
 				break;

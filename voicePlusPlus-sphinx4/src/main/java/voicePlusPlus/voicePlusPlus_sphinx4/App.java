@@ -113,7 +113,7 @@ public class App {
 		for(int i=0; i<App.commands.size(); i++) {
 			String command = App.commands.get(i).getCommand();
 			String API = App.commands.get(i).getAPI();
-			System.out.println("Command #" + (i + 1) + ": " + API + ", " + command);
+			System.out.println("Command #" + (i + 1) + ": " + API + "\t" + command);
 		}
 	}
 	

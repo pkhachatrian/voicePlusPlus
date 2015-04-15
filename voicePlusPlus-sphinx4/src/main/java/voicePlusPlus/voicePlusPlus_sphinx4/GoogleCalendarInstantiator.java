@@ -155,6 +155,14 @@ public class GoogleCalendarInstantiator {
 		}
 	}
 	
+	public static void DeleteEvent(String eventId) {
+		try {
+			service.events().delete("primary", eventId ).execute();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public static void listEvents(){
 		
 		// Iterate over the events in the specified calendar
