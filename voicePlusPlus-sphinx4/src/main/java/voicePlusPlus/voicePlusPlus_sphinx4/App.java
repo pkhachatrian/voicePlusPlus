@@ -38,28 +38,31 @@ public class App {
 			e.printStackTrace();
 		}
 		*/
-		Sphinx();
+		
+		// Only have one of these uncommented.
+//		Sphinx();
+		TestWithoutSphinx();
 	}
 	
 	public static void Sphinx() {
-//		SphinxManager sphinxManager = new SphinxManager();
-	//	sphinxManager.StartRecognizingAudio();
+		SphinxManager sphinxManager = new SphinxManager();
+		sphinxManager.StartRecognizingAudio();
 		SpeechResult result;
 		APICommand command = new APICommand();
 		
 		TaskManager.instantiateHashTable("./src/main/resources/keywords.txt");
 		
-//		//RECOGNIZING SPEECH
-//		while ((result = sphinxManager.GetSpeechResult()) != null)
-//		{
-			//String utterance = sphinxManager.GetUtterance(result);
-			String utterance = "invocabot schedule a meeting today";
+		// RECOGNIZING SPEECH
+		while ((result = sphinxManager.GetSpeechResult()) != null)
+		{
+			String utterance = sphinxManager.GetUtterance(result);
 			System.out.println(utterance);
 			String commandString = SphinxManager.GetCommand(utterance);
 			System.out.println(commandString);
-//			if (commandString == null || commandString.equals("")) {
-//				continue;
-//			}
+			
+			if (commandString == null || commandString.equals("")) {
+				continue;
+			}
  
 			command.API = TaskManager.DetermineAPI(commandString);
 			
@@ -71,29 +74,38 @@ public class App {
 
 			TaskManager.InvokeAPICommand(command);
 			
-			PrintAllCommands();
-			
-			utterance = "invocabot scratch that";
+		}
+		PrintAllCommands();
+		sphinxManager.StopRecognizingAudio();
+	}
+	
+	public static void TestWithoutSphinx() {
+		APICommand command = new APICommand();
+		TaskManager.instantiateHashTable("./src/main/resources/keywords.txt");
+		
+		ArrayList<String> utterances = new ArrayList<String>();
+		utterances.add("invocabot schedule a meeting today");
+		utterances.add("invocabot meeting tomorrow at 9pm");
+		utterances.add("invocabot scratch that");
+		
+		for (String utterance : utterances) {
 			System.out.println(utterance);
-			commandString = SphinxManager.GetCommand(utterance);
+			String commandString = SphinxManager.GetCommand(utterance);
 			System.out.println(commandString);
-//			if (commandString == null || commandString.equals("")) {
-//				continue;
-//			}
+			
+			if (commandString == null || commandString.equals("")) {
+				continue;
+			}
  
 			command.API = TaskManager.DetermineAPI(commandString);
-			
 			if (command.API == APIs.GOOGLE_CALENDAR) {
 				utterance = convertNumbersAsTextToDigits(utterance);	
 			}
-			
 			command.command = commandString;
 
 			TaskManager.InvokeAPICommand(command);
-			
-			PrintAllCommands();
-//		}
-//		sphinxManager.StopRecognizingAudio();
+		}
+		PrintAllCommands();
 	}
 	
 	/**
@@ -101,7 +113,7 @@ public class App {
 	 */
 	public static void PrintAllCommands() {
 		for(int i=0; i<App.commands.size(); i++) {
-			System.out.println("Command #" + i + ": " + App.commands.get(i));
+			System.out.println("Command #" + (i + 1) + ": " + App.commands.get(i));
 		}
 	}
 	
