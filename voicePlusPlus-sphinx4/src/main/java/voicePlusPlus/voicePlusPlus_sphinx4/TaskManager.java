@@ -115,75 +115,38 @@ public class TaskManager {
 		return keywords.get(key);
 	}
 	
-	public static String ProcessCommand(String command){
-		return command;	
-	}
-	
-	public static List<String> FindKeywords(String command)
-	{
-		return null;
-	}
-	
-	public static String DetermineAPI(String command){
-		return null;
-	}
-	
-	
-	public static APICommand GetAPICommand(String API, List<String> keywords){
+	public static String InvokeAPICommand(APICommand command) { 
+		String feedback = null; 			
 		
-		return null;
-	}
-	
-	public static String InvokeAPICommand(APICommand command){
-	//	command.API= "scratch that";
-		String feedback = null;
-		ArrayList<String> eventt = new ArrayList<>();
-		eventt.add("GOOGLE MAP");
-		eventt.add(command.API);
-	 	if(command.API.equals("scratch that"))
- 			eventt.remove(eventt.size()-1);
-		
-		 for(int i=0; i<eventt.size();i++){
-			 	String oneEvent = eventt.get(i);
-		 	System.out.println("Event list #" + i + " " + oneEvent);
-		 }
+//		 for(int i=0; i<eventt.size();i++){
+//			 	String oneEvent = eventt.get(i);
+//		 	System.out.println("Event list #" + i + " " + oneEvent);
+//		 }
 		 
-		switch(command.API){
+		System.out.println("Executing command: " + command.API);
+		switch(command.API) {
 			case APIs.GOOGLE_CALENDAR:
-				System.out.println("Executing command: " + command.API);
-
-			 
-			
-				//string count = xxx.size();
-			 	
-	
-			 	
-			 	
-			/*CREATE A GOOGLE CALENDAR INSTANCE*/
-			try {
-				GoogleCalendarInstantiator.setUp(clientId, clientSecret);
-			} catch (IOException | GeneralSecurityException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+				try {
+					GoogleCalendarInstantiator.setUp(clientId, clientSecret);
+				} catch (IOException | GeneralSecurityException e1) {
+					e1.printStackTrace();
+				}
 				//if command make new event
 				GoogleCalendarInstantiator.quickAdd(command.command);
 				GoogleCalendarInstantiator.update(command.command);
 				
 				//GoogleCalendarInstantiator.listEvents();
-			
-								
-				
 				break;
 			case APIs.GOOGLE_SEARCH:
-				
 				break;
-			
 			case APIs.GOOGLE_CONTACTS:
+				break;
+			case APIs.SCRATCH_THAT:
+				if (App.events.size() > 0) {
+					App.events.remove(App.events.size() - 1);
+				}
 				break;
 		}
 		return feedback;
-	}
-	
-	
+	}	
 }

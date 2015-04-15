@@ -1,5 +1,6 @@
 package voicePlusPlus.voicePlusPlus_sphinx4;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -8,12 +9,12 @@ import edu.cmu.sphinx.api.SpeechResult;
 import org.freeswitch.esl.client.inbound.*;
 import org.junit.Test;
 
-import java.io.Console;
-
 import static org.junit.Assert.*;
 
 
 public class App {
+	public static ArrayList<String> events = new ArrayList<>();
+	
 	public static void main(String[] args) {
 	/*	Client c = new Client();
 		
@@ -44,7 +45,7 @@ public class App {
 	}
 	
 	public static void Sphinx() {
-		SphinxManager sphinxManager = new SphinxManager();
+//		SphinxManager sphinxManager = new SphinxManager();
 	//	sphinxManager.StartRecognizingAudio();
 		SpeechResult result;
 		APICommand command = new APICommand();
@@ -73,9 +74,9 @@ public class App {
 
 			TaskManager.InvokeAPICommand(command);
 //		}
-		sphinxManager.StopRecognizingAudio();
+//		sphinxManager.StopRecognizingAudio();
 	}
-		
+	
 	public static String convertNumbersAsTextToDigits(String eventText) {
 		HashSet<String> setOnes = new HashSet<String>();
 		HashSet<String> setTeens = new HashSet<String>();
