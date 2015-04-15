@@ -10,7 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class App {
-	public static ArrayList<String> commands = new ArrayList<>();
+	public static ArrayList<APICommand> commands = new ArrayList<>();
 	
 	public static void main(String[] args) {
 	/*	Client c = new Client();
@@ -111,7 +111,9 @@ public class App {
 	 */
 	public static void PrintAllCommands() {
 		for(int i=0; i<App.commands.size(); i++) {
-			System.out.println("Command #" + (i + 1) + ": " + App.commands.get(i));
+			String command = App.commands.get(i).getCommand();
+			String API = App.commands.get(i).getAPI();
+			System.out.println("Command #" + (i + 1) + ": " + API + ", " + command);
 		}
 	}
 	

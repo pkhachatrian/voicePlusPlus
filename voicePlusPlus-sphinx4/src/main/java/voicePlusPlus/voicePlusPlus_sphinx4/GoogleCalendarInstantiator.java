@@ -31,7 +31,7 @@ public class GoogleCalendarInstantiator {
 	private static Credential credential;
 	private static Calendar service;
 	private static GoogleTokenResponse response = null;
-	static Event createdEvent = null;
+	private static Event createdEvent = null;
 		
 	public static void setUp(String clientId, String clientSecret) throws IOException, GeneralSecurityException{
 		
@@ -78,7 +78,7 @@ public class GoogleCalendarInstantiator {
 			
 	}
 	
-	public static void newEvent(String command){
+	public static void newEvent(String command) {
 		/*Currently makes an event with hard-coded settings*/
 		
 		/*doesn't do anything with command yet. maybe we won't need to.*/
@@ -106,27 +106,24 @@ public class GoogleCalendarInstantiator {
 		try {
 			createdEvent = service.events().insert("primary", event).execute();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	
 	}
 	
-	public static void quickAdd(String eventText){
+	public static String quickAdd(String eventText) {
 		// Quick-add an event
-		eventText = "meeting with chris tomorrow at 11am";
 		try {
 			createdEvent = service.events().quickAdd("primary", eventText).setText(eventText).execute();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		System.out.println("Successfully created:" + eventText);
+		return createdEvent.getId();
 	}
 	
-	public static void update(String eventText){
+	public static void update(String eventText) {
 		// Retrieve the event from the API
 		
 		ArrayList<EventAttendee> attendees = new ArrayList<EventAttendee>();

@@ -119,12 +119,11 @@ public class TaskManager {
 					e1.printStackTrace();
 				}
 				//if command make new event
-				GoogleCalendarInstantiator.quickAdd(command.getCommand());
+				String eventId = GoogleCalendarInstantiator.quickAdd(command.getCommand());
 				GoogleCalendarInstantiator.update(command.getCommand());
 				
-				//GoogleCalendarInstantiator.listEvents();
-				
-				App.commands.add(command.getCommand());
+				APICommandGoogleCalendar commandCalendar = new APICommandGoogleCalendar(command.getAPI(), command.getCommand(), eventId);
+				App.commands.add(commandCalendar);
 				break;
 			case APIs.GOOGLE_SEARCH:
 				break;

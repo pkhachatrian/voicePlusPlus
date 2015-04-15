@@ -9,6 +9,11 @@ public class APICommand {
 		this.command = "";
 	}
 
+	public APICommand(String API, String command) {
+		this.API = API;
+		this.command = command;
+	}
+
 	public String getAPI() {
 		return API;
 	}
