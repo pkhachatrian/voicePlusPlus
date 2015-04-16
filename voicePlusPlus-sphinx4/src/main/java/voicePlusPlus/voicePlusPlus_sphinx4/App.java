@@ -86,6 +86,7 @@ public class App {
 		
 		ArrayList<String> utterances = new ArrayList<String>();
 		utterances.add("invocabot setup a meeting tomorrow with chris at 6");
+		utterances.add("invocabot setup a meeting tomorrow with belsin at 6");
 		//utterances.add("invocabot i would like to delete that last command");
 		//utterances.add("invocabot please remove that last command");
 		//utterances.add("invocabot scratch that I hope");

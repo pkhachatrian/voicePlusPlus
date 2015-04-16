@@ -138,7 +138,7 @@ public class GoogleCalendarInstantiator {
 		for(int i = 0; i < whosComing.length; i++){
 			//add more if statements for any invitees
 			if(whosComing[i].equals("chris")){
-				attendees.add(new EventAttendee().setEmail("chris@gmail.com"));
+				attendees.add(new EventAttendee().setEmail("chris37835632@gmail.com"));
 			}
 			if(whosComing[i].equals("belsin")){
 				attendees.add(new EventAttendee().setEmail("belsinb@gmail.com"));

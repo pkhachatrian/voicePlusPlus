@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.ArrayList;
 
 
+
+
 public class TaskManager {
 	
 	private static Hashtable<String, String> keywords;
@@ -16,6 +18,10 @@ public class TaskManager {
 	//Authorization Details for an instance of Google Calendar
 	final static String clientId = "961199178603-hjng14f7mmlagofj23rnq9q6ql3ab4r5.apps.googleusercontent.com";
 	final static String clientSecret = "vbZABAK8TVTv_SnzJtsptHKz";
+	
+	//if 0, call googlecalsetup(), if 1, then skip calling googlecalsetup()
+	private static int googleCalSetup = 0;
+	
 	
 	/**
 	 * Instantiates the Hashtable of keywords from the filename.
@@ -108,16 +114,26 @@ public class TaskManager {
 	}
 	
 	public static String InvokeAPICommand(APICommand command) { 
+		
+		
+		
 		String feedback = null;
 		 
 		System.out.println("Executing command: " + command.getAPI());
 		switch(command.getAPI()) {
 			case APIs.GOOGLE_CALENDAR:
-				try {
-					GoogleCalendarInstantiator.setUp(clientId, clientSecret);
-				} catch (IOException | GeneralSecurityException e1) {
-					e1.printStackTrace();
+				//only call setup if its the first time recieving a calendar command
+				if(googleCalSetup == 0){
+					try {
+						System.out.println("(BEFORE)googleCalSetup: "+googleCalSetup);
+						GoogleCalendarInstantiator.setUp(clientId, clientSecret);
+						googleCalSetup = 1;
+						System.out.println("(AFTER)googleCalSetup: "+googleCalSetup);
+					} catch (IOException | GeneralSecurityException e1) {
+						e1.printStackTrace();
+					}
 				}
+				
 				//if command make new event
 				String eventId = GoogleCalendarInstantiator.quickAdd(command.getCommand());
 				GoogleCalendarInstantiator.update(command.getCommand());
