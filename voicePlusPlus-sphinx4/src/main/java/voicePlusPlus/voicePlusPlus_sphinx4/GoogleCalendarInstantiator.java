@@ -126,8 +126,27 @@ public class GoogleCalendarInstantiator {
 	public static void update(String eventText) {
 		// Retrieve the event from the API
 		
+		
+		//Create empty list of attendees
 		ArrayList<EventAttendee> attendees = new ArrayList<EventAttendee>();
-		attendees.add(new EventAttendee().setEmail("chris@gmail.com"));
+		
+		
+		//Split eventText into words to check invitee names
+		String whosComing[] = eventText.split(" ");
+		System.out.println("Right before checking string for inviteese");
+		//Check if any of the words are people to invite
+		for(int i = 0; i < whosComing.length; i++){
+			//add more if statements for any invitees
+			if(whosComing[i].equals("chris")){
+				attendees.add(new EventAttendee().setEmail("chris@gmail.com"));
+			}
+			if(whosComing[i].equals("belsin")){
+				attendees.add(new EventAttendee().setEmail("belsinb@gmail.com"));
+			}
+				
+		}
+		
+		
 		
 		
 		
