@@ -9,6 +9,7 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.jackson2.JacksonFactory;
 //Below needs to be uncommented but that library isn't found for some reason
 //import com.google.api.client.json.jackson.JacksonFactory;
 import com.google.api.services.gmail.Gmail;

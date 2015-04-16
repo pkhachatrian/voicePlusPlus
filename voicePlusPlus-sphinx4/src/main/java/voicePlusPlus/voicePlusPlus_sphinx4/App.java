@@ -13,7 +13,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class App {
-	public static ArrayList<APICommand> commands = new ArrayList<>();
+	public static ArrayList<APICommand> commands = new ArrayList<APICommand>();
 	
 	public static void main(String[] args) {
 	/*	Client c = new Client();
@@ -69,7 +69,7 @@ public class App {
  
 			command.setAPI(TaskManager.DetermineAPI(commandString));
 			if (command.getCommand() == APIs.GOOGLE_CALENDAR) {
-				utterance = convertNumbersAsTextToDigits(utterance);	
+				utterance = ConvertNumbersAsTextToDigits(utterance);	
 			}
 			command.setCommand(commandString);
 
@@ -102,7 +102,7 @@ public class App {
  
 			command.setAPI(TaskManager.DetermineAPI(commandString));
 			if (command.getCommand() == APIs.GOOGLE_CALENDAR) {
-				utterance = convertNumbersAsTextToDigits(utterance);	
+				utterance = ConvertNumbersAsTextToDigits(utterance);	
 			}
 			command.setCommand(commandString);
 
@@ -129,7 +129,7 @@ public class App {
 	 * @param eventText the string to convert
 	 * @return the string with numbers as digits
 	 */
-	public static String convertNumbersAsTextToDigits(String eventText) {
+	public static String ConvertNumbersAsTextToDigits(String eventText) {
 		HashSet<String> setOnes = new HashSet<String>();
 		HashSet<String> setTeens = new HashSet<String>();
 		HashSet<String> setDecades = new HashSet<String>();
@@ -339,7 +339,7 @@ public class App {
 	}
 	
 	@Test
-	public static void testConvertNumbersAsTextToDigits() {
+	public static void TestConvertNumbersAsTextToDigits() {
 		String s1 = "twenty";
 		String s2 = "forty one";
 		String s3 = "one forty";
@@ -348,12 +348,12 @@ public class App {
 		String s6 = "one forty five";
 		String s7 = "two twelve";
 		
-		assertEquals("20", convertNumbersAsTextToDigits(s1));
-		assertEquals("41", convertNumbersAsTextToDigits(s2));
-		assertEquals("1:40", convertNumbersAsTextToDigits(s3));
-		assertEquals("schedule a meeting at 1:40 pm", convertNumbersAsTextToDigits(s4));
-		assertEquals("", convertNumbersAsTextToDigits(s5));
-		assertEquals("1:45", convertNumbersAsTextToDigits(s6));
-		assertEquals("2:12", convertNumbersAsTextToDigits(s7));
+		assertEquals("20", ConvertNumbersAsTextToDigits(s1));
+		assertEquals("41", ConvertNumbersAsTextToDigits(s2));
+		assertEquals("1:40", ConvertNumbersAsTextToDigits(s3));
+		assertEquals("schedule a meeting at 1:40 pm", ConvertNumbersAsTextToDigits(s4));
+		assertEquals("", ConvertNumbersAsTextToDigits(s5));
+		assertEquals("1:45", ConvertNumbersAsTextToDigits(s6));
+		assertEquals("2:12", ConvertNumbersAsTextToDigits(s7));
 	}
 }
