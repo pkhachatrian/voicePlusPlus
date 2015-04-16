@@ -40,6 +40,11 @@
       <artifactId>google-api-services-calendar</artifactId>
       <version>v3-rev118-1.19.1</version>
     </dependency>
+    <dependency>
+      <groupId>com.google.apis</groupId>
+      <artifactId>google-api-services-gmail</artifactId>
+      <version>v1-rev28-1.20.0</version>
+    </dependency>
   	<dependency>
       <groupId>edu.cmu.sphinx</groupId>
       <artifactId>sphinx4-core</artifactId>
