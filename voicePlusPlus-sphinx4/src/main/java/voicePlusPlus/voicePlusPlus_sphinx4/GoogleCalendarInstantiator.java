@@ -124,7 +124,7 @@ public class GoogleCalendarInstantiator {
 	}
 	
 	public static void update(String eventText) {
-		// Retrieve the event from the API
+		
 		
 		
 		//Create empty list of attendees
@@ -133,7 +133,7 @@ public class GoogleCalendarInstantiator {
 		
 		//Split eventText into words to check invitee names
 		String whosComing[] = eventText.split(" ");
-		System.out.println("Right before checking string for inviteese");
+		
 		//Check if any of the words are people to invite
 		for(int i = 0; i < whosComing.length; i++){
 			//add more if statements for any invitees
@@ -149,7 +149,7 @@ public class GoogleCalendarInstantiator {
 		
 		
 		
-		
+		// Retrieve the event from the API
 		Event event = null;
 		try {
 			event = service.events().get("primary", createdEvent.getId()).execute();
