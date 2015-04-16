@@ -43,44 +43,44 @@ public class App {
 		*/
 		
 		// Only have one of these uncommented.
-//		Sphinx();
-		TestWithoutSphinx();
+//		sphinx();
+		testWithoutSphinx();
 	}
 	
-	public static void Sphinx() {
+	public static void sphinx() {
 		SphinxManager sphinxManager = new SphinxManager();
-		sphinxManager.StartRecognizingAudio();
+		sphinxManager.startRecognizingAudio();
 		SpeechResult result;
 		APICommand command = new APICommand();
 		
 		TaskManager.instantiateHashTable("./src/main/resources/keywords.txt");
 		
 		// RECOGNIZING SPEECH
-		while ((result = sphinxManager.GetSpeechResult()) != null)
+		while ((result = sphinxManager.getSpeechResult()) != null)
 		{
-			String utterance = sphinxManager.GetUtterance(result);
+			String utterance = sphinxManager.getUtterance(result);
 			System.out.println(utterance);
-			String commandString = SphinxManager.GetCommand(utterance);
+			String commandString = SphinxManager.getCommand(utterance);
 			System.out.println(commandString);
 			
 			if (commandString == null || commandString.equals("")) {
 				continue;
 			}
  
-			command.setAPI(TaskManager.DetermineAPI(commandString));
+			command.setAPI(TaskManager.determineAPI(commandString));
 			if (command.getCommand() == APIs.GOOGLE_CALENDAR) {
-				utterance = ConvertNumbersAsTextToDigits(utterance);	
+				utterance = convertNumbersAsTextToDigits(utterance);	
 			}
 			command.setCommand(commandString);
 
-			TaskManager.InvokeAPICommand(command);
+			TaskManager.invokeAPICommand(command);
 			
 		}
 		PrintAllCommands();
-		sphinxManager.StopRecognizingAudio();
+		sphinxManager.stopRecognizingAudio();
 	}
 	
-	public static void TestWithoutSphinx() {
+	public static void testWithoutSphinx() {
 		APICommand command = new APICommand();
 		TaskManager.instantiateHashTable("./src/main/resources/keywords.txt");
 		
@@ -93,20 +93,20 @@ public class App {
 		
 		for (String utterance : utterances) {
 			System.out.println(utterance);
-			String commandString = SphinxManager.GetCommand(utterance);
+			String commandString = SphinxManager.getCommand(utterance);
 			System.out.println(commandString);
 			
 			if (commandString == null || commandString.equals("")) {
 				continue;
 			}
  
-			command.setAPI(TaskManager.DetermineAPI(commandString));
+			command.setAPI(TaskManager.determineAPI(commandString));
 			if (command.getCommand() == APIs.GOOGLE_CALENDAR) {
-				utterance = ConvertNumbersAsTextToDigits(utterance);	
+				utterance = convertNumbersAsTextToDigits(utterance);	
 			}
 			command.setCommand(commandString);
 
-			TaskManager.InvokeAPICommand(command);
+			TaskManager.invokeAPICommand(command);
 		}
 		PrintAllCommands();
 	}
@@ -129,7 +129,7 @@ public class App {
 	 * @param eventText the string to convert
 	 * @return the string with numbers as digits
 	 */
-	public static String ConvertNumbersAsTextToDigits(String eventText) {
+	public static String convertNumbersAsTextToDigits(String eventText) {
 		HashSet<String> setOnes = new HashSet<String>();
 		HashSet<String> setTeens = new HashSet<String>();
 		HashSet<String> setDecades = new HashSet<String>();
@@ -348,12 +348,12 @@ public class App {
 		String s6 = "one forty five";
 		String s7 = "two twelve";
 		
-		assertEquals("20", ConvertNumbersAsTextToDigits(s1));
-		assertEquals("41", ConvertNumbersAsTextToDigits(s2));
-		assertEquals("1:40", ConvertNumbersAsTextToDigits(s3));
-		assertEquals("schedule a meeting at 1:40 pm", ConvertNumbersAsTextToDigits(s4));
-		assertEquals("", ConvertNumbersAsTextToDigits(s5));
-		assertEquals("1:45", ConvertNumbersAsTextToDigits(s6));
-		assertEquals("2:12", ConvertNumbersAsTextToDigits(s7));
+		assertEquals("20", convertNumbersAsTextToDigits(s1));
+		assertEquals("41", convertNumbersAsTextToDigits(s2));
+		assertEquals("1:40", convertNumbersAsTextToDigits(s3));
+		assertEquals("schedule a meeting at 1:40 pm", convertNumbersAsTextToDigits(s4));
+		assertEquals("", convertNumbersAsTextToDigits(s5));
+		assertEquals("1:45", convertNumbersAsTextToDigits(s6));
+		assertEquals("2:12", convertNumbersAsTextToDigits(s7));
 	}
 }

@@ -71,7 +71,7 @@ public class TaskManager {
 	 * @param command the command with only keywords
 	 * @return the API as a string
 	 */
-	public static String DetermineAPI(String command) {
+	public static String determineAPI(String command) {
 		if (command.contains("scratch that") || command.contains("delete") || command.contains("remove"))
 			return APIs.DELETE;
 		
@@ -113,10 +113,7 @@ public class TaskManager {
 		return API;
 	}
 	
-	public static String InvokeAPICommand(APICommand command) { 
-		
-		
-		
+	public static String invokeAPICommand(APICommand command) { 
 		String feedback = null;
 		 
 		System.out.println("Executing command: " + command.getAPI());
@@ -125,10 +122,8 @@ public class TaskManager {
 				//only call setup if its the first time recieving a calendar command
 				if(googleCalSetup == 0){
 					try {
-						System.out.println("(BEFORE)googleCalSetup: "+googleCalSetup);
 						GoogleCalendarInstantiator.setUp(clientId, clientSecret);
 						googleCalSetup = 1;
-						System.out.println("(AFTER)googleCalSetup: "+googleCalSetup);
 					} catch (IOException | GeneralSecurityException e1) {
 						e1.printStackTrace();
 					}

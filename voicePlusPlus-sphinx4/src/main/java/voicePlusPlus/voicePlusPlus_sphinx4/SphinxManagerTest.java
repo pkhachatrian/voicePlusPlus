@@ -26,7 +26,7 @@ public class SphinxManagerTest {
 	}
 
 	@Test
-	public void GetCommand_InvocabotFrequencyZero_Success() {
+	public void getCommand_InvocabotFrequencyZero_Success() {
 		setUp();
 		
 		//ARRANGE
@@ -34,7 +34,7 @@ public class SphinxManagerTest {
 		String desiredOutput = null;
 		
 		//ACT
-		String output = SphinxManager.GetCommand(input);
+		String output = SphinxManager.getCommand(input);
 		
 		//ASSERT
 		assertEquals(desiredOutput, output);
@@ -51,7 +51,7 @@ public class SphinxManagerTest {
 		String desiredOutput = "schedule an appointment with chris at twelve p m tomorrow";
 		
 		//ACT
-		String output = SphinxManager.GetCommand(input);
+		String output = SphinxManager.getCommand(input);
 		
 		//ASSERT
 		assertEquals(desiredOutput, output);
@@ -67,7 +67,7 @@ public class SphinxManagerTest {
 		String desiredOutput = "schedule an appointment with chris at twelve p m tomorrow";
 		
 		//ACT
-		String output = SphinxManager.GetCommand(input);
+		String output = SphinxManager.getCommand(input);
 		
 		//ASSERT
 		assertEquals(desiredOutput, output);

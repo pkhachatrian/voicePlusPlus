@@ -118,8 +118,4 @@ public class Keyword {
 		
 		return API;
 	}
-	
-	public static String Get(Object key){
-		return keywords.get(key);
-	}
 }

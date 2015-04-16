@@ -35,21 +35,21 @@ public class SphinxManager  {
 		}
 	}
 	
-	public void StartRecognizingAudio(){
+	public void startRecognizingAudio(){
         recognizer.startRecognition(true);
 	}
 	
-	public void StopRecognizingAudio(){
+	public void stopRecognizingAudio(){
 		recognizer.stopRecognition();
 	}
 	
-    public SpeechResult GetSpeechResult() {
+    public SpeechResult getSpeechResult() {
         SpeechResult result;
 		result = recognizer.getResult();
 		return result;
     }
     
-    public String GetUtterance(SpeechResult result){
+    public String getUtterance(SpeechResult result){
 		String utterance = result.getHypothesis(); 
         return utterance;
     }
@@ -61,7 +61,7 @@ public class SphinxManager  {
      * Input: "What time is it? Invocabot schedule an appointment with Chandra at 12 pm tomorrow" 
      * Output: "schedule an appointment with Chandra at 12 pm tomorrow"
      */
-    public static String GetCommand(String string){
+    public static String getCommand(String string){
     	int index = string.indexOf("invocabot");
     	
     	// If "invocabot" is not in string.
