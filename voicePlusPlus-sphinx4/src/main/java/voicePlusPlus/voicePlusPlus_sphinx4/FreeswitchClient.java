@@ -36,7 +36,7 @@ public class FreeswitchClient {
         {
             public void eventReceived( EslEvent event )
             {
-                log.info( "Event received [{}]", event );
+                log.info( "Event received [{}]", event.getEventName() );
             }
             public void backgroundJobResultReceived( EslEvent event )
             {
@@ -44,10 +44,14 @@ public class FreeswitchClient {
             }
             
         } );
+        
+        client.setEventSubscriptions("plain", "all");
+        client.addEventFilter("Event-name", "DETECTED_SPEECH" );
     }
     
     public void InitiatePhoneCall(String sourcePhoneNumber){
-    	client.sendAsyncApiCommand("originate", "sofia/gateway/gw_outbound/" + sourcePhoneNumber );
+    	client.sendAsyncApiCommand("originate", "sofia/gateway/gw_outbound/" + sourcePhoneNumber + " &javascript(invocabot.js)" );
+
     }
     
     public void InitiatePhoneCall(String sourcePhoneNumber, String destinationPhoneNumber){
