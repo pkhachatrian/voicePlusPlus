@@ -11,6 +11,7 @@ public class App {
 		
 		sc.start();
 		System.out.println("Starting server.");
+		
 //		sc.stop();
 	}
 }
