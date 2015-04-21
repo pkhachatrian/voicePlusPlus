@@ -75,6 +75,9 @@ public class TaskManager {
 		if (command.contains("scratch that") || command.contains("delete") || command.contains("remove"))
 			return APIs.DELETE;
 		
+		if (command.contains("print") || command.contains("show"))
+			return APIs.PRINT;
+		
 		Hashtable<String, Double> likelihoodOfAPIs = new Hashtable<String, Double>();
 		String[] words = command.split("\\s");
 		
@@ -119,8 +122,8 @@ public class TaskManager {
 		System.out.println("Executing command: " + command.getAPI());
 		switch(command.getAPI()) {
 			case APIs.GOOGLE_CALENDAR:
-				//only call setup if its the first time recieving a calendar command
-				if(googleCalSetup == 0){
+				// Only call setup if its the first time receiving a calendar command.
+				if (googleCalSetup == 0) {
 					try {
 						GoogleCalendarInstantiator.setUp(clientId, clientSecret);
 						googleCalSetup = 1;
@@ -150,6 +153,9 @@ public class TaskManager {
 					}
 					App.commands.remove(App.commands.size() - 1);
 				}
+				break;
+			case APIs.PRINT:
+				App.printAllCommands();
 				break;
 		}
 		return feedback;
