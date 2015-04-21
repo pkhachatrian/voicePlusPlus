@@ -141,7 +141,22 @@ public class GoogleCalendarInstantiator {
 				attendees.add(new EventAttendee().setEmail("chris37835632@gmail.com"));
 			}
 			if(whosComing[i].equals("belsin")){
-				attendees.add(new EventAttendee().setEmail("belsinb@gmail.com"));
+				attendees.add(new EventAttendee().setEmail("belsin252662@gmail.com"));
+			}
+			if(whosComing[i].equals("sheng")){
+				attendees.add(new EventAttendee().setEmail("sheng3826452@gmail.com"));
+			}
+			if(whosComing[i].equals("petros")){
+				attendees.add(new EventAttendee().setEmail("petros324352@gmail.com"));
+			}
+			if(whosComing[i].equals("julio")){
+				attendees.add(new EventAttendee().setEmail("julio2383324@gmail.com"));
+			}
+			if(whosComing[i].equals("bob")){
+				attendees.add(new EventAttendee().setEmail("bob86346@gmail.com"));
+			}
+			if(whosComing[i].equals("chandra")){
+				attendees.add(new EventAttendee().setEmail("chandra38626@gmail.com"));
 			}
 				
 		}
