@@ -16,6 +16,7 @@ public class App {
 		freeswitch.ConnectToServer();
 		freeswitch.AddEventListeners();
 		freeswitch.InitiatePhoneCall(phoneNumber);
+		//freeswitch.InitiatePhoneCall(phoneNumber, secondPhoneNumber);
 	}
 	
 	public static void testWithoutSphinx(String utterance) {
@@ -23,7 +24,7 @@ public class App {
 		TaskManager.instantiateHashTable("./src/main/resources/keywords.txt");
 		
 		String commandString = SphinxManager.getCommand(utterance);
-		System.out.println(commandString);
+		//System.out.println(commandString);
 		
 		if (commandString == null || commandString.equals("")) {
 			return;

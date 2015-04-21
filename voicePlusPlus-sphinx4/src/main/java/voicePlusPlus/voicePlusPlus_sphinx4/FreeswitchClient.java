@@ -40,7 +40,8 @@ public class FreeswitchClient {
                 //log.info( "{}", event.getEventBodyLines() );
                 if (event.getEventBodyLines().size() > 0){
                 	String command = event.getEventBodyLines().get(0);
-                	App.testWithoutSphinx(command);
+                	System.out.println(command);
+                	App.testWithoutSphinx(command.toLowerCase());
                 }
                 if (event.getEventName() == "PLAYBACK_STOP"){
                 	client.sendAsyncApiCommand("global_getvar", "command");
