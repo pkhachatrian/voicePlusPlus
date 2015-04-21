@@ -25,6 +25,7 @@ public class FreeswitchClient {
     	client = new Client();
     	try {
 			client.connect(host, port, password, timeoutSeconds);
+			//client.sendAsyncApiCommand("divert_events", "on");
 		} catch (InboundConnectionFailure e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -36,17 +37,30 @@ public class FreeswitchClient {
         {
             public void eventReceived( EslEvent event )
             {
-                log.info( "Event received [{}]", event.getEventName() );
+                //log.info( "{}", event.getEventBodyLines() );
+                if (event.getEventBodyLines().size() > 0){
+                	String command = event.getEventBodyLines().get(0);
+                	System.out.println(command);
+                }
+                if (event.getEventName() == "PLAYBACK_STOP"){
+                	client.sendAsyncApiCommand("global_getvar", "command");
+                }
             }
             public void backgroundJobResultReceived( EslEvent event )
             {
-                log.info( "Background job result received [{}]", event );
+                //log.info( "Background job result received [{}]", event.getEventBodyLines() );
             }
+            
             
         } );
         
-        client.setEventSubscriptions("plain", "all");
-        client.addEventFilter("Event-name", "DETECTED_SPEECH" );
+        client.setEventSubscriptions("plain", "ALL");
+        client.addEventFilter("Event-Name", "CUSTOM");
+//        client.addEventFilter("Event-Name", "PLAYBACK_STOP");
+//        client.addEventFilter("Event'Name", "")
+//        client.sendAsyncApiCommand("eval", "divert_events on");
+//        client.addEventFilter("Event-Name", "API");
+        //client.addEventFilter("Speech_Type", "detected" );
     }
     
     public void InitiatePhoneCall(String sourcePhoneNumber){
