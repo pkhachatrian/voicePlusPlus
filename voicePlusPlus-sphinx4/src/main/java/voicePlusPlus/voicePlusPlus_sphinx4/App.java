@@ -16,8 +16,9 @@ public class App {
 	public static void main(String[] args) {
 		FreeswitchClient freeswitch = new FreeswitchClient();
 		freeswitch.ConnectToServer();
+		freeswitch.AddEventListeners();
 		freeswitch.InitiatePhoneCall("***REMOVED***");
-		
+
 		// Only have one of these uncommented.
 //		sphinx();
 //		testWithoutSphinx();
