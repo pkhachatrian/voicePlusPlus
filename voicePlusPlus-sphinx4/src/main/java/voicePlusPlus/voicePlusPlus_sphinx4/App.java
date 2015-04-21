@@ -2,10 +2,6 @@ package voicePlusPlus.voicePlusPlus_sphinx4;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
-
-import org.freeswitch.esl.client.inbound.*;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -15,76 +11,31 @@ public class App {
 	
 	public static void main(String[] args) {
 		FreeswitchClient freeswitch = new FreeswitchClient();
+		String phoneNumber = "***REMOVED***";
+		
 		freeswitch.ConnectToServer();
 		freeswitch.AddEventListeners();
 		freeswitch.InitiatePhoneCall("***REMOVED***");
-
-		// Only have one of these uncommented.
-//		sphinx();
-//		testWithoutSphinx();
 	}
 	
-//	public static void sphinx() {
-//		SphinxManager sphinxManager = new SphinxManager();
-//		sphinxManager.startRecognizingAudio();
-//		SpeechResult result;
-//		APICommand command = new APICommand();
-//		
-//		TaskManager.instantiateHashTable("./src/main/resources/keywords.txt");
-//		
-//		// RECOGNIZING SPEECH
-//		while ((result = sphinxManager.getSpeechResult()) != null)
-//		{
-//			String utterance = sphinxManager.getUtterance(result);
-//			System.out.println(utterance);
-//			String commandString = SphinxManager.getCommand(utterance);
-//			System.out.println(commandString);
-//			
-//			if (commandString == null || commandString.equals("")) {
-//				continue;
-//			}
-// 
-//			command.setAPI(TaskManager.determineAPI(commandString));
-//			if (command.getCommand() == APIs.GOOGLE_CALENDAR) {
-//				utterance = convertNumbersAsTextToDigits(utterance);	
-//			}
-//			command.setCommand(commandString);
-//
-//			TaskManager.invokeAPICommand(command);
-//			
-//		}
-//		PrintAllCommands();
-//		sphinxManager.stopRecognizingAudio();
-//	}
-	
-	public static void testWithoutSphinx() {
+	public static void testWithoutSphinx(String utterance) {
 		APICommand command = new APICommand();
 		TaskManager.instantiateHashTable("./src/main/resources/keywords.txt");
 		
-		ArrayList<String> utterances = new ArrayList<String>();
-		utterances.add("invocabot setup a meeting tomorrow with chris at 6");
-		utterances.add("invocabot setup a meeting tomorrow with belsin at 6");
-		//utterances.add("invocabot i would like to delete that last command");
-		//utterances.add("invocabot please remove that last command");
-		//utterances.add("invocabot scratch that I hope");
+		String commandString = SphinxManager.getCommand(utterance);
+		System.out.println(commandString);
 		
-		for (String utterance : utterances) {
-			System.out.println(utterance);
-			String commandString = SphinxManager.getCommand(utterance);
-			System.out.println(commandString);
-			
-			if (commandString == null || commandString.equals("")) {
-				continue;
-			}
- 
-			command.setAPI(TaskManager.determineAPI(commandString));
-			if (command.getCommand() == APIs.GOOGLE_CALENDAR) {
-				utterance = convertNumbersAsTextToDigits(utterance);	
-			}
-			command.setCommand(commandString);
-
-			TaskManager.invokeAPICommand(command);
+		if (commandString == null || commandString.equals("")) {
+			return;
 		}
+ 
+		command.setAPI(TaskManager.determineAPI(commandString));
+		if (command.getCommand() == APIs.GOOGLE_CALENDAR) {
+			utterance = convertNumbersAsTextToDigits(utterance);	
+		}
+		command.setCommand(commandString);
+
+		TaskManager.invokeAPICommand(command);
 		PrintAllCommands();
 	}
 	
