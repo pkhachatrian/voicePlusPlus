@@ -15,7 +15,7 @@ public class App {
 		
 		freeswitch.ConnectToServer();
 		freeswitch.AddEventListeners();
-		freeswitch.InitiatePhoneCall("***REMOVED***");
+		freeswitch.InitiatePhoneCall(phoneNumber);
 	}
 	
 	public static void testWithoutSphinx(String utterance) {
@@ -36,13 +36,13 @@ public class App {
 		command.setCommand(commandString);
 
 		TaskManager.invokeAPICommand(command);
-		PrintAllCommands();
+		printAllCommands();
 	}
 	
 	/**
 	 * Prints all the commands that the user has said throughout the call.
 	 */
-	public static void PrintAllCommands() {
+	public static void printAllCommands() {
 		for(int i=0; i<App.commands.size(); i++) {
 			String command = App.commands.get(i).getCommand();
 			String API = App.commands.get(i).getAPI();
