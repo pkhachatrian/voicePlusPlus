@@ -31,6 +31,25 @@ public class FreeswitchClient {
 		}
     }
     
+    public void AddEventListeners() {
+        client.addEventListener( new IEslEventListener()
+        {
+            public void eventReceived( EslEvent event )
+            {
+                log.info( "Event received [{}]", event );
+            }
+            public void backgroundJobResultReceived( EslEvent event )
+            {
+                log.info( "Background job result received [{}]", event );
+            }
+            
+        } );
+    }
+    
+    public void InitiatePhoneCall(String sourcePhoneNumber){
+    	client.sendAsyncApiCommand("originate", "sofia/gateway/gw_outbound/" + sourcePhoneNumber );
+    }
+    
     public void InitiatePhoneCall(String sourcePhoneNumber, String destinationPhoneNumber){
     	client.sendAsyncApiCommand("originate", "sofia/gateway/gw_outbound/" + sourcePhoneNumber + " &bridge(sofia/gateway/gw_outbound/" + destinationPhoneNumber + ")");
     }
