@@ -16,7 +16,7 @@ public class App {
 	public static void main(String[] args) {
 		Client c = new Client();
 		
-		String host = "localhost"; // remember to keep changing this
+		String host = "127.0.0.1"; // remember to keep changing this
 		int port = 8021;
 		int timeoutSeconds = 60;
 		
