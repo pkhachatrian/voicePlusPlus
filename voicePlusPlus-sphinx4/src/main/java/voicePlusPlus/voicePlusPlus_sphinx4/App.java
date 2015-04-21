@@ -14,31 +14,9 @@ public class App {
 	public static ArrayList<APICommand> commands = new ArrayList<APICommand>();
 	
 	public static void main(String[] args) {
-		Client c = new Client();
-		
-		String host = "127.0.0.1"; // remember to keep changing this
-		int port = 8021;
-		int timeoutSeconds = 60;
-		
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Enter the FreeSwitch server password: ");
-        String password = sc.next();
-        sc.close();
-		
-		try {
-			System.out.println("Attempting to connect to FreeSwitch server");
-			c.connect(host, port, password, timeoutSeconds);
-			
-			while (true) {
-				String command = "";
-				String arg = "";
-				System.out.println(c.sendAsyncApiCommand(command, arg));
-				break;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+		FreeswitchClient freeswitch = new FreeswitchClient();
+		freeswitch.ConnectToServer();
+		freeswitch.InitiatePhoneCall("***REMOVED***", "***REMOVED***");
 		
 		// Only have one of these uncommented.
 //		sphinx();
