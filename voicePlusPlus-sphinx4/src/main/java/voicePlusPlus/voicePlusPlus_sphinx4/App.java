@@ -14,10 +14,10 @@ public class App {
 	public static ArrayList<APICommand> commands = new ArrayList<APICommand>();
 	
 	public static void main(String[] args) {
-	/*	Client c = new Client();
+		Client c = new Client();
 		
-		String host = "54.69.110.102"; // remember to keep changing this
-		int port = 10630;
+		String host = "localhost"; // remember to keep changing this
+		int port = 8021;
 		int timeoutSeconds = 60;
 		
 		Scanner sc = new Scanner(System.in);
@@ -38,7 +38,7 @@ public class App {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		*/
+		
 		
 		// Only have one of these uncommented.
 //		sphinx();
