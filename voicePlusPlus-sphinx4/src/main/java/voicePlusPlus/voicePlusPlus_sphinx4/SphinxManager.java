@@ -1,58 +1,54 @@
 package voicePlusPlus.voicePlusPlus_sphinx4;
 
-import edu.cmu.sphinx.api.Configuration;
-import edu.cmu.sphinx.api.LiveSpeechRecognizer;
-import edu.cmu.sphinx.api.SpeechResult;
-
 import java.io.IOException;
 
 public class SphinxManager  {
-	private Configuration config;
-	private LiveSpeechRecognizer recognizer;
-	
-	public SphinxManager(){
-		config = new Configuration();
-    	config.setAcousticModelPath("../sphinx4-data/resources/edu/cmu/sphinx/models/en-us/en-us");
-//    	config.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
-//    	config.setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.dmp");
-    	
-    	config.setDictionaryPath("./src/main/resources/1905.dic");
-    	config.setLanguageModelPath("./src/main/resources/1905.lm");
-    	
-    	try {
-			recognizer = new LiveSpeechRecognizer(config);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public SphinxManager(Configuration configuration){
-		config = configuration;
-    	try {
-			recognizer = new LiveSpeechRecognizer(config);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void startRecognizingAudio(){
-        recognizer.startRecognition(true);
-	}
-	
-	public void stopRecognizingAudio(){
-		recognizer.stopRecognition();
-	}
-	
-    public SpeechResult getSpeechResult() {
-        SpeechResult result;
-		result = recognizer.getResult();
-		return result;
-    }
-    
-    public String getUtterance(SpeechResult result){
-		String utterance = result.getHypothesis(); 
-        return utterance;
-    }
+//	private Configuration config;
+//	private LiveSpeechRecognizer recognizer;
+//	
+//	public SphinxManager(){
+//		config = new Configuration();
+//    	config.setAcousticModelPath("../sphinx4-data/resources/edu/cmu/sphinx/models/en-us/en-us");
+////    	config.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
+////    	config.setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.dmp");
+//    	
+//    	config.setDictionaryPath("./src/main/resources/1905.dic");
+//    	config.setLanguageModelPath("./src/main/resources/1905.lm");
+//    	
+//    	try {
+//			recognizer = new LiveSpeechRecognizer(config);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	
+//	public SphinxManager(Configuration configuration){
+//		config = configuration;
+//    	try {
+//			recognizer = new LiveSpeechRecognizer(config);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	
+//	public void startRecognizingAudio(){
+//        recognizer.startRecognition(true);
+//	}
+//	
+//	public void stopRecognizingAudio(){
+//		recognizer.stopRecognition();
+//	}
+//	
+//    public SpeechResult getSpeechResult() {
+//        SpeechResult result;
+//		result = recognizer.getResult();
+//		return result;
+//    }
+//    
+//    public String getUtterance(SpeechResult result){
+//		String utterance = result.getHypothesis(); 
+//        return utterance;
+//    }
 	
     /**
      * Searches for the word "invocabot" in the string and returns the words that follow the word invocabot

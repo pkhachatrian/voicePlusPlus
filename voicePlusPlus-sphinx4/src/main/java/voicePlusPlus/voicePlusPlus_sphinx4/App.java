@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-import edu.cmu.sphinx.api.SpeechResult;
-
 import org.freeswitch.esl.client.inbound.*;
 import org.junit.Test;
 
@@ -44,41 +42,41 @@ public class App {
 		
 		// Only have one of these uncommented.
 //		sphinx();
-		testWithoutSphinx();
+//		testWithoutSphinx();
 	}
 	
-	public static void sphinx() {
-		SphinxManager sphinxManager = new SphinxManager();
-		sphinxManager.startRecognizingAudio();
-		SpeechResult result;
-		APICommand command = new APICommand();
-		
-		TaskManager.instantiateHashTable("./src/main/resources/keywords.txt");
-		
-		// RECOGNIZING SPEECH
-		while ((result = sphinxManager.getSpeechResult()) != null)
-		{
-			String utterance = sphinxManager.getUtterance(result);
-			System.out.println(utterance);
-			String commandString = SphinxManager.getCommand(utterance);
-			System.out.println(commandString);
-			
-			if (commandString == null || commandString.equals("")) {
-				continue;
-			}
- 
-			command.setAPI(TaskManager.determineAPI(commandString));
-			if (command.getCommand() == APIs.GOOGLE_CALENDAR) {
-				utterance = convertNumbersAsTextToDigits(utterance);	
-			}
-			command.setCommand(commandString);
-
-			TaskManager.invokeAPICommand(command);
-			
-		}
-		PrintAllCommands();
-		sphinxManager.stopRecognizingAudio();
-	}
+//	public static void sphinx() {
+//		SphinxManager sphinxManager = new SphinxManager();
+//		sphinxManager.startRecognizingAudio();
+//		SpeechResult result;
+//		APICommand command = new APICommand();
+//		
+//		TaskManager.instantiateHashTable("./src/main/resources/keywords.txt");
+//		
+//		// RECOGNIZING SPEECH
+//		while ((result = sphinxManager.getSpeechResult()) != null)
+//		{
+//			String utterance = sphinxManager.getUtterance(result);
+//			System.out.println(utterance);
+//			String commandString = SphinxManager.getCommand(utterance);
+//			System.out.println(commandString);
+//			
+//			if (commandString == null || commandString.equals("")) {
+//				continue;
+//			}
+// 
+//			command.setAPI(TaskManager.determineAPI(commandString));
+//			if (command.getCommand() == APIs.GOOGLE_CALENDAR) {
+//				utterance = convertNumbersAsTextToDigits(utterance);	
+//			}
+//			command.setCommand(commandString);
+//
+//			TaskManager.invokeAPICommand(command);
+//			
+//		}
+//		PrintAllCommands();
+//		sphinxManager.stopRecognizingAudio();
+//	}
 	
 	public static void testWithoutSphinx() {
 		APICommand command = new APICommand();
