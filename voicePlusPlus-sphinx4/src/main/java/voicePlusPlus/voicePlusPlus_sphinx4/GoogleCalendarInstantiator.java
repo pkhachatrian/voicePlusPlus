@@ -138,10 +138,25 @@ public class GoogleCalendarInstantiator {
 		for(int i = 0; i < whosComing.length; i++){
 			//add more if statements for any invitees
 			if(whosComing[i].equals("chris")){
-				attendees.add(new EventAttendee().setEmail("chris37835632@gmail.com"));
+				attendees.add(new EventAttendee().setEmail("chris378335632@gmail.com"));
 			}
 			if(whosComing[i].equals("belsin")){
-				attendees.add(new EventAttendee().setEmail("belsinb@gmail.com"));
+				attendees.add(new EventAttendee().setEmail("belsin2524662@gmail.com"));
+			}
+			if(whosComing[i].equals("sheng")){
+				attendees.add(new EventAttendee().setEmail("sheng3826452@gmail.com"));
+			}
+			if(whosComing[i].equals("petros")){
+				attendees.add(new EventAttendee().setEmail("petros32324352@gmail.com"));
+			}
+			if(whosComing[i].equals("julio")){
+				attendees.add(new EventAttendee().setEmail("julio2383324@gmail.com"));
+			}
+			if(whosComing[i].equals("bob")){
+				attendees.add(new EventAttendee().setEmail("bob86332446@gmail.com"));
+			}
+			if(whosComing[i].equals("chandra")){
+				attendees.add(new EventAttendee().setEmail("chandra386255226@gmail.com"));
 			}
 				
 		}

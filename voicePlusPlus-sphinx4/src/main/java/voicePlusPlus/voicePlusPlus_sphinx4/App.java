@@ -19,13 +19,11 @@ public class App {
 		//freeswitch.InitiatePhoneCall(phoneNumber, secondPhoneNumber);
 	}
 	
-	public static void testWithoutSphinx(String utterance) {
+	public static void processUtterance(String utterance) {
 		APICommand command = new APICommand();
 		TaskManager.instantiateHashTable("./src/main/resources/keywords.txt");
 		
 		String commandString = SphinxManager.getCommand(utterance);
-		//System.out.println(commandString);
-		
 		if (commandString == null || commandString.equals("")) {
 			return;
 		}
@@ -34,10 +32,9 @@ public class App {
 		if (command.getCommand() == APIs.GOOGLE_CALENDAR) {
 			utterance = convertNumbersAsTextToDigits(utterance);	
 		}
+		
 		command.setCommand(commandString);
-
 		TaskManager.invokeAPICommand(command);
-		printAllCommands();
 	}
 	
 	/**

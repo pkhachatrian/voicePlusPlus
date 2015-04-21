@@ -41,7 +41,7 @@ public class FreeswitchClient {
                 if (event.getEventBodyLines().size() > 0){
                 	String command = event.getEventBodyLines().get(0);
                 	System.out.println(command);
-                	App.testWithoutSphinx(command.toLowerCase());
+                	App.processUtterance(command.toLowerCase());
                 }
                 if (event.getEventName() == "PLAYBACK_STOP"){
                 	client.sendAsyncApiCommand("global_getvar", "command");
