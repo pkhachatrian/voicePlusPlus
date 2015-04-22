@@ -60,10 +60,10 @@ public class GoogleCalendarInstantiator {
 //	    // Read the authorization code from the standard input stream.
 //	    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 //	    System.out.println("What is the authorization code?");
+//	    
 	    
 	    
-	    
-	    String code = "4/hrlNBO89CxydCeRsLXRBqciESTGsyqrInoTODNIXNCQ.gtSQ_6phnMgSEnp6UAPFm0Gctpu8mQI";//in.readLine();
+	    String code = "4/DGjWpO9PWq9oKzot0QLkIrSr3UNbjQML1DJ8FU02sN4.EsGrqvh0AaQVEnp6UAPFm0H47-u8mQI";//in.readLine();
 	    // End of Step 1
 
 	    // Step 2: Exchange
