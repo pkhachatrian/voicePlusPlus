@@ -50,20 +50,20 @@ public class GoogleCalendarInstantiator {
 	    
 	    
 	    /*COMMENT OUT BELOW IF NEED TO REUSE CODE*/
-//	    // Step 1: Authorize
-//	    String authorizationUrl = flow.newAuthorizationUrl().setRedirectUri(redirectUrl).build();
-//
-//	    // Point or redirect your user to the authorizationUrl.
-//	    System.out.println("Go to the following link in your browser:");
-//	    System.out.println(authorizationUrl);
-//
-//	    // Read the authorization code from the standard input stream.
-//	    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-//	    System.out.println("What is the authorization code?");
-//	    
+	    // Step 1: Authorize
+	    String authorizationUrl = flow.newAuthorizationUrl().setRedirectUri(redirectUrl).build();
+
+	    // Point or redirect your user to the authorizationUrl.
+	    System.out.println("Go to the following link in your browser:");
+	    System.out.println(authorizationUrl);
+
+	    // Read the authorization code from the standard input stream.
+	    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+	    System.out.println("What is the authorization code?");
 	    
 	    
-	    String code = "4/DGjWpO9PWq9oKzot0QLkIrSr3UNbjQML1DJ8FU02sN4.EsGrqvh0AaQVEnp6UAPFm0H47-u8mQI";//in.readLine();
+	    
+	    String code = in.readLine();
 	    // End of Step 1
 
 	    // Step 2: Exchange
@@ -131,11 +131,8 @@ public class GoogleCalendarInstantiator {
 	
 	public static void update(String eventText) {
 		
-		
-		
 		//Create empty list of attendees
 		ArrayList<EventAttendee> attendees = new ArrayList<EventAttendee>();
-		
 		
 		//Split eventText into words to check invitee names
 		String whosComing[] = eventText.split(" ");
@@ -167,8 +164,7 @@ public class GoogleCalendarInstantiator {
 				
 		}
 		
-		
-		
+
 		
 		// Retrieve the event from the API
 		Event event = null;

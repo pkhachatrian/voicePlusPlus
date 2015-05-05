@@ -141,8 +141,6 @@ public class TaskManager {
 				break;
 			case APIs.GOOGLE_SEARCH:
 				break;
-			case APIs.GOOGLE_CONTACTS:
-				break;
 			case APIs.DELETE:
 				int size = App.commands.size();
 				if (size > 0) {
