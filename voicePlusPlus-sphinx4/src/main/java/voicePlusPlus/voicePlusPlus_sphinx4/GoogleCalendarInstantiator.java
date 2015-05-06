@@ -215,20 +215,25 @@ public class GoogleCalendarInstantiator {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 		Date date = new Date();
 		
+		//variable that decides what events to list
 		int toList = 0;
 		
 		String whatDayToCheck[] = eventText.split(" ");
+		
+		//Check if the string contains keywords "today", "tomorrow"
 		for(int i = 0; i < whatDayToCheck.length; i++){
-			//add more if statements for any invitees
 			if(whatDayToCheck[i].equals("today")){
 				toList = 1; // 1 == list today's events
+			}
+			if(whatDayToCheck[i].equals("tomorrow")){
+				toList = 2; // 1 == list tomorrow's events
 			}
 		}
 		
 		// Iterate over the events in the specified calendar
 		//String pageToken = null;  <-- not used for whatever reason
 		//do {  <-- I don't think we need this do/while  -Belsin
-		  Events events = null;
+		Events events = null;
 		try {
 			//Original
 			//events = service.events().list("primary").setPageToken(pageToken).execute();
@@ -267,17 +272,38 @@ public class GoogleCalendarInstantiator {
 	                if (start == null) {
 	                    start = event.getStart().getDate();  
 	                }
+	                
 	                if(toList == 1){ //only print today's events
-	                	
 	                	//prints out the event's day and month
 	                    String month = event.getStart().toString().substring(18,20);
-		                System.out.println("The month is: " + month); 
 		                String day = event.getStart().toString().substring(21,23);
-		                System.out.println("The day is: " + day);
 		                
 		                //only print if month and day match
-		                if(month == thisMonth & day == today){
-		                	System.out.printf("%s (%s)\n", event.getSummary(), start);
+		                if(month.equals(thisMonth) & day.equals(today)){
+		                	//System.out.println("THEY MATCHED!");
+		                	System.out.printf("%s\n", event.getSummary());
+		                }
+		                
+                    }
+	                if(toList == 2){ //only print tomorrow's events
+	                	//prints out the event's day and month
+	                    String month = event.getStart().toString().substring(18,20);
+		                String day = event.getStart().toString().substring(21,23);
+		                
+		                //only print if month and day match
+		                int daynum = Integer.parseInt(today);
+		                daynum++;
+		                String tomorrow = "";
+		                if(daynum < 10){
+		                	 tomorrow = "0" + daynum;
+		                }
+		                else{
+		                 tomorrow = "" + daynum;
+		                }
+		                //System.out.println("Tomorrow: " + tomorrow);
+		                if(month.equals(thisMonth) & day.equals(tomorrow)){
+		                	//System.out.println("THEY MATCHED!");
+		                	System.out.printf("%s\n", event.getSummary());
 		                }
 		                
                     }

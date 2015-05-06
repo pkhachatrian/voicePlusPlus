@@ -74,7 +74,8 @@ public class TaskManager {
 	public static String determineAPI(String command) {
 		if (command.contains("scratch that") || command.contains("delete") || command.contains("remove"))
 			return APIs.DELETE;
-		
+		if (command.contains("list"))
+			return APIs.GOOGLE_CALENDAR_LIST;
 		if (command.contains("print") || command.contains("show"))
 			return APIs.PRINT;
 		
@@ -142,13 +143,23 @@ public class TaskManager {
 				String eventId = GoogleCalendarInstantiator.quickAdd(command.getCommand());
 				GoogleCalendarInstantiator.update(command.getCommand());
 				
-				//Test listing events
-				System.out.println("Listing events: ");
-				GoogleCalendarInstantiator.listEvents(command.getCommand());
+				
 				
 				APICommandGoogleCalendar commandCalendar = new APICommandGoogleCalendar(command.getAPI(), command.getCommand(), eventId);
 				App.commands.add(commandCalendar);
 				
+				break;
+				
+			case APIs.GOOGLE_CALENDAR_LIST:
+				try {
+					GoogleCalendarInstantiator.setUp(clientId, clientSecret);
+					googleCalSetup = 1;
+				} catch (IOException | GeneralSecurityException e1) {
+					e1.printStackTrace();
+				}
+				//Test listing events
+				System.out.println("Listing events: ");
+				GoogleCalendarInstantiator.listEvents(command.getCommand());
 				break;
 				
 			case APIs.GOOGLE_SEARCH:

@@ -7,6 +7,7 @@ public final class APIs {
 	public static final String GOOGLE_CALENDAR = "GOOGLE CALENDAR";
 	public static final String GOOGLE_SEARCH = "GOOGLE SEARCH";
 	public static final String GOOGLE_CONTACTS = "GOOGLE CONTACTS";
+	public static final String GOOGLE_CALENDAR_LIST = "GOOGLE CALENDAR LIST";
 	public static final String DELETE = "DELETE";
 	public static final String PRINT = "PRINT";
 }
