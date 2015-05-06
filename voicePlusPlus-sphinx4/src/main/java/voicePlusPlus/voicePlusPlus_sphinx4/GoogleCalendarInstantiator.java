@@ -13,10 +13,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.TimeZone;
 import java.util.Date;
+
 
 //Event libraries
 import com.google.api.services.calendar.model.Event;
@@ -201,20 +203,39 @@ public class GoogleCalendarInstantiator {
 		}
 	}
 
-	public static void listEvents(){
+	
+	
+	
+	public static void listEvents(String eventText){
 		
 		//create a reference to current instantaneous time
 		DateTime now = new DateTime(System.currentTimeMillis());
 		
+		//create a reference for today's date
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		Date date = new Date();
+		
+		int toList = 0;
+		
+		String whatDayToCheck[] = eventText.split(" ");
+		for(int i = 0; i < whatDayToCheck.length; i++){
+			//add more if statements for any invitees
+			if(whatDayToCheck[i].equals("today")){
+				toList = 1; // 1 == list today's events
+			}
+		}
+		
 		// Iterate over the events in the specified calendar
 		//String pageToken = null;  <-- not used for whatever reason
-		//do {
+		//do {  <-- I don't think we need this do/while  -Belsin
 		  Events events = null;
 		try {
 			//Original
 			//events = service.events().list("primary").setPageToken(pageToken).execute();
 			//Testing
-			events = service.events().list("primary").setMaxResults(10).setTimeMin(now).setOrderBy("startTime").setSingleEvents(true).execute();
+			//events = service.events().list("primary").setMaxResults(10).setTimeMin(now).setOrderBy("startTime").setSingleEvents(true).execute();
+			events = service.events().list("primary").setTimeMin(now).setOrderBy("startTime").setSingleEvents(true).execute();
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -227,6 +248,16 @@ public class GoogleCalendarInstantiator {
 		  //import date get date function
 		  //if date == today then classify as today or tomorrow
 		  
+		  
+		  //prints out full date and then today's month and day
+		  System.out.println("Today's date is: "+dateFormat.format(date));
+		  String thisMonth = dateFormat.format(date).substring(0,2);
+		  System.out.println("The month is : " + thisMonth);
+		  String today = dateFormat.format(date).substring(3,5);
+		  System.out.println("The day is : " + today);
+		  
+		  
+		  
 		  if (items.size() == 0) {
 	            System.out.println("No upcoming events found.");
 	        } else {
@@ -234,14 +265,38 @@ public class GoogleCalendarInstantiator {
 	            for (Event event : items) {
 	                DateTime start = event.getStart().getDateTime();
 	                if (start == null) {
-	                    start = event.getStart().getDate();
+	                    start = event.getStart().getDate();  
 	                }
-	                System.out.printf("%s (%s)\n", event.getSummary(), start);
+	                if(toList == 1){ //only print today's events
+	                	
+	                	//prints out the event's day and month
+	                    String month = event.getStart().toString().substring(18,20);
+		                System.out.println("The month is: " + month); 
+		                String day = event.getStart().toString().substring(21,23);
+		                System.out.println("The day is: " + day);
+		                
+		                //only print if month and day match
+		                if(month == thisMonth & day == today){
+		                	System.out.printf("%s (%s)\n", event.getSummary(), start);
+		                }
+		                
+                    }
+	                else{
+	                	//regularly print all events
+	                	System.out.printf("%s (%s)\n", event.getSummary(), start);
+	                }
+	               
+	                
+	                //Uncomment the below two times to get full details on each events start time
+	                //String fullTime = event.getStart().toString();
+	                //System.out.println("The full time: " + fullTime);
+	                
+	                
 	            }
 	        }
 		  
-		  
-		  
+	  
+	//REFERENCES FOR PRINTING EVENTS	  
 //		  for (Event event : items) {
 //			String month = event.getStart().toString().substring(19, 20);
 //			String day = event.getStart().toString().substring(21, 22);
@@ -260,6 +315,7 @@ public class GoogleCalendarInstantiator {
 		//} while (pageToken != null);
 		
 
+		  
 	}
 	
 	

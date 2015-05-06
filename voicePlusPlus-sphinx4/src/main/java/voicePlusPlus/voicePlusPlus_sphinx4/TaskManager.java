@@ -132,13 +132,19 @@ public class TaskManager {
 					}
 				}
 				
+				//TODO: Figure out when to make new event or list events
+				//Refactor code
+				//make eventID more independant --entire calendar api only works if quickAdd() is ran
+				//maybe if command contains "list" do list, else add event?
+				//differentiate between question/command? check for: "what","where","when"
+				
 				//if command make new event
 				String eventId = GoogleCalendarInstantiator.quickAdd(command.getCommand());
 				GoogleCalendarInstantiator.update(command.getCommand());
 				
 				//Test listing events
 				System.out.println("Listing events: ");
-				GoogleCalendarInstantiator.listEvents();
+				GoogleCalendarInstantiator.listEvents(command.getCommand());
 				
 				APICommandGoogleCalendar commandCalendar = new APICommandGoogleCalendar(command.getAPI(), command.getCommand(), eventId);
 				App.commands.add(commandCalendar);

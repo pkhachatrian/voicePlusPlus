@@ -12,7 +12,7 @@ public class App {
 	public static void main(String[] args) {
 		FreeswitchClient freeswitch = new FreeswitchClient();
 		String phoneNumber = "***REMOVED***";
-		processUtterance("invocabot set up a meeting with Chris at 5");
+		processUtterance("invocabot set up a meeting with Chris at 5 today");
 		//freeswitch.ConnectToServer();
 		//freeswitch.AddEventListeners();
 		//freeswitch.InitiatePhoneCall(phoneNumber);
