@@ -189,6 +189,8 @@ public class GoogleCalendarInstantiator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		System.out.println("Created event: " + eventText);
 	}
 	
 	public static void DeleteEvent(String eventId) {
@@ -201,33 +203,61 @@ public class GoogleCalendarInstantiator {
 
 	public static void listEvents(){
 		
+		//create a reference to current instantaneous time
+		DateTime now = new DateTime(System.currentTimeMillis());
+		
 		// Iterate over the events in the specified calendar
-		String pageToken = null;
-		do {
+		//String pageToken = null;  <-- not used for whatever reason
+		//do {
 		  Events events = null;
 		try {
-			events = service.events().list("primary").setPageToken(pageToken).execute();
+			//Original
+			//events = service.events().list("primary").setPageToken(pageToken).execute();
+			//Testing
+			events = service.events().list("primary").setMaxResults(10).setTimeMin(now).setOrderBy("startTime").setSingleEvents(true).execute();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		  java.util.List<Event> items = events.getItems();
-		  for (Event event : items) {
-			String month = event.getStart().toString().substring(19, 20);
-			String day = event.getStart().toString().substring(21, 22);
-			
-			System.out.print("Month: " + month + " Day: " + day + " --- ");
-			System.out.print(event.getSummary());
 		
-			
-		  }
-		  for (Event event : items) {
-				System.out.println("The full way: ");
-				System.out.println(event.getStart() + ": ");
-			    System.out.print(event.getSummary());
-			  }
-		  pageToken = events.getNextPageToken();
-		} while (pageToken != null);
+		
+		  java.util.List<Event> items = events.getItems();
+		  
+		  //Goal: 
+		  //import date get date function
+		  //if date == today then classify as today or tomorrow
+		  
+		  if (items.size() == 0) {
+	            System.out.println("No upcoming events found.");
+	        } else {
+	            System.out.println("Upcoming events");
+	            for (Event event : items) {
+	                DateTime start = event.getStart().getDateTime();
+	                if (start == null) {
+	                    start = event.getStart().getDate();
+	                }
+	                System.out.printf("%s (%s)\n", event.getSummary(), start);
+	            }
+	        }
+		  
+		  
+		  
+//		  for (Event event : items) {
+//			String month = event.getStart().toString().substring(19, 20);
+//			String day = event.getStart().toString().substring(21, 22);
+//			
+//			System.out.println("\n" + "Month: " + month + " Day: " + day + " --- ");
+//			System.out.print(event.getSummary());
+//		
+//		  }
+		  
+//		  for (Event event : items) {
+//				System.out.println("The full way: ");
+//				System.out.println(event.getStart() + ": ");
+//			    System.out.print(event.getSummary());
+//			  }
+	//	  pageToken = events.getNextPageToken();
+		//} while (pageToken != null);
 		
 
 	}

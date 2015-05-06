@@ -136,9 +136,15 @@ public class TaskManager {
 				String eventId = GoogleCalendarInstantiator.quickAdd(command.getCommand());
 				GoogleCalendarInstantiator.update(command.getCommand());
 				
+				//Test listing events
+				System.out.println("Listing events: ");
+				GoogleCalendarInstantiator.listEvents();
+				
 				APICommandGoogleCalendar commandCalendar = new APICommandGoogleCalendar(command.getAPI(), command.getCommand(), eventId);
 				App.commands.add(commandCalendar);
+				
 				break;
+				
 			case APIs.GOOGLE_SEARCH:
 				break;
 			case APIs.DELETE:
