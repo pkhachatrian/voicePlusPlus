@@ -58,14 +58,14 @@ public class GoogleCalendarInstantiator {
 //	    // Point or redirect your user to the authorizationUrl.
 //	    System.out.println("Go to the following link in your browser:");
 //	    System.out.println(authorizationUrl);
-
-	    // Read the authorization code from the standard input stream.
+//
+//	    // Read the authorization code from the standard input stream.
 //	    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 //	    System.out.println("What is the authorization code?");
 	    
 	    
 	    
-	    String code = "4/YnG4Cmvv9aRMeTcMZoCq8pYQzmzAUe6A60gWEy2MYmw.op_v3fzS9iwcEnp6UAPFm0GO4geVmgI";//in.readLine();
+	    String code = "4/KpOQ2OIg9UxZQYVrFMjR0oP1RVrVQx0WuFUj4MEyGA4.smJXKb5TzPITEnp6UAPFm0ECKByVmgI";//in.readLine();
 	    // End of Step 1
 
 	    // Step 2: Exchange
