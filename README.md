@@ -20,6 +20,9 @@ http://localhost
 SSH:
 ssh -L 5901:localhost:5901 -i InvocaSSH.pem ubuntu@IP_ADDRESS
 
+##List of phonemes:
+http://www.speech.cs.cmu.edu/cgi-bin/cmudict
+
 Remote Desktop:
 localhost:1
 password: ASK JULIO
