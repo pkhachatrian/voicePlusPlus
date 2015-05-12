@@ -18,7 +18,7 @@ http://localhost
 
 ##FREESWITCH 
 SSH:
-ssh -L 5901:localhost:5901 -i InvocaSSH.pem ubuntu@IP_ADDRESS
+I
 
 ##List of phonemes:
 http://www.speech.cs.cmu.edu/cgi-bin/cmudict
