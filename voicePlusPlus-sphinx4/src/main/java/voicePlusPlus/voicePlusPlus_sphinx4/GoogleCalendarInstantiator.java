@@ -65,7 +65,7 @@ public class GoogleCalendarInstantiator {
 	    
 	    
 	    
-	    String code = "4/KpOQ2OIg9UxZQYVrFMjR0oP1RVrVQx0WuFUj4MEyGA4.smJXKb5TzPITEnp6UAPFm0ECKByVmgI";//in.readLine();
+	    String code = "4/0kC0FkyTt-26R2ooHJ119-ihbdRvLcFX419w_YRAznI.sgnjbb-0Iu8WEnp6UAPFm0G49ziVmgI";//in.readLine();
 	    // End of Step 1
 
 	    // Step 2: Exchange
