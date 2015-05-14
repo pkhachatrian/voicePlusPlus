@@ -158,7 +158,7 @@ public class TaskManager {
 					e1.printStackTrace();
 				}
 				//Test listing events
-				System.out.println("Listing events: ");
+				//System.out.println("Listing events: ");
 				GoogleCalendarInstantiator.listEvents(command.getCommand());
 				break;
 				
