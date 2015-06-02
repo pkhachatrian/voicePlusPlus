@@ -16,27 +16,28 @@ public class App {
 		freeswitch.ConnectToServer();
 		freeswitch.AddEventListeners();
 		freeswitch.InitiatePhoneCall(phoneNumber);
-		//freeswitch.InitiatePhoneCall(phoneNumber, secondPhoneNumber);
 	}
 	
-	public static void processUtterance(String utterance) {
-		APICommand command = new APICommand();
-		TaskManager.instantiateHashTable("./src/main/resources/keywords.txt");
-		
-		String commandString = utterance;
-//		String commandString = SphinxManager.getCommand(utterance);
-//		if (commandString == null || commandString.equals("")) {
-//			return;
-//		}
- 
-		command.setAPI(TaskManager.determineAPI(commandString));
-		if (command.getCommand() == APIs.GOOGLE_CALENDAR) {
-			utterance = convertNumbersAsTextToDigits(utterance);	
-		}
-		
-		command.setCommand(commandString);
-		TaskManager.invokeAPICommand(command);
-	}
+    public static String processUtterance(String utterance) {
+        APICommand command = new APICommand();
+        TaskManager.instantiateHashTable("./src/main/resources/keywords.txt");
+
+        String commandString = utterance;
+//      String commandString = SphinxManager.getCommand(utterance);                                                                                                                                 
+//      if (commandString == null || commandString.equals("")) {                                                                                                                                    
+//              return;                                                                                                                                                                             
+//      }                                                                                                                                                                                           
+
+        command.setAPI(TaskManager.determineAPI(commandString));
+        if (command.getCommand() == APIs.GOOGLE_CALENDAR) {
+                utterance = convertNumbersAsTextToDigits(utterance);
+        }
+
+        command.setCommand(commandString);
+        TaskManager.invokeAPICommand(command);
+
+        return "SUCCESSFULLY SCHEDULED APPOINTMENT";
+}
 	
 	/**
 	 * Prints all the commands that the user has said throughout the call.

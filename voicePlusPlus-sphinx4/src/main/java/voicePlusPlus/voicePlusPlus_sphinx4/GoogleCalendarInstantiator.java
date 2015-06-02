@@ -16,8 +16,11 @@ import java.security.GeneralSecurityException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.TimeZone;
 import java.util.Date;
+
 
 
 //Event libraries
@@ -51,21 +54,24 @@ public class GoogleCalendarInstantiator {
 	        httpTransport, jsonFactory, clientId, clientSecret, Collections.singleton(scope));
 	    
 	    
-	    /*COMMENT OUT BELOW IF NEED TO REUSE CODE*/
-	    // Step 1: Authorize
-//	    String authorizationUrl = flow.newAuthorizationUrl().setRedirectUri(redirectUrl).build();
-//
-//	    // Point or redirect your user to the authorizationUrl.
-//	    System.out.println("Go to the following link in your browser:");
-//	    System.out.println(authorizationUrl);
-//
-//	    // Read the authorization code from the standard input stream.
-//	    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-//	    System.out.println("What is the authorization code?");
+	    /*COMMENT OUT BELOW IF NEED TO REUSE AUTH CODE*/
+	    /*-------------------------------------------------------------------------------------*/
+	     //Step 1: Authorize
+	    String authorizationUrl = flow.newAuthorizationUrl().setRedirectUri(redirectUrl).build();
+
+	    // Point or redirect your user to the authorizationUrl.
+	    System.out.println("Go to the following link in your browser:");
+	    System.out.println(authorizationUrl);
+	    /*-------------------------------------------------------------------------------------*/
+	    
+	    // Read the authorization code from the standard input stream.
+	    
+	    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+	    System.out.println("What is the authorization code?");
 	    
 	    
-	    
-	    String code = "4/0kC0FkyTt-26R2ooHJ119-ihbdRvLcFX419w_YRAznI.sgnjbb-0Iu8WEnp6UAPFm0G49ziVmgI";//in.readLine();
+	  //code goes here if auth code is hard-coded
+	    String code = "4/BmIz3iBzKM8vRFY5gJJVlPhyz0wCRoW6PWKl9X1vL_4.oilbS7AxaHwc3nHq-8bbp1vASANsmwI";//in.readLine();
 	    // End of Step 1
 
 	    // Step 2: Exchange
@@ -218,21 +224,57 @@ public class GoogleCalendarInstantiator {
 		//variable that decides what events to list
 		int toList = 0;
 		
-		String whatDayToCheck[] = eventText.split(" ");
+		//create dictionary to map numbers to months
+		Dictionary d1 = new Hashtable();
 		
-		//Check if the string contains keywords "today", "tomorrow"
-		for(int i = 0; i < whatDayToCheck.length; i++){
-			if(whatDayToCheck[i].equals("today")){
-				toList = 1; // 1 == list today's events
-			}
-			if(whatDayToCheck[i].equals("tomorrow")){
-				toList = 2; // 1 == list tomorrow's events
-			}
-		}
+		d1.put("01", "January");
+		d1.put("02", "February");
+		d1.put("03","March");
+		d1.put("04", "April");
+		d1.put("05", "May");
+		d1.put("06","June");
+		d1.put("07", "July");
+		d1.put("08", "August");
+		d1.put("09", "September");
+		d1.put("10","October");
+		d1.put("11","November");
+		d1.put("12","December");
 		
-		// Iterate over the events in the specified calendar
-		//String pageToken = null;  <-- not used for whatever reason
-		//do {  <-- I don't think we need this do/while  -Belsin
+		Dictionary d2 = new Hashtable();
+		
+		d2.put("01", "first");
+		d2.put("02", "second");
+		d2.put("03","third");
+		d2.put("04", "fourth");
+		d2.put("05", "fifth");
+		d2.put("06","sixth");
+		d2.put("07", "seventh");
+		d2.put("08", "eight");
+		d2.put("09", "ninth");
+		d2.put("10","tenth");
+		d2.put("11","eleventh");
+		d2.put("12","twelfth");
+		d2.put("13","thirteenth");
+		d2.put("14","fourteenth");
+		d2.put("15","fifteenth");
+		d2.put("16","sixteenth");
+		d2.put("17","seventeenth");
+		d2.put("18","eighteenth");
+		d2.put("19","nineteenth");
+		d2.put("20","twentieth");
+		d2.put("21","twenty first");
+		d2.put("22","twenty second");
+		d2.put("23","twenty third");
+		d2.put("24","twenty fourth");
+		d2.put("25", "twenty fifth");
+		d2.put("26","twenty sixth");
+		d2.put("27", "twenty seventh");
+		d2.put("28", "twenty eighth");
+		d2.put("29", "twenty ninth");	
+		d2.put("30", "thirtieth");
+		d2.put("31", "thirty first");
+		
+		
 		Events events = null;
 		try {
 			//Original
@@ -245,105 +287,50 @@ public class GoogleCalendarInstantiator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+				
 		  java.util.List<Event> items = events.getItems();
-		  
-		  //Goal: 
-		  //import date get date function
-		  //if date == today then classify as today or tomorrow
-		  
-		  
+			  
 		  //prints out full date and then today's month and day
-		  System.out.println("Today's date is: "+dateFormat.format(date));
-		  String thisMonth = dateFormat.format(date).substring(0,2);
-		  System.out.println("The month is : " + thisMonth);
-		  String today = dateFormat.format(date).substring(3,5);
-		  System.out.println("The day is : " + today);
-		  
-		  
+		  String thisMonth = dateFormat.format(date).substring(3,5);
+		  //System.out.println("The full date is: " + dateFormat.format(date).toString());
+		  //System.out.println("This month is: " + thisMonth);
+		  String today = dateFormat.format(date).substring(0,2);
 		  
 		  if (items.size() == 0) {
 	            System.out.println("No upcoming events found.");
 	        } else {
-	            System.out.println("Upcoming events");
+	            System.out.println("Upcoming events:");
 	            for (Event event : items) {
-	                DateTime start = event.getStart().getDateTime();
-	                if (start == null) {
-	                    start = event.getStart().getDate();  
-	                }
-	                
-	                if(toList == 1){ //only print today's events
-	                	//prints out the event's day and month
-	                    String month = event.getStart().toString().substring(18,20);
-		                String day = event.getStart().toString().substring(21,23);
-		                
-		                //only print if month and day match
-		                if(month.equals(thisMonth) & day.equals(today)){
-		                	//System.out.println("THEY MATCHED!");
-		                	System.out.printf("%s\n", event.getSummary());
-		                }
-		                
-                    }
-	                if(toList == 2){ //only print tomorrow's events
-	                	//prints out the event's day and month
-	                    String month = event.getStart().toString().substring(18,20);
-		                String day = event.getStart().toString().substring(21,23);
-		                
-		                //only print if month and day match
-		                int daynum = Integer.parseInt(today);
-		                daynum++;
-		                String tomorrow = "";
-		                if(daynum < 10){
-		                	 tomorrow = "0" + daynum;
-		                }
-		                else{
-		                 tomorrow = "" + daynum;
-		                }
-		                //System.out.println("Tomorrow: " + tomorrow);
-		                if(month.equals(thisMonth) & day.equals(tomorrow)){
-		                	//System.out.println("THEY MATCHED!");
-		                	System.out.printf("%s\n", event.getSummary());
-		                }
-		                
-                    }
-	                else{
-	                	//regularly print all events
-	                	System.out.printf("%s (%s)\n", event.getSummary(), start);
-	                }
-	               
-	                
-	                //Uncomment the below two times to get full details on each events start time
-	                //String fullTime = event.getStart().toString();
-	                //System.out.println("The full time: " + fullTime);
-	                
-	                
+	            	
+	            	//if >=13  minus 12 and to pm
+	            	
+	            	//setup the event's time
+	            	String theTime = event.getStart().getDateTime().toString().substring(11,16);
+	            	String theHour = theTime.substring(0,2);
+	            	String theMinute = theTime.substring(3,5);
+	            	
+	            	int theNumberHour = Integer.parseInt(theHour);
+	            	String morningAfternoon = "am";
+	            	
+	            	//if hour is 13 or higher
+	            	if(theNumberHour >= 13)
+	            	{
+	            		//subtract twelve and set flag to make it pm
+	            		theNumberHour= theNumberHour - 12;
+	            		morningAfternoon = "pm";
+	            	}
+	            	
+	            	
+                	//regularly print all events
+                	//System.out.println("The full time date is: " + event.getStart().getDateTime());
+                	System.out.printf("%s on %s %s at %s:%s %s\n", 
+	                   event.getSummary(),
+	                   d1.get(thisMonth),
+	                   d2.get(today),
+	                   theNumberHour,theMinute,morningAfternoon);
+	                   //event.getStart().getDateTime().toString().substring(11,16));
+	                	                
 	            }
-	        }
-		  
-	  
-	//REFERENCES FOR PRINTING EVENTS	  
-//		  for (Event event : items) {
-//			String month = event.getStart().toString().substring(19, 20);
-//			String day = event.getStart().toString().substring(21, 22);
-//			
-//			System.out.println("\n" + "Month: " + month + " Day: " + day + " --- ");
-//			System.out.print(event.getSummary());
-//		
-//		  }
-		  
-//		  for (Event event : items) {
-//				System.out.println("The full way: ");
-//				System.out.println(event.getStart() + ": ");
-//			    System.out.print(event.getSummary());
-//			  }
-	//	  pageToken = events.getNextPageToken();
-		//} while (pageToken != null);
-		
-
-		  
+	        }		  
 	}
-	
-	
-	
 }
