@@ -116,7 +116,7 @@ public class WAEngine extends WAQueryParametersImpl {
         try {
             url = new URL(toURL(query));
             //System.out.println("The URL is: " + url);
-            String url2 = url.toString().substring(0, 69);
+            String url2 = url.toString().substring(0, 86);
             
             URL url3;
             url3 = new URL(url2);
@@ -131,6 +131,7 @@ public class WAEngine extends WAQueryParametersImpl {
         }
         
         URLFetcher fetcher = new URLFetcher(url, null, http, null);
+        
         fetcher.fetch();
         if (fetcher.wasCancelled())  
             throw new WAException("Download of url " + url + " was cancelled");

@@ -67,6 +67,7 @@ public class AlphaAPISample {
         engine.addFormat("plaintext");
 
         // Create the query.
+        
         WAQuery query = engine.createQuery();
         
         // Set properties of the query.

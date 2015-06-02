@@ -137,7 +137,7 @@ public class URLFetcher {
                 long contentLength = trans.getContentLength();
                 charSet = trans.getCharSet();
                 responseStream = trans.getResponseStream();
-                
+                System.out.println("useFile: " + useFile);
                 // Create the output stream we will write into. Will be either a buf[] or a file.
                 if (useFile) {
                     if (outFile.length() > 0) {
@@ -150,8 +150,10 @@ public class URLFetcher {
                     outStream = new FileOutputStream(downloadedFile);
                 } else {
                     // Want result in byte[] buffer. First check if it is too large.
-                    if (contentLength == -1 || contentLength > MAX_BUFFER_SIZE)
+                	System.out.println("contentLength: " + contentLength);
+                    if (contentLength == -1 || contentLength > MAX_BUFFER_SIZE){
                         throw new WAException("Content from URL " + url + " is unknown or too large to be buffered in memory. Read into a file instead.");
+                    }
                     outStream = new ByteArrayOutputStream((int) contentLength);
                 }
 

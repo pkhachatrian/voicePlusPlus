@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?><queryresult datatypes="MathematicalFunctionIdentity" error="false" host="http://www5a.wolframalpha.com" id="MSPa28231gh6d2gbef42g65i0000243c6c5229dh7299" numpods="8" parsetimedout="false" parsetiming="0.121" recalculate="http://www5a.wolframalpha.com/api/v2/recalc.jsp?id=MSPa28221gh6d2gbef42g65i00003ca6e03gi774d417&amp;s=44" related="http://www5a.wolframalpha.com/api/v2/relatedQueries.jsp?id=MSPa28241gh6d2gbef42g65i000042f2df006a257i50&amp;s=44" server="44" success="true" timedout="Numeric" timedoutpods="" timing="2.73" version="2.6">
+ <pod error="false" id="Input" numsubpods="1" position="100" scanner="Identity" title="Input">
+  <subpod title="">
+   <plaintext>pi</plaintext>
+  </subpod>
+ </pod>
+ <pod error="false" id="DecimalApproximation" numsubpods="1" position="200" primary="true" scanner="Numeric" title="Decimal approximation">
+  <subpod title="">
+   <plaintext>3.1415926535897932384626433832795028841971693993751058...</plaintext>
+  </subpod>
+  <states count="1">
+   <state input="DecimalApproximation__More digits" name="More digits"/>
+  </states>
+ </pod>
+ <pod error="false" id="Property" numsubpods="1" position="300" scanner="Numeric" title="Property">
+  <subpod title="">
+   <plaintext>pi is a transcendental number</plaintext>
+  </subpod>
+ </pod>
+ <pod error="false" id="NumberLine" numsubpods="1" position="400" scanner="NumberLine" title="Number line">
+  <subpod title="">
+   <plaintext/>
+  </subpod>
+ </pod>
+ <pod error="false" id="ContinuedFraction" numsubpods="1" position="500" scanner="ContinuedFraction" title="Continued fraction">
+  <subpod title="">
+   <plaintext>[3; 7, 15, 1, 292, 1, 1, 1, 2, 1, 3, 1, 14, 2, 1, 1, 2, 2, 2, 2, 1, 84, 2, 1, 1, 15, ...]</plaintext>
+  </subpod>
+  <states count="2">
+   <state input="ContinuedFraction__More terms" name="More terms"/>
+   <state input="ContinuedFraction__Fraction form" name="Fraction form"/>
+  </states>
+ </pod>
+ <pod error="false" id="AlternativeRepresentations:MathematicalFunctionIdentityData" numsubpods="3" position="600" scanner="MathematicalFunctionData" title="Alternative representations">
+  <subpod title="">
+   <plaintext>pi = 180 °</plaintext>
+  </subpod>
+  <subpod title="">
+   <plaintext>pi = -i log(-1)</plaintext>
+  </subpod>
+  <subpod title="">
+   <plaintext>pi = cos^(-1)(-1)</plaintext>
+  </subpod>
+  <states count="1">
+   <state input="AlternativeRepresentations:MathematicalFunctionIdentityData__More" name="More"/>
+  </states>
+  <infos count="4">
+   <info text="log(x) is the natural logarithm">
+    <link text="Documentation" title="Mathematica" url="http://reference.wolfram.com/mathematica/ref/Log.html"/>
+    <link text="Properties" title="Wolfram Functions Site" url="http://functions.wolfram.com/ElementaryFunctions/Log"/>
+    <link text="Definition" title="MathWorld" url="http://mathworld.wolfram.com/NaturalLogarithm.html"/>
+   </info>
+   <info text="i is the imaginary unit">
+    <link text="Documentation" title="Documentation" url="http://reference.wolfram.com/mathematica/ref/I.html"/>
+    <link text="Definition" title="MathWorld" url="http://mathworld.wolfram.com/i.html"/>
+   </info>
+   <info text="cos^(-1)(x) is the inverse cosine function">
+    <link text="Documentation" title="Mathematica" url="http://reference.wolfram.com/mathematica/ref/ArcCos.html"/>
+    <link text="Properties" title="Wolfram Functions Site" url="http://functions.wolfram.com/ElementaryFunctions/ArcCos"/>
+    <link text="Definition" title="MathWorld" url="http://mathworld.wolfram.com/InverseCosine.html"/>
+   </info>
+   <info>
+    <link text="More information" url="http://functions.wolfram.com/Constants/Pi/27/ShowAll.html"/>
+   </info>
+  </infos>
+ </pod>
+ <pod error="false" id="SeriesRepresentations:MathematicalFunctionIdentityData" numsubpods="3" position="700" scanner="MathematicalFunctionData" title="Series representations">
+  <subpod title="">
+   <plaintext>pi = 4 sum_(k=0)^infinity (-1)^k/(2 k+1)</plaintext>
+  </subpod>
+  <subpod title="">
+   <plaintext>pi = -2+2 sum_(k=1)^infinity 2^k/(binomial(2 k, k))</plaintext>
+  </subpod>
+  <subpod title="">
+   <plaintext>pi = sum_(k=0)^infinity (50 k-6)/(2^k binomial(3 k, k))</plaintext>
+  </subpod>
+  <states count="1">
+   <state input="SeriesRepresentations:MathematicalFunctionIdentityData__More" name="More"/>
+  </states>
+  <infos count="2">
+   <info text="(n m) is the binomial coefficient">
+    <link text="Documentation" title="Mathematica" url="http://reference.wolfram.com/mathematica/ref/Binomial.html"/>
+    <link text="Properties" title="Wolfram Functions Site" url="http://functions.wolfram.com/GammaBetaErf/Binomial"/>
+    <link text="Definition" title="MathWorld" url="http://mathworld.wolfram.com/BinomialCoefficient.html"/>
+   </info>
+   <info>
+    <link text="More information" url="http://functions.wolfram.com/Constants/Pi/06/ShowAll.html"/>
+   </info>
+  </infos>
+ </pod>
+ <pod error="false" id="IntegralRepresentations:MathematicalFunctionIdentityData" numsubpods="3" position="800" scanner="MathematicalFunctionData" title="Integral representations">
+  <subpod title="">
+   <plaintext>pi = 2 integral_0^infinity 1/(t^2+1) dt</plaintext>
+  </subpod>
+  <subpod title="">
+   <plaintext>pi = 4 integral_0^1 sqrt(1-t^2) dt</plaintext>
+  </subpod>
+  <subpod title="">
+   <plaintext>pi = 2 integral_0^infinity (sin(t))/t dt</plaintext>
+  </subpod>
+  <states count="1">
+   <state input="IntegralRepresentations:MathematicalFunctionIdentityData__More" name="More"/>
+  </states>
+  <infos count="1">
+   <info>
+    <link text="More information" url="http://functions.wolfram.com/Constants/Pi/07/ShowAll.html"/>
+   </info>
+  </infos>
+ </pod>
+ <assumptions count="1">
+  <assumption count="6" template="Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead" type="Clash" word="pi">
+   <value desc="a mathematical constant" input="*C.pi-_*NamedConstant-" name="NamedConstant"/>
+   <value desc="a character" input="*C.pi-_*Character-" name="Character"/>
+   <value desc=" referring to a mathematical definition" input="*C.pi-_*MathWorld-" name="MathWorld"/>
+   <value desc="a class of mathematical terms" input="*C.pi-_*MathWorldClass-" name="MathWorldClass"/>
+   <value desc="a movie" input="*C.pi-_*Movie-" name="Movie"/>
+   <value desc="a word" input="*C.pi-_*Word-" name="Word"/>
+  </assumption>
+ </assumptions>
+</queryresult>

@@ -54,21 +54,24 @@ public class GoogleCalendarInstantiator {
 	        httpTransport, jsonFactory, clientId, clientSecret, Collections.singleton(scope));
 	    
 	    
-	    /*COMMENT OUT BELOW IF NEED TO REUSE CODE*/
+	    /*COMMENT OUT BELOW IF NEED TO REUSE AUTH CODE*/
+	    /*-------------------------------------------------------------------------------------*/
 	     //Step 1: Authorize
 	    String authorizationUrl = flow.newAuthorizationUrl().setRedirectUri(redirectUrl).build();
 
 	    // Point or redirect your user to the authorizationUrl.
 	    System.out.println("Go to the following link in your browser:");
 	    System.out.println(authorizationUrl);
-
+	    /*-------------------------------------------------------------------------------------*/
+	    
 	    // Read the authorization code from the standard input stream.
+	    
 	    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	    System.out.println("What is the authorization code?");
 	    
 	    
-	    
-	    String code = in.readLine();
+	  //code goes here if auth code is hard-coded
+	    String code = "4/BmIz3iBzKM8vRFY5gJJVlPhyz0wCRoW6PWKl9X1vL_4.oilbS7AxaHwc3nHq-8bbp1vASANsmwI";//in.readLine();
 	    // End of Step 1
 
 	    // Step 2: Exchange
