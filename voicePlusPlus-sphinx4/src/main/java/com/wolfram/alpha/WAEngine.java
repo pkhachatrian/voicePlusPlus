@@ -115,6 +115,16 @@ public class WAEngine extends WAQueryParametersImpl {
         URL url;
         try {
             url = new URL(toURL(query));
+            //System.out.println("The URL is: " + url);
+            String url2 = url.toString().substring(0, 69);
+            
+            URL url3;
+            url3 = new URL(url2);
+            url = url3;
+            
+            System.out.println("The URL is: " + url);
+            
+            //System.out.println("Url2 is: " + url2);
         } catch (MalformedURLException e) {
             // Sure this can never happen.
             throw new WAException(e);
