@@ -1,7 +1,11 @@
 package voicePlusPlus.voicePlusPlus_sphinx4;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashSet;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -12,9 +16,16 @@ public class App {
 	public static void main(String[] args) {
 		FreeswitchClient freeswitch = new FreeswitchClient();
 		String phoneNumber = "***REMOVED***";
-		//processUtterance("invocabot list all of my meetings for today");
+		processUtterance("invocabot list all of my meetings for today");
 		freeswitch.ConnectToServer();
 		freeswitch.AddEventListeners();
+		System.out.println("Hit Enter To Initiate Call...");
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		try {
+			in.readLine();
+		} catch (IOException e) {
+		
+		}
 		freeswitch.InitiatePhoneCall(phoneNumber);
 	}
 	

@@ -69,9 +69,8 @@ public class GoogleCalendarInstantiator {
 	    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	    System.out.println("What is the authorization code?");
 	    
-	    
 	  //code goes here if auth code is hard-coded
-	    String code = "4/BmIz3iBzKM8vRFY5gJJVlPhyz0wCRoW6PWKl9X1vL_4.oilbS7AxaHwc3nHq-8bbp1vASANsmwI";//in.readLine();
+	    String code = in.readLine();
 	    // End of Step 1
 
 	    // Step 2: Exchange

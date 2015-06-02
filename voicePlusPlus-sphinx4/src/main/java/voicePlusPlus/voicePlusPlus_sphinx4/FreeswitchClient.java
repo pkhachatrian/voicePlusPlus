@@ -40,7 +40,7 @@ public class FreeswitchClient {
                 //log.info( "{}", event.getEventBodyLines() );
                 if (event.getEventBodyLines().size() > 0){
                 	String command = event.getEventBodyLines().get(0);
-                    String arr[] = mystring.split(" ", 2);
+                    String arr[] = command.split(" ", 2);
                     String uuid = arr[0];   //the
                     command = arr[1];  
                 	System.out.println(command);
@@ -68,7 +68,7 @@ public class FreeswitchClient {
     }
     
     public void InitiatePhoneCall(String sourcePhoneNumber){
-    	client.sendAsyncApiCommand("originate", "sofia/gateway/gw_outbound/" + sourcePhoneNumber + " &javascript(invocabot.js)" );
+    	client.sendAsyncApiCommand("originate", "sofia/gateway/gw_outbound/" + sourcePhoneNumber + " &javascript(invocabot_new.js)" );
 
     }
     
