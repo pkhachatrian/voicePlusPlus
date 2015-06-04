@@ -72,7 +72,7 @@ public class TaskManager {
 	 * @return the API as a string
 	 */
 	public static String determineAPI(String command) {
-		if(command.contains("bob") || command.contains("henry"))
+		if(command.contains("bob") || command.contains("henry") || command.contains("tim"))
 			return APIs.GOOGLE_CALENDAR;
 		if (command.contains("scratch that") || command.contains("delete") || command.contains("remove")) 
 			return APIs.DELETE;

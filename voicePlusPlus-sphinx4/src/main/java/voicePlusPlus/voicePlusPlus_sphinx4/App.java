@@ -16,9 +16,11 @@ public class App {
 	public static void main(String[] args) {
 		FreeswitchClient freeswitch = new FreeswitchClient();
 		String phoneNumber = "***REMOVED***";
+		//processUtterance("schedule dinner with henry on saturday at six pm");
 		processUtterance("invocabot list all of my meetings for today");
 		freeswitch.ConnectToServer();
 		freeswitch.AddEventListeners();
+		while (true) {
 		System.out.println("Hit Enter To Initiate Call...");
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		try {
@@ -26,22 +28,25 @@ public class App {
 		} catch (IOException e) {
 		
 		}
-		freeswitch.InitiatePhoneCall(phoneNumber);
+			freeswitch.InitiatePhoneCall(phoneNumber);
+		}
 	}
 	
     public static String processUtterance(String utterance) {
         APICommand command = new APICommand();
         TaskManager.instantiateHashTable("./src/main/resources/keywords.txt");
 
+        utterance = convertNumbersAsTextToDigits(utterance);
+        
         String commandString = utterance;
 //      String commandString = SphinxManager.getCommand(utterance);                                                                                                                                 
 //      if (commandString == null || commandString.equals("")) {                                                                                                                                    
 //              return;                                                                                                                                                                             
-//      }                                                                                                                                                                                           
+//      }                             
 
         command.setAPI(TaskManager.determineAPI(commandString));
         if (command.getCommand() == APIs.GOOGLE_CALENDAR) {
-                utterance = convertNumbersAsTextToDigits(utterance);
+                commandString = convertNumbersAsTextToDigits(utterance);
         }
 
         command.setCommand(commandString);
