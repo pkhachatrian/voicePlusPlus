@@ -72,8 +72,8 @@ public class TaskManager {
 	 * @return the API as a string
 	 */
 	public static String determineAPI(String command) {
-		if(command.contains("bob") || command.contains("henry") || command.contains("tim"))
-			return APIs.GOOGLE_CALENDAR;
+//		if(command.contains("bob") || command.contains("henry") || command.contains("tim"))
+//			return APIs.GOOGLE_CALENDAR;
 		if (command.contains("scratch that") || command.contains("delete") || command.contains("remove")) 
 			return APIs.DELETE;
 		if (command.contains("list"))
@@ -115,8 +115,14 @@ public class TaskManager {
 				API = key;
 			}
 		}
+		if(command.contains("schedule") || command.contains("dinner") || command.contains("meeting")) {
+			if (command.contains("henry") || command.contains("bob") || command.contains("tim")){
+				return API;
+			}
+		}
 		
-		return API;
+		//System.out.println("returning null from determine");
+		return null;
 	}
 	
 	public static String invokeAPICommand(APICommand command) { 

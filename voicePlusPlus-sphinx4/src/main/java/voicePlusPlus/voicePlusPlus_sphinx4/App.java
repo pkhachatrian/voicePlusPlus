@@ -16,8 +16,10 @@ public class App {
 	public static void main(String[] args) {
 		FreeswitchClient freeswitch = new FreeswitchClient();
 		String phoneNumber = "***REMOVED***";
-		//processUtterance("schedule dinner with henry on saturday at six pm");
+		
 		processUtterance("invocabot list all of my meetings for today");
+		
+		
 		freeswitch.ConnectToServer();
 		freeswitch.AddEventListeners();
 		while (true) {
@@ -38,17 +40,32 @@ public class App {
 
         utterance = convertNumbersAsTextToDigits(utterance);
         
+        
+        System.out.println(utterance);
         String commandString = utterance;
 //      String commandString = SphinxManager.getCommand(utterance);                                                                                                                                 
 //      if (commandString == null || commandString.equals("")) {                                                                                                                                    
 //              return;                                                                                                                                                                             
 //      }                             
 
-        command.setAPI(TaskManager.determineAPI(commandString));
-        if (command.getCommand() == APIs.GOOGLE_CALENDAR) {
+        String determinedAPI;
+        determinedAPI = TaskManager.determineAPI(commandString);
+        
+        
+        if (determinedAPI == null)
+        	return null;
+        command.setAPI(determinedAPI);
+        
+        if (command.getCommand().equals(APIs.GOOGLE_CALENDAR)) {
                 commandString = convertNumbersAsTextToDigits(utterance);
         }
 
+        //System.out.println(command.getCommand());
+        if (command.getCommand() == null) {
+        	return null;
+        }
+        	
+        
         command.setCommand(commandString);
         TaskManager.invokeAPICommand(command);
 
