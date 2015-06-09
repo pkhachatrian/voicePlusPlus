@@ -15,7 +15,7 @@ public class App {
 	
 	public static void main(String[] args) {
 		FreeswitchClient freeswitch = new FreeswitchClient();
-		String phoneNumber = "***REMOVED***";
+		String phoneNumber = "";
 		
 		processUtterance("invocabot list all of my meetings for today");
 		
